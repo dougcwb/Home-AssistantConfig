@@ -10,8 +10,12 @@
 .storage
 .cloud
 .google.token
+.notebooks
+.tts
+.themes
 
 # Ignorar estes arquivos
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
+home-assistant.log
