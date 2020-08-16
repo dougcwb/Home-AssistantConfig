@@ -1,0 +1,25 @@
+  username: !secret sonoff_user
+  password: !secret sonoff_pw
+  #reload: always  # update device list every time HA starts
+  #force_update: [temperature, power]
+  scan_interval: '00:03:00'  # (optional) default 5 minutes
+  sensors: [temperature, humidity, power, current, voltage]
+  devices:
+    1000910870:
+      device_class: light
+    1000aaf287:
+      device_class: light
+    1000aafa2f:
+      device_class: light
+    1000ab10a5:
+      device_class: light
+    1000ab4912:
+      device_class: light
+    1000ab5f22:
+      device_class: light
+    1000ab6a43:
+      device_class: light
+    1000ab6bc0:
+      device_class: light
+    1000aba901:
+      device_class: light

@@ -1,0 +1,126 @@
+
+  choose_radio:
+    name: Escolher Radio
+    icon: mdi:radio
+    options:
+      - http://64-237-45-183.webnow.com.br/mundolivre.aac
+      - https://streaming.radiostreamlive.com/radiorockon_devices
+    initial: http://64-237-45-183.webnow.com.br/mundolivre.aac
+  choose_music:
+    name: Escolher Musica
+    icon: mdi:music
+    options:
+      - http://192.168.1.100:8123/local/mp3/1.mp3
+      - http://192.168.1.100:8123/local/mp3/2.mp3
+      - http://192.168.1.100:8123/local/mp3/3.mp3
+      - http://192.168.1.100:8123/local/mp3/banho.mp3
+      - http://192.168.1.100:8123/local/mp3/lava_uma_mao.mp3
+      - http://192.168.1.100:8123/local/mp3/superman.mp3
+  choose_player:
+    name: Escolher Fonte
+    icon: mdi:youtube
+    options:
+      - nest
+      - samsung_un40f5500
+  choose_canal:
+    name: Canal
+    icon: mdi:remote-tv
+    options:
+      - 12
+      - 9
+      - 7
+      - 6
+      - 4
+      - 2
+  choose_hora:
+    name: Hora
+    icon: mdi:av-timer
+    options:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+  choose_minuto:
+    name: Minuto
+    icon: mdi:av-timer
+    options:
+      - 00
+      - 01
+      - 02
+      - 03
+      - 04
+      - 05
+      - 06
+      - 07
+      - 08
+      - 09
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 26
+      - 27
+      - 28
+      - 29
+      - 30
+      - 31
+      - 32
+      - 33
+      - 34
+      - 35
+      - 36
+      - 37
+      - 38
+      - 39
+      - 40
+      - 41
+      - 42
+      - 43
+      - 44
+      - 45
+      - 46
+      - 47
+      - 48
+      - 49
+      - 50
+      - 51
+      - 52
+      - 53
+      - 54
+      - 55
+      - 56
+      - 57
+      - 58
+      - 59

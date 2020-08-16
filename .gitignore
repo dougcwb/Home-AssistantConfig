@@ -1,0 +1,17 @@
+# Ignora tudo
+#*
+
+# Não serão ignorados
+!*.yaml
+!.gitignore
+!*.md
+
+# Ignorar pastas
+.storage
+.cloud
+.google.token
+
+# Ignorar estes arquivos
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml

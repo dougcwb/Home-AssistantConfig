@@ -1,0 +1,5 @@
+  - platform: broadlink
+    host: !secret broadlink_ip
+    mac: !secret broadlink_mac
+    type: rm4c_mini
+    timeout: 15

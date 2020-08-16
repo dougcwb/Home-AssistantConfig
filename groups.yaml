@@ -1,0 +1,26 @@
+  all_devices:
+    name: all_devices
+    entities:
+      - device_tracker.life360_douglas_pereira
+      - device_tracker.life360_juliana_strapasson
+  copa:
+    name: Copa
+    icon: mdi:table-chair
+    entities:
+      - light.cozinha
+      - light.jantar
+  quintal:
+    name: Quintal
+    icon: mdi:flower-tulip-outline
+    entities:
+      - light.postes
+      - light.frente
+      - light.garagem
+  modo_visita:
+    name: Visitas
+    icon: mdi:tag-faces
+    entities:
+      - automation.timer_postes_15min
+      - automation.timer_frente_15min
+      - automation.pilse_de_15_min
+      - automation.notifica_portao_aberto_2

@@ -1,0 +1,31 @@
+  - platform: group
+    name: todas luzes
+    entities:
+      - light.atico
+      - light.banheiro
+      - light.cozinha
+      - light.escada
+      - light.frente
+      - light.garagem
+      - light.jantar
+      - light.postes
+      - light.quarto
+      
+  - platform: group
+    name: luzes atico
+    entities:
+      - light.atico
+      - light.escada
+      
+  - platform: group
+    name: luzes quintal
+    entities:
+      - light.frente
+      - light.garagem
+      - light.postes
+      
+  - platform: group
+    name: luzes copa
+    entities:
+      - light.cozinha
+      - light.jantar

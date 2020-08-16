@@ -1,0 +1,6 @@
+
+  default_query: worst
+  customize:
+    media_player.nest:
+      video: bestvideo
+      music: bestaudio[ext=mp3]

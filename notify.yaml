@@ -1,0 +1,30 @@
+  - name: ALL_DEVICES
+    platform: group
+    services:
+      - service: mobile_app_rn8p
+      - service: mobile_app_redmi_note_8t
+      - service: mobile_app_sm_t113nu
+
+  - name: doug
+    platform: group
+    services:
+      - service: mobile_app_rn8p
+      
+  - name: ju
+    platform: group
+    services:
+      - service: mobile_app_redmi_note_8t
+      
+  - name: icaro
+    platform: group
+    services:
+      - service: mobile_app_sm_t113nu
+
+  - name: telegram
+    platform: telegram
+    chat_id: !secret telegram_id
+    
+  - name: entity_log
+    platform: file
+    filename: /config/www/entity_log.txt
+    timestamp: false

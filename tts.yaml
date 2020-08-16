@@ -1,0 +1,5 @@
+  - platform: google_translate
+    base_url: !secret internal_url
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300

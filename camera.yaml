@@ -1,0 +1,6 @@
+  - platform: ffmpeg
+    name: sala
+    input: !secret camera_url
+    
+  - platform: local_file
+    file_path: /share/snap.jpg

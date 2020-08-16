@@ -1,0 +1,53 @@
+person.douglas:
+  friendly_name: Doug
+  entity_picture: https://www.life360.com/img/user_images/0447b920-4466-424e-97d7-b598063ccde1/e186b217-e041-49dd-8333-b954911cb443.png?fd=2
+person.juliana:
+  friendly_name: Ju
+  entity_picture: https://www.life360.com/img/user_images/436347ca-18fe-49ce-9572-54d898a86855/f3ba395c-c883-4d88-8ae0-6bc282b83438.png?fd=2
+sensor.processor_use:
+  friendly_name: Uso Processador
+  icon: mdi:cpu-32-bit
+sensor.cpu_temperature:
+  friendly_name: Rpi4 Temp
+  icon: mdi:thermometer
+sensor.memory_free:
+  friendly_name: Memoria Livre
+  icon: mdi:memory
+sensor.memory_use:
+  friendly_name: Uso de Memoria
+  icon: mdi:memory
+sensor.memory_use_percent:
+  friendly_name: Memoria %
+  icon: mdi:memory
+sensor.swap_use_percent:
+  friendly_name: Swap %
+  icon: mdi:swap-horizontal-bold
+sensor.disk_use_percent_home:
+  friendly_name: Uso de Disco
+  icon: mdi:harddisk
+sensor.last_boot:
+  friendly_name: Ultimo Boot
+  icon: mdi:clock
+sensor.clima_humidity:
+  friendly_name: Umidade Ext.
+sensor.clima_temperature:
+  friendly_name: Temperatura Ext.
+sensor.disk_free_home:
+  friendly_name: Disco Livre
+  icon: mdi:harddisk
+sensor.disk_use_home:
+  friendly_name: Disco
+  icon: mdi:harddisk
+switch.portao:
+  device_class: garage_door
+  icon: mdi:gate
+sensor.dolar:
+  icon: mdi:currency-usd
+  unit_of_measurement: reais
+sensor.db_size:
+  friendly_name: MariaDB
+sensor.hacs:
+  friendly_name: HACS
+  unit_of_measurement: atualizações pendentes
+sun.sun:
+  friendly_name: Sol

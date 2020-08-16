@@ -1,0 +1,416 @@
+- id: '1'
+  alias: Foto por minuto
+  description: Tira foto a cada minuto
+  trigger:
+  - minutes: /1
+    platform: time_pattern
+  condition: []
+  action:
+  - data:
+      filename: /share/snap.jpg
+    entity_id: camera.sala
+    service: camera.snapshot
+  - data:
+      file_path: /share/snap.jpg
+    entity_id: camera.local_file
+    service: local_file.update_file_path
+- id: '2'
+  alias: Foto por hora
+  description: Tira foto a cada hora
+  trigger:
+  - hours: /1
+    platform: time_pattern
+  condition: []
+  action:
+  - data:
+      filename: /share/hourly/snapshot_{{ now ().year }}_{{ now ().month }}_{{ now
+        ().day }}_{{ now ().hour }}_{{ now ().minute }}.jpg
+    entity_id: camera.sala
+    service: camera.snapshot
+- id: '3'
+  alias: Backup Semanal
+  description: Fazer um backup do HA toda semana
+  trigger:
+  - at: 04:00:00
+    platform: time
+  condition:
+  - condition: time
+    weekday:
+    - wed
+  action:
+  - data:
+      data:
+        push:
+          badge: 1
+      message: Criando Snapshot
+    service: notify.doug
+  - data_template:
+      name: weekly_backup_{{ now().strftime('%Y-%m-%d') }}
+    service: hassio.snapshot_full
+- id: '4'
+  alias: 'Tema: claro de manhã'
+  trigger:
+  - event: sunrise
+    platform: sun
+  condition: []
+  action:
+  - data:
+      name: clear
+    service: frontend.set_theme
+  initial_state: 'true'
+- id: '5'
+  alias: 'Tema: escuro ao iniciar a noite'
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - data:
+      name: dark_teal
+    service: frontend.set_theme
+  initial_state: 'true'
+- id: '10'
+  alias: 'Tema: claro ao iniciar de manhã'
+  description: Ao iniciar o HA pela manhã, define o tema claro
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  action:
+  - data:
+      name: clear
+    service: frontend.set_theme
+  initial_state: 'true'
+- id: '11'
+  alias: 'Tema: escuro de noite'
+  description: Define tema escuro ao anoitecer
+  trigger:
+  - event: sunset
+    platform: sun
+  condition: []
+  action:
+  - data:
+      name: dark_teal
+    service: frontend.set_theme
+  initial_state: 'true'
+- id: '6'
+  alias: 'Notificar: portão aberto'
+  description: Informa se o portão foi acionado
+  trigger:
+  - entity_id: binary_sensor.portao_aberto
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      language: pt
+      message: Portão aberto
+    entity_id: media_player.nest
+    service: tts.google_translate_say
+  - data:
+      data:
+        push:
+          badge: 1
+      message: O portão foi aberto
+    service: notify.doug
+- id: '7'
+  alias: Acende Luzes ao abrir o portao a noite
+  description: Ao abrir o portão à noite, acender luzes
+  trigger:
+  - entity_id: switch.portao
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: '17:45:00'
+    before: 07:00:00
+    condition: time
+  action:
+  - entity_id: light.postes
+    service: light.turn_on
+  - data: {}
+    entity_id: light.estar
+    service: light.turn_on
+- id: '8'
+  alias: Luzes desligadas ao sair
+  description: Apagar luzes quando ninguém estiver em casa
+  trigger:
+  - entity_id: device_tracker.life360_douglas_pereira
+    platform: state
+    to: not_home
+  - entity_id: device_tracker.life360_juliana_strapasson
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.all
+    service: light.turn_off
+  - data:
+      data:
+        push:
+          badge: 1
+      message: Ninguém em casa. Luzes apagadas.
+    service: notify.doug
+- id: '9'
+  alias: Testes
+  description: Só para testar ações
+  trigger:
+  - entity_id: light.atico
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      language: pt
+      message: Luz do ático acesa
+    entity_id: media_player.nest
+    service: tts.google_translate_say
+- id: '1589366597710'
+  alias: Modem desligado
+  description: Avisa se o modem ficar desligado por mais de 1 minutos
+  trigger:
+  - entity_id: switch.modem
+    for: 00:00:30
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.modem
+    service: switch.turn_on
+  - data:
+      data:
+        push:
+          badge: 1
+      message: o modem estava desligado
+    service: notify.doug
+- id: '1589407320685'
+  alias: Jornal Nacional
+  description: Muda de canal na hora do jornal
+  trigger:
+  - at: '20:30:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      media_content_id: 12
+      media_content_type: channel
+    entity_id: media_player.samsung_un40f5500
+    service: media_player.play_media
+- id: '1589589848900'
+  alias: 'Timer: Garagem 15 min'
+  description: Apaga garagem em 15 minutos automaticamente
+  trigger:
+  - entity_id: light.estar
+    for: 00:15:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.estar
+    service: light.turn_off
+  mode: single
+- id: '1589633706653'
+  alias: Liga umidificador
+  description: ''
+  trigger:
+  - below: '60'
+    entity_id: sensor.umidade
+    for: 00:05:00
+    platform: numeric_state
+  condition:
+  - after: '22:00:00'
+    before: 06:00:00
+    condition: time
+  action:
+  - data: {}
+    entity_id: switch.ventilador
+    service: switch.turn_on
+- id: '1589633864703'
+  alias: Desliga umidificador
+  description: ''
+  trigger:
+  - above: '75'
+    entity_id: sensor.umidade
+    for: 00:05:00
+    platform: numeric_state
+  condition:
+  - after: '22:00:00'
+    before: 06:00:00
+    condition: time
+  - condition: state
+    entity_id: switch.ventilador
+    state: 'on'
+  action:
+  - data: {}
+    entity_id: switch.ventilador
+    service: switch.turn_off
+- id: '1589689241025'
+  alias: Cucko
+  description: Tocar o cucko durante o dia
+  trigger:
+  - minutes: '00'
+    platform: time_pattern
+  condition:
+  - after: 09:00:00
+    before: '21:01:00'
+    condition: time
+  - condition: or
+    conditions:
+    - condition: device
+      device_id: 3638a8dea2294ac7a8dcd7ccf579a85f
+      domain: media_player
+      entity_id: media_player.nest
+      type: is_off
+    - condition: device
+      device_id: 3638a8dea2294ac7a8dcd7ccf579a85f
+      domain: media_player
+      entity_id: media_player.nest
+      type: is_idle
+  action:
+  - data:
+      volume_level: 0.5
+    entity_id: media_player.nest
+    service: media_player.volume_set
+  - data_template:
+      media_content_id: http://192.168.1.100:8123/local/cucko/{{now().strftime('%I')}}.wav
+      media_content_type: audio
+    entity_id: media_player.nest
+    service: media_extractor.play_media
+  mode: single
+- id: '1590409242457'
+  alias: Geladeira sempre ligada
+  description: Mantem a geladeira ligada
+  trigger:
+  - entity_id: switch.pow_geladeira
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.pow_geladeira
+    service: switch.turn_on
+  - data:
+      data:
+        push:
+          badge: 1
+      message: A geladeira foi desligada
+    service: notify.doug
+- id: '1590633568136'
+  alias: 'Notificar: Luzes'
+  description: Notifica se luzes forem acesas quando ninguém estiver em casa
+  trigger:
+  - entity_id: group.all_lights
+    from: 'off'
+    platform: state
+    to: 'on'
+  - entity_id: group.all_lights
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      data:
+        push:
+          badge: 1
+      message: 'Luz: {{ trigger.to_state.attributes.friendly_name }} {{trigger.to_state.state}}'
+    service: notify.doug
+  mode: single
+- id: '1592616553887'
+  alias: 'Timer: Postes 15min'
+  description: ''
+  trigger:
+  - entity_id: light.postes
+    for: 00:15:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.postes
+    service: light.turn_off
+- id: '1592616717390'
+  alias: 'Timer: Frente 15min'
+  description: ''
+  trigger:
+  - entity_id: light.postes
+    for: 00:15:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.frente
+    service: light.turn_off
+- id: '1593104115555'
+  alias: Consumo POW
+  description: Atualiza o consumo do Sonoff Pow (Geladeira)
+  trigger:
+  - platform: time_pattern
+    seconds: '00'
+  condition: []
+  action:
+  - data: {}
+    service: sonoff.update_consumption
+- id: '1597403502394'
+  alias: Liga a TV manhã
+  description: Ligar a tv de manhã
+  trigger:
+  - at: 09:20
+    platform: time
+  condition:
+  - condition: state
+    entity_id: media_player.samsung_un40f5500
+    state: 'off'
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.workday_sensor
+      state: 'on'
+  action:
+  - data: {}
+    entity_id: switch.tv_power
+    service: switch.turn_on
+  - delay: '8'
+  - data: {}
+    entity_id: switch.tv_num9
+    service: switch.turn_on
+  mode: single
+- id: '1597590127017'
+  alias: 'Notificar: Bateria rn8p 100%'
+  description: Avisa quando a bateria do celular está carregada
+  trigger:
+  - above: 99
+    device_id: 2549b1202f7c47d3bb6eb14f60da8596
+    domain: sensor
+    entity_id: sensor.rn8p_battery_level
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+    platform: device
+    type: battery_level
+  condition: []
+  action:
+  - data:
+      language: pt
+      message: Bateria note 8 pro carregada
+    entity_id: media_player.nest
+    service: tts.google_translate_say
+  mode: single

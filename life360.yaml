@@ -1,0 +1,8 @@
+  
+  driving_speed: 29
+  interval_seconds: 10
+  max_update_wait:
+    minutes: 5
+  show_as_state:
+    - driving
+    - moving

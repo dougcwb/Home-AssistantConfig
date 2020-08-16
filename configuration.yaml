@@ -1,0 +1,39 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+automation: !include automations.yaml
+binary_sensor: !include binary.yaml
+camera: !include camera.yaml
+conversation:
+ffmpeg:
+frontend:
+  themes: !include_dir_merge_named themes/
+  javascript_version: latest
+group: !include groups.yaml
+homeassistant:
+  customize: !include customize.yaml
+#  external_url: !secret external_url
+#  internal_url: !secret internal_url
+  whitelist_external_dirs:
+    - /share/
+    - /tmp/
+#http: !include http.yaml
+input_select: !include input_select.yaml
+life360: !include life360.yaml
+light: !include lights.yaml
+logger: !include logger.yaml
+media_extractor: !include extractor.yaml
+media_player: !include media.yaml
+notify: !include notify.yaml
+recorder: !include recorder.yaml
+remote: !include remote.yaml
+scene: !include scenes.yaml
+sensor: !include sensors.yaml
+script: !include scripts.yaml
+sonoff: !include sonoff.yaml
+switch: !include switches.yaml
+stream:
+telegram_bot: !include telegram.yaml
+tts: !include tts.yaml
+upnp:
+websocket_api:

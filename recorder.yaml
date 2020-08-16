@@ -1,0 +1,26 @@
+
+  purge_keep_days: 7
+  commit_interval: 3
+  db_url: !secret dburl
+  exclude:
+    domains:
+      - automation
+      - updater
+    entities:
+      - sensor.last_boot # Comes from 'systemmonitor' sensor platform
+      - sensor.date
+      - camera.local_file
+    entity_globs:
+      - switch.tv_*
+      - switch.sb_*
+    event_types:
+      - call_service # Don't record service calls
+      - service_removed
+      - service_executed
+      - service_registered
+      - platform_discovered
+      - homeassistant_start
+      - feedreader
+      - component_loaded
+      - logbook_entry
+      - system_log_event

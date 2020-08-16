@@ -1,0 +1,13 @@
+# https://www.home-assistant.io/integrations/binary_sensor/
+  - platform: workday
+    country: BR
+    province: PR
+
+  - platform: template
+    sensors:
+      portao_aberto:
+        friendly_name: "Portão Aberto"
+        delay_off:
+          seconds: 15
+        value_template: >-
+          {{(states.switch.portao.state == 'on')}}
