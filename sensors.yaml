@@ -215,7 +215,7 @@
           {% elif states.device_tracker.life360_douglas_pereira.attributes.place == none %}
             mdi:help-circle
           {% else %}
-            mdi:walk
+            mdi:map-marker
           {% endif %}
         entity_id: device_tracker.life360_douglas_pereira
       status_ju:
@@ -229,6 +229,16 @@
             Ausente
           {% else %}
             {{ state_attr('device_tracker.life360_juliana_strapasson', 'address') }}
+          {% endif %}
+        icon_template: >-
+          {% if is_state('device_tracker.life360_juliana_strapasson', 'driving') %}
+            mdi:car-hatchback
+          {% elif is_state('device_tracker.life360_juliana_strapasson', 'moving') %}
+            mdi:run
+          {% elif states.device_tracker.life360_juliana_strapasson.attributes.place == none %}
+            mdi:help-circle
+          {% else %}
+            mdi:map-marker
           {% endif %}
         entity_id: device_tracker.life360_juliana_strapasson
 #  ____    _  _____  _    ____    _    ____  _____

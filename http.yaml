@@ -1,11 +1,5 @@
 # https://github.com/home-assistant/hassio-addons/tree/master/duckdns
 # https://www.home-assistant.io/integrations/http/
   base_url: !secret internal_url
-  #server_port: 8123
-#  ssl_certificate: /ssl/fullchain.pem
-#  ssl_key: /ssl/privkey.pem
-#  ip_ban_enabled: True
-#  login_attempts_threshold: 5
-#  use_x_forwarded_for: true
-#  trusted_proxies:
-#    - 127.0.0.1
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
