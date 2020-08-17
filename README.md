@@ -3,7 +3,7 @@
 - ~Alexa Echo Dot 3 (vendido)~
 - Kit Rasberry Pi 4b + Case + SD 128gb Lexar Class 10 U3 A2 V30 + Fonte 5V 3A
 # Dispositivos
-- SONOFF® Mini DIY - Interruptor10 unidades
+- SONOFF® Mini DIY - Interruptor 10+ unidades (Ainda tenho umas 6 pra instalar)
 - SONOFF® RF R2 - Interruptor RF
 - SONOFF® RF R3 - Interruptor RF
 - SONOFF® TH16 - Interruptor com Sensor de temperatura e Umidade modelo Si7016
@@ -20,9 +20,13 @@
 - Tenda MW3 Mesh Router - Roteador Mesh com 3 nodes
 # Plataformas e Softwares:
 - Raspbian GNU/Linux 10 (buster) - Debian Based https://www.raspberrypi.org/downloads/raspbian/
-- Docker https://www.docker.com/
-- Portainer - Administrador de containers Docker https://www.portainer.io/
+- [Docker](https://www.docker.com/)
+- [Portainer](https://www.portainer.io/) - Administrador de containers Docker
 - Samba Share - Compartilhamento de arquivos em rede Windows
-- Home Assistant - Sistema de automação Open Source https://www.home-assistant.io/hassio/
-- DuckDns - Gerenciador de nomes de domínio https://www.duckdns.org/
-- MariaDB - Banco de dados https://mariadb.org/
+- [Home Assistant](https://www.home-assistant.io/hassio/) - Sistema de automação Open Source
+- [DuckDns](https://www.duckdns.org/) - Gerenciador de nomes de domínio  (hassio addon)
+- [MariaDB](https://mariadb.org/) - Banco de dados (hassio addon)
+
+# Estruta de pastas
+Quase todos os arquivos YAML com as configurações das integrações estão disponíveis na pasta EXTRAS.
+Nem toda integração está disponível nos arquivos, muitas delas estão configuradas direto pela interface do Home Assistant.
