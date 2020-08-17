@@ -14,33 +14,33 @@ views:
               - entity: sensor.status_doug
                 style:
                   color: white
+                  filter: drop-shadow(1px 1px 1px black)
                   font-size: 1.4em
                   left: 10%
                   top: 90%
-                  filter: drop-shadow(1px 1px 1px black)
                 type: state-icon
               - entity: sensor.status_doug
                 style:
                   color: white
+                  filter: drop-shadow(1px 1px 1px black)
                   font-size: 1.4em
                   left: 15%
                   top: 84%
-                  filter: drop-shadow(1px 1px 1px black)
                   transform: 'translate(0%, 0%)'
                 type: state-label
-              - entity: sensor.bateria_doug_perc
+              - entity: sensor.bateria_doug_porcento
                 style:
                   color: white
+                  filter: drop-shadow(1px 1px 1px black)
                   left: 22%
                   top: 15%
-                  filter: drop-shadow(1px 1px 1px black)
                 type: state-label
-              - entity: sensor.bateria_doug_status
+              - entity: sensor.bateria_doug_porcento
                 style:
                   color: white
+                  filter: drop-shadow(1px 1px 1px black)
                   left: 10%
                   top: 15%
-                  filter: drop-shadow(1px 1px 1px black)
                 type: state-icon
             image: /local/doug.jpg
             type: picture-elements
@@ -48,33 +48,33 @@ views:
               - entity: sensor.status_ju
                 style:
                   color: white
+                  filter: drop-shadow(1px 1px 1px black)
                   font-size: 1.4em
                   left: 10%
                   top: 90%
-                  filter: drop-shadow(1px 1px 1px black)
                 type: state-icon
               - entity: sensor.status_ju
                 style:
                   color: white
+                  filter: drop-shadow(1px 1px 1px black)
                   font-size: 1.4em
                   left: 15%
                   top: 84%
-                  filter: drop-shadow(1px 1px 1px black)
                   transform: 'translate(0%, 0%)'
                 type: state-label
-              - entity: sensor.bateria_ju_perc
+              - entity: sensor.bateria_ju_porcento
                 style:
                   color: white
+                  filter: drop-shadow(1px 1px 1px black)
                   left: 78%
                   top: 15%
-                  filter: drop-shadow(1px 1px 1px black)
                 type: state-label
-              - entity: sensor.bateria_ju_status
+              - entity: sensor.bateria_ju_porcento
                 style:
                   color: white
+                  filter: drop-shadow(1px 1px 1px black)
                   left: 90%
                   top: 15%
-                  filter: drop-shadow(1px 1px 1px black)
                 type: state-icon
             image: /local/ju.jpg
             type: picture-elements
@@ -135,8 +135,6 @@ views:
               action: toggle
           - entity: switch.modem
             show_last_changed: true
-          - entity: switch.pow_geladeira
-            show_last_changed: true
           - entity: switch.umidificador
             show_last_changed: true
             tap_action:
@@ -153,20 +151,16 @@ views:
         show_state: true
         type: glance
         update_interval: 60
-      - card:
-          entities:
-            - entity: sensor.corrente
-              icon: 'mdi:alpha-a-circle'
-            - entity: sensor.potencia
-              icon: 'mdi:alpha-w-circle'
-            - entity: sensor.tensao
-              icon: 'mdi:alpha-v-circle'
-          show_name: false
-          type: glance
-        conditions:
+      - entities:
           - entity: switch.pow_geladeira
-            state: 'on'
-        type: conditional
+            show_last_changed: true
+          - entity: sensor.corrente
+            icon: 'mdi:alpha-a-circle'
+          - entity: sensor.potencia
+            icon: 'mdi:alpha-w-circle'
+          - entity: sensor.tensao
+            icon: 'mdi:alpha-v-circle'
+        type: glance
       - artwork: full-cover
         entity: media_player.nest
         hide:
@@ -179,9 +173,6 @@ views:
           volume: false
         shortcuts:
           buttons:
-            - icon: 'mdi:music'
-              id: script.playmusic
-              type: script
             - icon: 'mdi:heart'
               id: script.superman
               type: script
@@ -194,9 +185,6 @@ views:
             - icon: 'mdi:bell'
               id: script.campainha
               type: script
-            - icon: 'mdi:radio'
-              id: script.playradio
-              type: script
             - icon: 'mdi:guitar-electric'
               id: script.rockradio
               name: RockRadio
@@ -205,7 +193,7 @@ views:
               id: script.mundolivre
               name: Mundo Livre
               type: script
-          columns: 5
+          columns: 4
         tts:
           language: pt
           platform: google_translate
@@ -242,6 +230,7 @@ views:
           - entity: automation.cucko
           - entity: automation.geladeira_sempre_ligada
           - entity: automation.liga_a_tv_manha
+        show_header_toggle: false
         title: Automações
         type: entities
     icon: 'mdi:home-heart'
@@ -869,9 +858,9 @@ views:
           - entity: media_player.samsung_un40f5500
           - entity: sun.sun
           - entity: sensor.moon
-        hours_to_show: 24
+        hours_to_show: 12
         refresh_interval: 0
-        title: Histórico (24)
+        title: Histórico (12h)
         type: history-graph
       - color_thresholds:
           - color: '#03A9F4'
@@ -884,9 +873,9 @@ views:
           - sensor.dolar
         height: 100
         hour24: true
-        hours_to_show: 192
+        hours_to_show: 120
         line_width: 2
-        name: Dólar $
+        name: Dólar $ (5 dias)
         points_per_hour: 6
         show:
           extrema: true
@@ -907,9 +896,9 @@ views:
             name: Juliana
           - entity: sensor.sm_t113nu_battery_sensor
             name: Ícaro
-        hours_to_show: 96
+        hours_to_show: 120
         refresh_interval: 0
-        title: Uso da Bateria do celular (96h)
+        title: Uso da Bateria do celular (5 dias)
         type: history-graph
       - color_thresholds:
           - color: '#03A9F4'
@@ -924,7 +913,7 @@ views:
         hour24: true
         hours_to_show: 48
         line_width: 2
-        name: Geladeira (W)
+        name: Consumo Geladeira (W) 48h
         points_per_hour: 5
         show:
           average: true
@@ -936,9 +925,9 @@ views:
           - sensor.today_consumption
         height: 100
         hour24: true
-        hours_to_show: 96
+        hours_to_show: 120
         line_width: 2
-        name: Consumo
+        name: Consumo Diário Geladeira (5 dias)
         points_per_hour: 1
         show:
           average: true
@@ -950,7 +939,6 @@ views:
           - entity: sensor.tv_hoje
           - entity: sensor.tv_ontem
           - entity: sensor.portao_hoje
-          - entity: sensor.today_consumption
           - entity: sensor.ten_days_consumption
         title: Estatísticas
         type: entities
@@ -1134,12 +1122,6 @@ views:
         show_name: true
         show_state: true
         type: picture-entity
-      - entities:
-          - entity: input_select.choose_music
-          - entity: input_select.choose_player
-          - entity: input_select.choose_radio
-        show_header_toggle: false
-        type: entities
     icon: 'mdi:camera'
     panel: false
     path: cameras
