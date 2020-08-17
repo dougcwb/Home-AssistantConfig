@@ -22,6 +22,8 @@ input_select: !include input_select.yaml
 life360: !include life360.yaml
 light: !include lights.yaml
 logger: !include logger.yaml
+lovelace:
+  mode: yaml
 media_extractor: !include extractor.yaml
 media_player: !include media.yaml
 notify: !include notify.yaml

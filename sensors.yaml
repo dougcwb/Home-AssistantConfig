@@ -103,7 +103,7 @@
         value_template:  '{{ states.device_tracker.life360_douglas_pereira.attributes.battery_charging }}'
         friendly_name: Carregando Bateria Doug
         device_class: battery
-      doug_battery_phone:
+      bateria_doug_porcento:
         friendly_name: Bateria Doug
         unit_of_measurement: '%'
         device_class: battery
@@ -123,7 +123,7 @@
         value_template:  '{{ states.device_tracker.life360_juliana_strapasson.attributes.battery_charging }}'
         friendly_name: Carregando Bateria Ju
         device_class: battery
-      ju_battery_phone:
+      bateria_ju_porcento:
         friendly_name: Bateria Ju
         unit_of_measurement: '%'
         device_class: battery
