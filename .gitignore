@@ -1,11 +1,3 @@
-# Ignora tudo
-#*
-
-# Não serão ignorados
-!*.yaml
-!.gitignore
-!*.md
-
 # Ignorar pastas
 .storage
 .cloud

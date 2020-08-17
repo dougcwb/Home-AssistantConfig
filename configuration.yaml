@@ -12,18 +12,14 @@ frontend:
 group: !include groups.yaml
 homeassistant:
   customize: !include customize.yaml
-#  external_url: !secret external_url
-#  internal_url: !secret internal_url
   whitelist_external_dirs:
     - /share/
     - /tmp/
-#http: !include http.yaml
+http: !include http.yaml
 input_select: !include input_select.yaml
 life360: !include life360.yaml
 light: !include lights.yaml
 logger: !include logger.yaml
-lovelace:
-  mode: yaml
 media_extractor: !include extractor.yaml
 media_player: !include media.yaml
 notify: !include notify.yaml
