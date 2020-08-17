@@ -1,5 +1,5 @@
 # Assitentes:
-- Google Home Nest Mini
+- Google Home Nest Mini (2º geração)
 - ~Alexa Echo Dot 3 (vendido)~
 - Kit Rasberry Pi 4b + Case + SD 128gb Lexar Class 10 U3 A2 V30 + Fonte 5V 3A
 # Dispositivos
@@ -19,7 +19,7 @@
 - iLife V7s Plus - Robô para limpeza doméstica
 - Tenda MW3 Mesh Router - Roteador Mesh com 3 nodes
 # Plataformas e Softwares:
-- Raspbian GNU/Linux 10 (buster) - Debian Based https://www.raspberrypi.org/downloads/raspbian/
+- [Raspbian GNU/Linux 10 (buster)](https://www.raspberrypi.org/downloads/raspbian/) - Debian Based 
 - [Docker](https://www.docker.com/)
 - [Portainer](https://www.portainer.io/) - Administrador de containers Docker
 - Samba Share - Compartilhamento de arquivos em rede Windows
@@ -30,3 +30,14 @@
 # Estruta de pastas
 Quase todos os arquivos YAML com as configurações das integrações estão disponíveis na pasta EXTRAS.
 Nem toda integração está disponível nos arquivos, muitas delas estão configuradas direto pela interface do Home Assistant.
+
+# Screenshots (Mobile)
+[Principal](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/01.jpg)
+[Principal 2 ( Media/Nest)](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/02.jpg)
+[Mapa e automações](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/03.jpg)
+[Controles Broadlink](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/04.jpg)
+[Clima](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/05.jpg)
+[Monitor Raspberry/HA](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/06.jpg)
+[Históricos e estatísticas](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/07.jpg)
+[Históricos e estatísticas 2](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/08.jpg)
+[Históricos e estatísticas 3](https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/09.jpg)
