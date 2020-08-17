@@ -1,5 +1,5 @@
   - platform: group
-    name: todas luzes
+    name: Todas Luzes
     entities:
       - light.atico
       - light.banheiro
@@ -12,20 +12,20 @@
       - light.quarto
       
   - platform: group
-    name: luzes atico
+    name: Luzes Atico
     entities:
       - light.atico
       - light.escada
       
   - platform: group
-    name: luzes quintal
+    name: Luzes Quintal
     entities:
       - light.frente
       - light.garagem
       - light.postes
       
   - platform: group
-    name: luzes copa
+    name: Luzes Copa
     entities:
       - light.cozinha
       - light.jantar

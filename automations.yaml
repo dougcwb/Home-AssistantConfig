@@ -372,7 +372,7 @@
   alias: Liga a TV manhã
   description: Ligar a tv de manhã
   trigger:
-  - at: 09:20
+  - at: 09:12
     platform: time
   condition:
   - condition: state
