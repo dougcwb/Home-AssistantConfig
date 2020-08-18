@@ -62,6 +62,14 @@ banho:
       media_content_type: audio
     service: media_player.play_media
   alias: Banho
+badumtss:
+  sequence:
+  - data_template:
+      entity_id: 'media_player.nest'
+      media_content_id: 'http://192.168.1.100:8123/local/mp3/joke_drum_effect.mp3'
+      media_content_type: audio
+    service: media_player.play_media
+  alias: Drum Roll
 print_entities_to_file:
   alias: 'Print Entities To File'
   sequence:
