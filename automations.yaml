@@ -211,7 +211,7 @@
   alias: 'Timer: Garagem 15 min'
   description: Apaga garagem em 15 minutos automaticamente
   trigger:
-  - entity_id: light.estar
+  - entity_id: light.garagem
     for: 00:15:00
     from: 'off'
     platform: state
@@ -219,9 +219,9 @@
   condition: []
   action:
   - data: {}
-    entity_id: light.estar
+    entity_id: light.garagem
     service: light.turn_off
-  mode: single
+  mode: restart
 - id: '1589633706653'
   alias: Liga umidificador
   description: ''
@@ -332,7 +332,7 @@
   mode: single
 - id: '1592616553887'
   alias: 'Timer: Postes 15min'
-  description: ''
+  description: Desliga os postes depois de 15 minutos
   trigger:
   - entity_id: light.postes
     for: 00:15:00
@@ -344,11 +344,12 @@
   - data: {}
     entity_id: light.postes
     service: light.turn_off
+  mode: restart
 - id: '1592616717390'
   alias: 'Timer: Frente 15min'
-  description: ''
+  description: Desliga luzes da frente em 15 minutos
   trigger:
-  - entity_id: light.postes
+  - entity_id: light.frente
     for: 00:15:00
     from: 'off'
     platform: state
@@ -358,6 +359,7 @@
   - data: {}
     entity_id: light.frente
     service: light.turn_off
+  mode: restart
 - id: '1593104115555'
   alias: Consumo POW
   description: Atualiza o consumo do Sonoff Pow (Geladeira)

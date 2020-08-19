@@ -51,3 +51,18 @@ sensor.hacs:
   unit_of_measurement: atualizações pendentes
 sun.sun:
   friendly_name: Sol
+sensor.ipv4_address_eth0:
+  friendly_name: IP Cabo
+sensor.tv_hoje:
+  icon: mdi:television-classic
+sensor.tv_ontem:
+  icon: mdi:television-classic-off
+sensor.portao_hoje:
+  icon: mdi:garage-alert
+sensor.ha_start:
+  friendly_name: Inicialização HA
+sensor.ha_release:
+  friendly_name: Versão HA
+sensor.connected_clients:
+  friendly_name: Clientes conectados
+  icon: mdi:access-point-network

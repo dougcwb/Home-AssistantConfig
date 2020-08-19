@@ -14,6 +14,7 @@ playradio:
       media_content_type: audio/mp4
     service: media_player.play_media
   alias: Toca Radio
+# RADIOS
 mundolivre:
   sequence:
   - data_template:
@@ -30,6 +31,16 @@ rockradio:
       media_content_type: audio/mp4
     service: media_player.play_media
   alias: Rock Radio
+# YOUTUBE VIDEOS
+lineage2:
+  sequence:
+  - data_template:
+      entity_id: 'media_player.nest'
+      media_content_id: 'https://www.youtube.com/watch?v=am36QHp-TgQ'
+      media_content_type: audio/mp4
+    service: media_extractor.play_media
+  alias: Lineage2
+# SONS
 campainha:
   sequence:
   - data_template:
@@ -70,6 +81,7 @@ badumtss:
       media_content_type: audio
     service: media_player.play_media
   alias: Drum Roll
+# OUTROS
 print_entities_to_file:
   alias: 'Print Entities To File'
   sequence:

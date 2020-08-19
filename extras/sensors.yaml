@@ -148,7 +148,6 @@
         friendly_name: Temp Quarto
         device_class: temperature
         unit_of_measurement: '°C'
-        #icon: mdi:temperature-celsius
         value_template: "{{ state_attr('switch.umidificador', 'temperature')}}"
       umidade:
         friendly_name: Umidade Quarto
@@ -165,11 +164,11 @@
         friendly_name: Consumo Hj
         unit_of_measurement: kWh
         value_template: "{{ state_attr('switch.pow_geladeira', 'consumption').0 }}"
-        #icon: mdi:fridge-alert
+        icon_template: mdi:fridge-alert
       ten_days_consumption:
         friendly_name: Consumo 10 dias
         unit_of_measurement: kWh
-        #icon: mdi:fridge-alert
+        icon_template: mdi:fridge-off
         value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:10]|sum if p | round(2)}}"
 #  _     ___   ____    _    _     ___ _____   _    ____    _    ___
 # | |   / _ \ / ___|  / \  | |   |_ _|__  /  / \  / ___|  / \  / _ \

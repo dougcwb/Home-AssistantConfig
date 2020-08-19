@@ -185,6 +185,9 @@ views:
             - icon: 'mdi:bell'
               id: script.campainha
               type: script
+            - icon: 'mdi:emoticon-excited-outline'
+              id: script.badumtss
+              type: script
             - icon: 'mdi:guitar-electric'
               id: script.rockradio
               name: RockRadio
@@ -193,11 +196,16 @@ views:
               id: script.mundolivre
               name: Mundo Livre
               type: script
-          columns: 4
+            - icon: 'mdi:sword-cross'
+              id: script.lineage2
+              name: Lineage 2
+              type: script
+          columns: 5
         tts:
           language: pt
           platform: google_translate
         type: 'custom:mini-media-player'
+        volume_step: 10
     icon: 'mdi:lightbulb'
     panel: false
     path: luzes
@@ -840,8 +848,30 @@ views:
                 icon: 'mdi:lan-connect'
               - entity: sensor.ha_start
               - entity: sensor.ha_release
+              - entity: sensor.ip
+              - entity: sensor.ipv4_address_eth0
             type: entities
         type: vertical-stack
+      - color_thresholds:
+          - color: '#E65100'
+            value: 5
+          - color: '#66BB6A'
+            value: 15
+          - color: '#03A9F4'
+            value: 150
+        entities:
+          - sensor.speedtest_download
+        height: 100
+        hour24: true
+        hours_to_show: 120
+        line_width: 2
+        points_per_hour: 5
+        show:
+          average: true
+          extrema: true
+          fill: true
+        type: 'custom:mini-graph-card'
+        update_interval: 60
     icon: 'mdi:server'
     panel: false
     theme: default
