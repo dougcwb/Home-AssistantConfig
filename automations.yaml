@@ -107,7 +107,10 @@
     from: 'off'
     platform: state
     to: 'on'
-  condition: []
+  condition:
+  - condition: state
+    entity_id: input_boolean.visitas
+    state: 'off'
   action:
   - data:
       language: pt
@@ -120,6 +123,7 @@
           badge: 1
       message: O portão foi aberto
     service: notify.doug
+  mode: single
 - id: '7'
   alias: Acende Luzes ao abrir o portao a noite
   description: Ao abrir o portão à noite, acender luzes
@@ -129,15 +133,16 @@
     platform: state
     to: 'on'
   condition:
-  - after: '17:45:00'
-    before: 07:00:00
+  - after: '18:10:00'
+    before: 06:30:00
     condition: time
   action:
   - entity_id: light.postes
     service: light.turn_on
   - data: {}
-    entity_id: light.estar
+    entity_id: light.varanda
     service: light.turn_on
+  mode: single
 - id: '8'
   alias: Luzes desligadas ao sair
   description: Apagar luzes quando ninguém estiver em casa
@@ -163,17 +168,15 @@
   alias: Testes
   description: Só para testar ações
   trigger:
-  - entity_id: light.atico
+  - entity_id: input_boolean.timer_ativo
     from: 'off'
     platform: state
     to: 'on'
   condition: []
   action:
-  - data:
-      language: pt
-      message: Luz do ático acesa
-    entity_id: media_player.nest
-    service: tts.google_translate_say
+  - timeout: 00:00:05
+    wait_template: '{{ is_state(''input_boolean.timer_ativo'', ''on'') }}'
+  mode: single
 - id: '1589366597710'
   alias: Modem desligado
   description: Avisa se o modem ficar desligado por mais de 1 minutos
@@ -216,7 +219,10 @@
     from: 'off'
     platform: state
     to: 'on'
-  condition: []
+  condition:
+  - condition: state
+    entity_id: input_boolean.visitas
+    state: 'off'
   action:
   - data: {}
     entity_id: light.garagem
@@ -226,7 +232,7 @@
   alias: Liga umidificador
   description: ''
   trigger:
-  - below: '60'
+  - below: '65'
     entity_id: sensor.umidade
     for: 00:05:00
     platform: numeric_state
@@ -236,27 +242,29 @@
     condition: time
   action:
   - data: {}
-    entity_id: switch.ventilador
+    entity_id: switch.umidificador
     service: switch.turn_on
+  mode: single
 - id: '1589633864703'
   alias: Desliga umidificador
   description: ''
   trigger:
-  - above: '75'
+  - above: '72'
     entity_id: sensor.umidade
-    for: 00:05:00
+    for: 00:00:05
     platform: numeric_state
   condition:
   - after: '22:00:00'
     before: 06:00:00
     condition: time
   - condition: state
-    entity_id: switch.ventilador
+    entity_id: switch.umidificador
     state: 'on'
   action:
   - data: {}
-    entity_id: switch.ventilador
+    entity_id: switch.umidificador
     service: switch.turn_off
+  mode: single
 - id: '1589689241025'
   alias: Cucko
   description: Tocar o cucko durante o dia
@@ -264,7 +272,7 @@
   - minutes: '00'
     platform: time_pattern
   condition:
-  - after: 09:00:00
+  - after: 08:00:00
     before: '21:01:00'
     condition: time
   - condition: or
@@ -285,7 +293,7 @@
     entity_id: media_player.nest
     service: media_player.volume_set
   - data_template:
-      media_content_id: http://192.168.1.100:8123/local/cucko/{{now().strftime('%I')}}.wav
+      media_content_id: http://192.168.1.100:8123/local/plugins/cucko/{{now().strftime('%I')}}.wav
       media_content_type: audio
     entity_id: media_player.nest
     service: media_extractor.play_media
@@ -317,11 +325,19 @@
     from: 'off'
     platform: state
     to: 'on'
-  - entity_id: group.all_lights
-    from: 'on'
-    platform: state
-    to: 'off'
-  condition: []
+  condition:
+  - condition: and
+    conditions:
+    - condition: device
+      device_id: 2549b1202f7c47d3bb6eb14f60da8596
+      domain: device_tracker
+      entity_id: device_tracker.rn8p
+      type: is_not_home
+    - condition: device
+      device_id: 28051c7eff554b55b2d1fc18458db1cc
+      domain: device_tracker
+      entity_id: device_tracker.redmi_note_8t
+      type: is_not_home
   action:
   - data:
       data:
@@ -339,7 +355,10 @@
     from: 'off'
     platform: state
     to: 'on'
-  condition: []
+  condition:
+  - condition: state
+    entity_id: input_boolean.visitas
+    state: 'off'
   action:
   - data: {}
     entity_id: light.postes
@@ -354,7 +373,10 @@
     from: 'off'
     platform: state
     to: 'on'
-  condition: []
+  condition:
+  - condition: state
+    entity_id: input_boolean.visitas
+    state: 'off'
   action:
   - data: {}
     entity_id: light.frente
@@ -374,7 +396,7 @@
   alias: Liga a TV manhã
   description: Ligar a tv de manhã
   trigger:
-  - at: 09:12
+  - at: 09:28
     platform: time
   condition:
   - condition: state
@@ -398,21 +420,188 @@
   alias: 'Notificar: Bateria rn8p 100%'
   description: Avisa quando a bateria do celular está carregada
   trigger:
+  - entity_id: sensor.rn8p_battery_level
+    from: '99'
+    platform: state
+    to: '100'
+  condition: []
+  action:
+  - data:
+      language: pt
+      message: Douglas. A bateria do seu celular está em 100%
+    entity_id: media_player.nest
+    service: tts.google_translate_say
+  mode: single
+- id: '1597950348495'
+  alias: 'Notificar: Bateria rn8t 100%'
+  description: Avisa quando a bateria do celular da Ju está carregada
+  trigger:
   - above: 99
-    device_id: 2549b1202f7c47d3bb6eb14f60da8596
+    below: 5
+    device_id: 28051c7eff554b55b2d1fc18458db1cc
     domain: sensor
-    entity_id: sensor.rn8p_battery_level
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 0
+    entity_id: sensor.redmi_note_8t_battery_level
     platform: device
     type: battery_level
   condition: []
   action:
   - data:
       language: pt
-      message: Bateria note 8 pro carregada
+      message: Juliana. A bateria do seu celular está em {{states("sensor.redmi_note_8t_battery_level")}}%
     entity_id: media_player.nest
     service: tts.google_translate_say
+  mode: single
+- id: '1598381965645'
+  alias: 'Notificar: Ju Chegou'
+  description: ''
+  trigger:
+  - entity_id: device_tracker.redmi_note_8t
+    event: enter
+    platform: zone
+    zone: zone.home
+  condition:
+  - after: 08:00:00
+    before: '22:00:00'
+    condition: time
+  action:
+  - data_template:
+      media_content_id: http://192.168.1.100:8123/local/mp3/r2d2.mp3
+      media_content_type: audio
+    entity_id: media_player.nest
+    service: media_extractor.play_media
+  mode: single
+- id: '1598468444279'
+  alias: 'Timer: Desligar Banheiro de dia'
+  description: Desliga a luz do banheiro se ficar mais de 15 minutos ligada
+  trigger:
+  - entity_id: light.banheiro
+    for: 00:15:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: 08:00:00
+    before: '17:45:00'
+    condition: time
+  action:
+  - data: {}
+    entity_id: light.banheiro
+    service: light.turn_off
+  mode: restart
+- id: '1598639167847'
+  alias: 'Timer: Despertar em X minutos'
+  description: Ativa o despertador manual do HA
+  trigger:
+  - entity_id: input_number.timer
+    from: '1'
+    platform: state
+    to: '0'
+  condition: []
+  action:
+  - data_template:
+      media_content_id: http://192.168.1.100:8123/local/mp3/2.mp3
+      media_content_type: audio
+    entity_id: media_player.nest
+    service: media_extractor.play_media
+  mode: parallel
+  max: 3
+- id: '1598669893215'
+  alias: 'Alerta: Alto consumo da geladeira'
+  description: ''
+  trigger:
+  - above: '1.8'
+    entity_id: sensor.today_consumption
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      data:
+        push:
+          badge: 1
+      message: Geladeira com alto
+    service: notify.doug
+  mode: single
+- id: '1600816780345'
+  alias: 'Timer: Varanda 15min'
+  description: ''
+  trigger:
+  - entity_id: light.varanda
+    for: 00:15:00
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.visitas
+    state: 'off'
+  action:
+  - data: {}
+    entity_id: light.varanda
+    service: light.turn_off
+  mode: restart
+- id: '1601412683546'
+  alias: 'Bridge: Botão A'
+  description: ''
+  trigger:
+  - platform: event
+    event_type: sonoff.remote
+    event_data:
+      name: a
+  condition: []
+  action:
+  - data: {}
+    entity_id: light.luzes_quintal
+    service: light.toggle
+  mode: restart
+- id: '1602115463438'
+  alias: Desliga abajur
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:30:00
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.luz_power
+  mode: single
+- id: '1602123913493'
+  alias: Desliga ventilador
+  description: ''
+  trigger:
+  - platform: time
+    at: 01:00:00
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.ventilador
+  mode: single
+- id: '1602454421568'
+  alias: Lustre acende
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: light.jantar
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    entity_id: light.lustre
+  mode: single
+- id: '1602454458057'
+  alias: Lustre apaga
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: light.jantar
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    entity_id: light.lustre
   mode: single

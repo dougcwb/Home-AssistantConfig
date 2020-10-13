@@ -1,0 +1,3 @@
+  - platform: vlc
+    name: "RPI"
+    arguments: "--alsa-audio-device=hw:0,0"

@@ -1,14 +1,23 @@
-  all_devices:
-    name: all_devices
+  rastreadores:
+    name: Rastreadores
     entities:
       - device_tracker.life360_douglas_pereira
       - device_tracker.life360_juliana_strapasson
+      
   copa:
     name: Copa
     icon: mdi:table-chair
     entities:
       - light.cozinha
       - light.jantar
+      
+  atico:
+    name: Atico
+    icon: mdi:home-roof
+    entities:
+      - light.escada
+      - light.atico
+      
   quintal:
     name: Quintal
     icon: mdi:flower-tulip-outline
@@ -16,11 +25,24 @@
       - light.postes
       - light.frente
       - light.garagem
-  modo_visita:
-    name: Visitas
-    icon: mdi:tag-faces
+      - light.varanda
+      
+  todas_luzes:
+    name: Luzes
+    icon: mdi:car-parking-lights
     entities:
-      - automation.timer_postes_15min
-      - automation.timer_frente_15min
-      - automation.pilse_de_15_min
-      - automation.notifica_portao_aberto_2
+      - light.atico
+      - light.banheiro
+      - light.corredor
+      - light.cozinha
+      - light.escada
+      - light.frente
+      - light.fundos
+      - light.garagem
+      - light.icaro
+      - light.jantar
+      - light.lavabo
+      - light.lustre
+      - light.postes
+      - light.quarto
+      - light.varanda

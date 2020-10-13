@@ -139,21 +139,6 @@
           {% else %}
             mdi:battery-charging
           {% endif %}
-#  _____ _   _ _  __
-# |_   _| | | / |/ /_
-#   | | | |_| | | '_ \
-#   | | |  _  | | (_) |
-#   |_| |_| |_|_|\___/
-      temperatura:
-        friendly_name: Temp Quarto
-        device_class: temperature
-        unit_of_measurement: '°C'
-        value_template: "{{ state_attr('switch.umidificador', 'temperature')}}"
-      umidade:
-        friendly_name: Umidade Quarto
-        device_class: humidity
-        unit_of_measurement: '%'
-        value_template: "{{ state_attr('switch.umidificador', 'humidity') }}"
 #  ____   _____        __  ____  ____
 # |  _ \ / _ \ \      / / |  _ \|___ \
 # | |_) | | | \ \ /\ / /  | |_) | __) |

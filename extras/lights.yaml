@@ -10,6 +10,7 @@
       - light.jantar
       - light.postes
       - light.quarto
+      - light.lustre
       
   - platform: group
     name: Luzes Atico
@@ -23,9 +24,23 @@
       - light.frente
       - light.garagem
       - light.postes
+      - light.varanda
       
   - platform: group
     name: Luzes Copa
     entities:
       - light.cozinha
       - light.jantar
+      
+  - platform: group
+    name: Luzes Atico
+    entities:
+      - light.atico
+      - light.escada
+      
+  - platform: flux_led
+    automatic_add: true
+    devices:
+      192.168.1.90:
+        name: LED
+        mode: "rgbw"

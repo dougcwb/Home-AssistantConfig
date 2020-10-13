@@ -1,5 +1,5 @@
 
-  purge_keep_days: 7
+  purge_keep_days: 5
   commit_interval: 3
   db_url: !secret dburl
   exclude:
@@ -19,7 +19,7 @@
       - service_executed
       - service_registered
       - platform_discovered
-      - homeassistant_start
+     # - homeassistant_start
       - feedreader
       - component_loaded
       - logbook_entry

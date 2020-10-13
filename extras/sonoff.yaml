@@ -2,24 +2,48 @@
   password: !secret sonoff_pw
   #reload: always  # update device list every time HA starts
   #force_update: [temperature, power]
-  scan_interval: '00:03:00'  # (optional) default 5 minutes
+  #scan_interval: '00:03:00'  # (optional) default 5 minutes
   sensors: [temperature, humidity, power, current, voltage]
   devices:
-    1000910870:
+    1000910870: #postes
       device_class: light
-    1000aaf287:
+    1000aaf287: #atico
       device_class: light
-    1000aafa2f:
+    1000aafa2f: #escada
       device_class: light
-    1000ab10a5:
+    1000ab10a5: #garagem
       device_class: light
-    1000ab4912:
+    1000ab4912: #banheiro
       device_class: light
-    1000ab5f22:
+    1000ab5f22: #quarto
       device_class: light
-    1000ab6a43:
+    1000ab6a43: #cozinha
       device_class: light
-    1000ab6bc0:
+    1000ab6bc0: #jantar
       device_class: light
-    1000aba901:
+    1000aba901: #frente
       device_class: light
+    1000c57c2c: #fundos
+      device_class: light
+    1000c4f489: #lustrequeimado
+      device_class: light
+    1000c50930: #corredor
+      device_class: light
+    1000c4f19a: #lavabo
+      device_class: light
+    1000c43714: #varanda
+      device_class: light
+    1000c3c515: #icaro
+      device_class: light
+    1000b6e742: #lustre
+      device_class: light
+  rfbridge:
+    a:
+      device_class: door
+      timeout: 5
+    b:
+      device_class: door
+      timeout: 5
+    presenca:
+      device_class: motion
+      timeout: 60

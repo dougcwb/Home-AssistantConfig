@@ -11,10 +11,27 @@ views:
     cards:
       - cards:
           - elements:
+              - entity: sensor.rn8p_battery_state
+                style:
+                  color: black
+                  left: 10%
+                  top: 15%
+                type: state-icon
+              - entity: sensor.rn8p_battery_level
+                style:
+                  color: black
+                  filter: drop-shadow(1px 1px 1px white)
+                  left: 13%
+                  top: 7%
+                  transform: 'translate(0%, 0%)'
+                type: state-label
+              - entity: sensor.rn8p_audio_sensor
+                style:
+                  left: 10%
+                  top: 30%
+                type: state-icon
               - entity: sensor.status_doug
                 style:
-                  color: white
-                  filter: drop-shadow(1px 1px 1px black)
                   font-size: 1.4em
                   left: 10%
                   top: 90%
@@ -23,67 +40,63 @@ views:
                 style:
                   color: white
                   filter: drop-shadow(1px 1px 1px black)
-                  font-size: 1.4em
+                  font-size: 0.8em
                   left: 15%
                   top: 84%
                   transform: 'translate(0%, 0%)'
                 type: state-label
-              - entity: sensor.bateria_doug_porcento
-                style:
-                  color: white
-                  filter: drop-shadow(1px 1px 1px black)
-                  left: 22%
-                  top: 15%
-                type: state-label
-              - entity: sensor.bateria_doug_porcento
-                style:
-                  color: white
-                  filter: drop-shadow(1px 1px 1px black)
-                  left: 10%
-                  top: 15%
-                type: state-icon
-            image: /local/doug.jpg
+            image: /local/img/doug.jpg
             type: picture-elements
           - elements:
-              - entity: sensor.status_ju
+              - entity: sensor.redmi_note_8t_battery_level
                 style:
-                  color: white
-                  filter: drop-shadow(1px 1px 1px black)
-                  font-size: 1.4em
-                  left: 10%
-                  top: 90%
-                type: state-icon
-              - entity: sensor.status_ju
-                style:
-                  color: white
-                  filter: drop-shadow(1px 1px 1px black)
-                  font-size: 1.4em
-                  left: 15%
-                  top: 84%
-                  transform: 'translate(0%, 0%)'
-                type: state-label
-              - entity: sensor.bateria_ju_porcento
-                style:
-                  color: white
-                  filter: drop-shadow(1px 1px 1px black)
-                  left: 78%
+                  color: black
+                  filter: drop-shadow(1px 1px 1px white)
+                  left: 76%
                   top: 15%
                 type: state-label
-              - entity: sensor.bateria_ju_porcento
+              - entity: sensor.redmi_note_8t_battery_state
                 style:
-                  color: white
-                  filter: drop-shadow(1px 1px 1px black)
                   left: 90%
                   top: 15%
                 type: state-icon
-            image: /local/ju.jpg
+              - entity: sensor.redmi_note_8t_audio_sensor
+                style:
+                  left: 90%
+                  top: 30%
+                type: state-icon
+              - entity: sensor.status_ju
+                style:
+                  font-size: 1.4em
+                  left: 10%
+                  top: 90%
+                type: state-icon
+              - entity: sensor.status_ju
+                style:
+                  color: white
+                  filter: drop-shadow(1px 1px 1px black)
+                  font-size: 0.8em
+                  left: 15%
+                  top: 84%
+                  transform: 'translate(0%, 0%)'
+                type: state-label
+            image: /local/img/ju.jpg
             type: picture-elements
         type: horizontal-stack
       - entities:
+          - entity: light.lustre
+            tap_action:
+              action: toggle
           - entity: light.jantar
             tap_action:
               action: toggle
           - entity: light.cozinha
+            tap_action:
+              action: toggle
+          - entity: light.quarto
+            tap_action:
+              action: toggle
+          - entity: light.icaro
             tap_action:
               action: toggle
           - entity: light.garagem
@@ -95,35 +108,49 @@ views:
           - entity: light.frente
             tap_action:
               action: toggle
+          - entity: light.varanda
+            tap_action:
+              action: toggle
+          - entity: light.fundos
+            tap_action:
+              action: toggle
           - entity: light.atico
             tap_action:
               action: toggle
           - entity: light.escada
             tap_action:
               action: toggle
-          - entity: light.quarto
+          - entity: light.corredor
             tap_action:
               action: toggle
           - entity: light.banheiro
             tap_action:
               action: toggle
+          - entity: light.lavabo
+            tap_action:
+              action: toggle
+          - entity: light.led
+            tap_action:
+              action: toggle
+          - entity: switch.luz_power
+            tap_action:
+              action: toggle
+            icon: 'mdi:lamp'
+            name: Abajur
         show_state: false
         type: glance
       - entities:
-          - entity: light.todas_luzes
-            name: Todas
+          - entity: group.todas_luzes
             tap_action:
               action: toggle
-          - entity: light.luzes_copa
-            icon: 'mdi:table-chair'
+          - entity: group.copa
             name: Copa
             tap_action:
               action: toggle
-          - entity: light.luzes_quintal
-            icon: 'mdi:flower-tulip-outline'
+          - entity: group.quintal
             tap_action:
               action: toggle
-          - entity: group.modo_visita
+          - entity: group.atico
             tap_action:
               action: toggle
         show_state: false
@@ -139,6 +166,13 @@ views:
             show_last_changed: true
             tap_action:
               action: toggle
+          - entity: switch.ventilador
+            show_last_changed: true
+            tap_action:
+              action: toggle
+          - entity: input_boolean.visitas
+            tap_action:
+              action: toggle
         show_state: true
         type: glance
       - entities:
@@ -151,16 +185,37 @@ views:
         show_state: true
         type: glance
         update_interval: 60
-      - entities:
+      - cards:
           - entity: switch.pow_geladeira
-            show_last_changed: true
+            hold_action:
+              action: more-info
+            show_icon: true
+            show_name: true
+            show_state: false
+            tap_action:
+              action: more-info
+            type: button
           - entity: sensor.corrente
-            icon: 'mdi:alpha-a-circle'
-          - entity: sensor.potencia
-            icon: 'mdi:alpha-w-circle'
+            max: 10
+            min: 0
+            severity:
+              green: 2
+              red: 8
+              yellow: 5
+            type: gauge
           - entity: sensor.tensao
-            icon: 'mdi:alpha-v-circle'
-        type: glance
+            max: 140
+            min: 0
+            type: gauge
+          - entity: sensor.potencia
+            max: 1000
+            min: 0
+            severity:
+              green: 5
+              red: 500
+              yellow: 200
+            type: gauge
+        type: horizontal-stack
       - artwork: full-cover
         entity: media_player.nest
         hide:
@@ -205,47 +260,12 @@ views:
           language: pt
           platform: google_translate
         type: 'custom:mini-media-player'
-        volume_step: 10
+        volume_step: 5
     icon: 'mdi:lightbulb'
     panel: false
     path: luzes
-    theme: default
+    theme: ''
     title: Luzes
-  - badges: []
-    cards:
-      - dark_mode: false
-        default_zoom: 14
-        entities:
-          - entity: person.douglas
-          - entity: person.juliana
-        geo_location_sources: []
-        hours_to_show: 0
-        type: map
-      - entities:
-          - entity: automation.acende_postes
-          - entity: automation.pilse_de_15_min
-          - entity: automation.timer_postes_15min
-          - entity: automation.timer_frente_15min
-          - entity: automation.backup_semanal_3
-          - entity: automation.luzes_desligadas_ao_sair_2
-          - entity: automation.roteador_desligado
-          - entity: automation.notifica_portao_aberto_2
-          - entity: automation.jornal
-          - entity: automation.nova_automacao
-          - entity: automation.notifica_luzes
-          - entity: automation.liga_umidificador
-          - entity: automation.desliga_umidificador
-          - entity: automation.cucko
-          - entity: automation.geladeira_sempre_ligada
-          - entity: automation.liga_a_tv_manha
-        show_header_toggle: false
-        title: Automações
-        type: entities
-    icon: 'mdi:home-heart'
-    panel: false
-    path: default_view
-    theme: default
-    title: Família
   - badges: []
     cards:
       - entity: media_player.samsung_un40f5500
@@ -689,89 +709,265 @@ views:
                 type: glance
             type: horizontal-stack
         type: vertical-stack
-      - entities:
-          - entity: switch.luz_power
-            tap_action:
-              action: toggle
-        show_state: false
-        type: glance
     icon: 'mdi:remote-tv'
     path: controles
     theme: dark_teal
     title: Controles
-  - badges: []
-    cards:
-      - entity: weather.casa
-        theme: default
-        type: weather-forecast
-      - cards:
-          - cards:
-              - entities:
-                  - color: '#03A9F4'
-                    entity: sensor.temperatura
-                    show_state: true
-                height: 140
-                hours_to_show: 24
-                line_width: 2
-                lower_bound: 5
-                points_per_hour: 30
-                show:
-                  average: true
-                  extrema: true
-                type: 'custom:mini-graph-card'
-                upper_bound: 40
-              - entities:
-                  - color: '#A3A934'
-                    entity: sensor.clima_temperature
-                    show_state: true
-                height: 140
-                hours_to_show: 24
-                line_width: 2
-                lower_bound: 5
-                points_per_hour: 30
-                show:
-                  average: true
-                  extrema: true
-                type: 'custom:mini-graph-card'
-                upper_bound: 40
-            type: horizontal-stack
-          - cards:
-              - entities:
-                  - color: '#03A9F4'
-                    entity: sensor.umidade
-                    show_state: true
-                height: 140
-                hours_to_show: 24
-                line_width: 2
-                lower_bound: 30
-                points_per_hour: 30
-                show:
-                  average: true
-                  extrema: true
-                type: 'custom:mini-graph-card'
-                upper_bound: 100
-              - entities:
-                  - color: '#A3A934'
-                    entity: sensor.clima_humidity
-                    show_state: true
-                height: 140
-                hours_to_show: 24
-                line_width: 2
-                lower_bound: 30
-                points_per_hour: 30
-                show:
-                  average: true
-                  extrema: true
-                type: 'custom:mini-graph-card'
-                upper_bound: 100
-            type: horizontal-stack
-        type: vertical-stack
-    icon: 'mdi:weather-pouring'
+  - icon: 'mdi:castle'
     panel: false
-    path: sensores
-    theme: default
-    title: Clima
-  - badges: []
+    path: floorplan
+    theme: ''
+    title: Floorplan
+    badges: []
+    cards:
+      - elements:
+          - entity: light.quarto
+            style:
+              left: 20%
+              top: 30%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - type: state-label
+            entity: sensor.temperatura
+            attribute: temperature
+            suffix: °C
+            style:
+              top: 21%
+              left: 14%
+              color: grey
+          - type: state-label
+            entity: sensor.umidade
+            style:
+              top: 21%
+              left: 26%
+              color: grey
+          - entity: switch.umidificador
+            style:
+              left: 29%
+              top: 25%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: switch.ventilador
+            style:
+              left: 33%
+              top: 35%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.banheiro
+            style:
+              left: 19%
+              top: 46%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.jantar
+            style:
+              left: 70%
+              top: 46%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.cozinha
+            style:
+              left: 70%
+              top: 26%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.cozinha
+            style:
+              left: 91%
+              top: 26%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.led
+            style:
+              left: 60%
+              top: 83%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            icon: 'mdi:led-strip'
+            type: state-icon
+          - entity: light.lustre
+            style:
+              left: 70%
+              top: 77%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: binary_sensor.presenca
+            style:
+              left: 58%
+              top: 61%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.lavabo
+            style:
+              left: 79%
+              top: 61%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.garagem
+            style:
+              left: 74%
+              top: 92%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.escada
+            style:
+              left: 81%
+              top: 53%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: switch.pow_geladeira
+            style:
+              left: 81%
+              top: 30%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: info
+            type: state-icon
+          - entity: light.icaro
+            style:
+              left: 45%
+              top: 30%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.corredor
+            style:
+              left: 42%
+              top: 44%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.varanda
+            style:
+              left: 39%
+              top: 52%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.fundos
+            style:
+              left: 70%
+              top: 13%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.varanda
+            style:
+              left: 6%
+              top: 15%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.varanda
+            style:
+              left: 6%
+              top: 53%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.garagem
+            style:
+              left: 88%
+              top: 70%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: switch.portao
+            style:
+              left: 26%
+              top: 97%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.postes
+            style:
+              left: 5%
+              top: 95%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.frente
+            style:
+              left: 95%
+              top: 95%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.atico
+            style:
+              left: 15%
+              top: 70%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: light.atico
+            style:
+              left: 35%
+              top: 70%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: toggle
+            type: state-icon
+          - entity: switch.modem
+            style:
+              left: 26%
+              top: 80%
+              '--paper-item-icon-color': grey
+            tap_action:
+              action: tog
+            type: state-icon
+          - type: state-label
+            entity: group.atico
+            style:
+              top: 60%
+              left: 21%
+              color: grey
+        image: /local/img/casa.jpg
+        type: picture-elements
+  - icon: 'mdi:server'
+    panel: false
+    path: system
+    theme: ''
+    title: System
+    visible:
+      - user: dbe51463687c4146a30fb5b00593d24c
+    badges: []
     cards:
       - cards:
           - cards:
@@ -784,10 +980,10 @@ views:
                     value: 60
                 entities:
                   - sensor.processor_use
-                hours_to_show: 2
-                line_width: 4
-                name: Uso de CPU - 2h
-                points_per_hour: 30
+                hours_to_show: 24
+                line_width: 2
+                name: Uso de CPU (24h)
+                points_per_hour: 4
                 show:
                   average: true
                   extrema: true
@@ -803,9 +999,9 @@ views:
                 entities:
                   - sensor.cpu_temp
                 hours_to_show: 24
-                line_width: 4
-                name: CPU Temp 24h
-                points_per_hour: 4
+                line_width: 2
+                name: CPU Temp (24h)
+                points_per_hour: 2
                 show:
                   average: true
                   extrema: true
@@ -846,38 +1042,81 @@ views:
               - entity: sensor.hacs
               - entity: sensor.connected_clients
                 icon: 'mdi:lan-connect'
-              - entity: sensor.ha_start
               - entity: sensor.ha_release
               - entity: sensor.ip
               - entity: sensor.ipv4_address_eth0
             type: entities
         type: vertical-stack
-      - color_thresholds:
-          - color: '#E65100'
-            value: 5
-          - color: '#66BB6A'
-            value: 15
-          - color: '#03A9F4'
-            value: 150
-        entities:
-          - sensor.speedtest_download
-        height: 100
-        hour24: true
-        hours_to_show: 120
-        line_width: 2
-        points_per_hour: 5
-        show:
-          average: true
-          extrema: true
-          fill: true
-        type: 'custom:mini-graph-card'
-        update_interval: 60
-    icon: 'mdi:server'
+  - badges: []
+    cards:
+      - entity: weather.casa
+        theme: default
+        type: weather-forecast
+      - cards:
+          - cards:
+              - entities:
+                  - color: '#03A9F4'
+                    entity: sensor.temperatura
+                    show_state: true
+                height: 140
+                hours_to_show: 24
+                line_width: 2
+                lower_bound: 0
+                points_per_hour: 30
+                show:
+                  average: true
+                  extrema: true
+                type: 'custom:mini-graph-card'
+              - entities:
+                  - color: '#A3A934'
+                    entity: sensor.clima_temperature
+                    show_state: true
+                height: 140
+                hours_to_show: 24
+                line_width: 2
+                lower_bound: 0
+                points_per_hour: 30
+                show:
+                  average: true
+                  extrema: true
+                type: 'custom:mini-graph-card'
+            type: horizontal-stack
+          - cards:
+              - entities:
+                  - color: '#03A9F4'
+                    entity: sensor.umidade
+                    show_state: true
+                height: 140
+                hours_to_show: 24
+                line_width: 2
+                lower_bound: 30
+                points_per_hour: 30
+                show:
+                  average: true
+                  extrema: true
+                type: 'custom:mini-graph-card'
+                upper_bound: 100
+              - entities:
+                  - color: '#A3A934'
+                    entity: sensor.clima_humidity
+                    show_state: true
+                height: 140
+                hours_to_show: 24
+                line_width: 2
+                lower_bound: 30
+                points_per_hour: 30
+                show:
+                  average: true
+                  extrema: true
+                type: 'custom:mini-graph-card'
+                upper_bound: 100
+            type: horizontal-stack
+        type: vertical-stack
+    icon: 'mdi:weather-pouring'
     panel: false
+    path: clima
     theme: default
-    title: System
-    visible:
-      - user: dbe51463687c4146a30fb5b00593d24c
+    title: Clima
   - badges: []
     cards:
       - entities:
@@ -886,11 +1125,10 @@ views:
           - entity: weather.casa
           - entity: weather.wipro
           - entity: media_player.samsung_un40f5500
-          - entity: sun.sun
           - entity: sensor.moon
-        hours_to_show: 12
+        hours_to_show: 24
         refresh_interval: 0
-        title: Histórico (12h)
+        title: Histórico (24h)
         type: history-graph
       - color_thresholds:
           - color: '#03A9F4'
@@ -916,55 +1154,17 @@ views:
           - entity: sensor.processor_use
           - entity: sensor.memory_use_percent
           - entity: sensor.swap_use_percent
-        hours_to_show: 8
-        refresh_interval: 0
         type: history-graph
+        refresh_interval: 0
+        hours_to_show: 12
       - entities:
-          - entity: sensor.doug_battery_phone
+          - entity: sensor.rn8p_battery_level
             name: Doug
-          - entity: sensor.ju_battery_phone
-            name: Juliana
-          - entity: sensor.sm_t113nu_battery_sensor
-            name: Ícaro
+          - entity: sensor.redmi_note_8t_battery_level
         hours_to_show: 120
         refresh_interval: 0
         title: Uso da Bateria do celular (5 dias)
         type: history-graph
-      - color_thresholds:
-          - color: '#03A9F4'
-            value: 4
-          - color: '#66BB6A'
-            value: 50
-          - color: '#E65100'
-            value: 200
-        entities:
-          - sensor.potencia
-        height: 100
-        hour24: true
-        hours_to_show: 48
-        line_width: 2
-        name: Consumo Geladeira (W) 48h
-        points_per_hour: 5
-        show:
-          average: true
-          extrema: true
-          fill: true
-        type: 'custom:mini-graph-card'
-        update_interval: 60
-      - entities:
-          - sensor.today_consumption
-        height: 100
-        hour24: true
-        hours_to_show: 120
-        line_width: 2
-        name: Consumo Diário Geladeira (5 dias)
-        points_per_hour: 1
-        show:
-          average: true
-          extrema: true
-          fill: true
-        type: 'custom:mini-graph-card'
-        update_interval: 360
       - entities:
           - entity: sensor.tv_hoje
           - entity: sensor.tv_ontem
@@ -974,174 +1174,124 @@ views:
         type: entities
     icon: 'mdi:chart-line'
     panel: false
+    path: historico
     theme: default
     title: Historico
+  - icon: 'mdi:fridge'
+    title: Geladeira
+    path: geladeira
+    badges: []
+    cards:
+      - color_thresholds:
+          - color: '#03A9F4'
+            value: 4
+          - color: '#66BB6A'
+            value: 100
+          - color: '#E65100'
+            value: 500
+        entities:
+          - sensor.potencia
+        height: 100
+        hour24: true
+        hours_to_show: 12
+        line_width: 2
+        name: Consumo Geladeira (W) 12h
+        points_per_hour: 60
+        show:
+          average: false
+          extrema: true
+          fill: true
+        type: 'custom:mini-graph-card'
+        update_interval: 60
+      - color_thresholds:
+          - color: '#03A9F4'
+            value: 10
+          - color: '#66BB6A'
+            value: 120
+          - color: '#E65100'
+            value: 130
+        entities:
+          - sensor.tensao
+        height: 100
+        hour24: true
+        hours_to_show: 12
+        line_width: 2
+        name: Consumo Geladeira (V) 12h
+        points_per_hour: 60
+        show:
+          average: false
+          extrema: true
+          fill: false
+        type: 'custom:mini-graph-card'
+        update_interval: 60
+      - entities:
+          - sensor.today_consumption
+        height: 100
+        hour24: true
+        hours_to_show: 72
+        line_width: 2
+        name: Diário Geladeira (3d)
+        points_per_hour: 1
+        show:
+          average: false
+          extrema: true
+          fill: true
+        type: 'custom:mini-graph-card'
+        update_interval: 360
+      - entities:
+          - sensor.ten_days_consumption
+        height: 100
+        hour24: true
+        hours_to_show: 120
+        line_width: 2
+        name: Geladeira 10d
+        points_per_hour: 1
+        show:
+          average: false
+          extrema: false
+          fill: true
+        type: 'custom:mini-graph-card'
+        update_interval: 360
   - badges: []
     cards:
-      - elements:
-          - entity: light.quarto
-            style:
-              left: 25%
-              top: 30%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.banheiro
-            style:
-              left: 23%
-              top: 44%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.jantar
-            style:
-              left: 70%
-              top: 45%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.cozinha
-            style:
-              left: 70%
-              top: 24%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.cozinha
-            style:
-              left: 89%
-              top: 24%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.estar
-            style:
-              left: 70%
-              top: 64%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.estar
-            style:
-              left: 70%
-              top: 77%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.garagem
-            style:
-              left: 70%
-              top: 94%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.escada
-            style:
-              left: 82%
-              top: 38%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: switch.pow_geladeira
-            style:
-              left: 83%
-              top: 30%
-            tap_action:
-              action: info
-            type: state-icon
-          - entity: light.icaro
-            style:
-              left: 47%
-              top: 30%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.corredor
-            style:
-              left: 44%
-              top: 42%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.varanda
-            style:
-              left: 42%
-              top: 50%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.fundos
-            style:
-              left: 70%
-              top: 13%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.fundos
-            style:
-              left: 10%
-              top: 13%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.varanda
-            style:
-              left: 10%
-              top: 51%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.garagem
-            style:
-              left: 91%
-              top: 70%
-            tap_action:
-              action: toggle
-            type: state-icon
-        image: /local/terreo.jpg
-        type: picture-elements
-      - elements:
-          - entity: switch.portao
-            style:
-              left: 26%
-              top: 94%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.postes
-            style:
-              left: 16%
-              top: 78%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.postes
-            style:
-              left: 21%
-              top: 35%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.postes
-            style:
-              left: 21%
-              top: 12%
-            tap_action:
-              action: toggle
-            type: state-icon
-          - entity: light.frente
-            style:
-              left: 91%
-              top: 84%
-            tap_action:
-              action: toggle
-            type: state-icon
-        image: /local/jardim.jpg
-        type: picture-elements
-    icon: 'mdi:castle'
+      - type: entities
+        entities:
+          - entity: automation.timer_postes_15min
+          - entity: automation.timer_garagem_15min
+          - entity: automation.timer_varanda_15min
+          - entity: automation.timer_frente_15min
+        show_header_toggle: false
+      - type: entities
+        entities:
+          - entity: automation.notifica_portao_aberto
+          - entity: automation.notifica_luzes
+          - entity: automation.notifica_bateria_rn8p_100
+        show_header_toggle: false
+      - entities:
+          - entity: automation.acende_postes
+          - entity: automation.backup_semanal_3
+          - entity: automation.luzes_desligadas_ao_sair_2
+          - entity: automation.roteador_desligado
+          - entity: automation.jornal
+          - entity: automation.liga_umidificador
+          - entity: automation.desliga_umidificador
+          - entity: automation.cucko
+          - entity: automation.geladeira_sempre_ligada
+          - entity: automation.liga_a_tv_manha
+        show_header_toggle: false
+        title: Automações
+        type: entities
+      - entities:
+          - entity: input_number.tempo_minuto
+          - entity: input_number.tempo_hora
+          - entity: input_boolean.timer_ativo
+        title: Timer
+        type: entities
+    icon: 'mdi:home-automation'
     panel: false
-    path: floorplan
-    title: Floorplan
+    path: automacoes
+    theme: default
+    title: Automações
   - badges: []
     cards:
       - aspect_ratio: 100%
@@ -1152,6 +1302,132 @@ views:
         show_name: true
         show_state: true
         type: picture-entity
+      - cards:
+          - cards:
+              - card:
+                  content: >-
+                    **Programar para: {{ states.input_number.keypad.state | int
+                    }} minutos**
+                  type: markdown
+                conditions:
+                  - entity: input_number.keypad
+                    state_not: '0.0'
+                type: conditional
+              - card:
+                  content: '**Timer desligado**'
+                  type: markdown
+                conditions:
+                  - entity: input_number.keypad
+                    state: '0.0'
+                  - entity: input_number.timer
+                    state: '0.0'
+                type: conditional
+              - card:
+                  content: >-
+                    **Faltam: {{ states.input_number.timer.state | int }}
+                    minutos**
+                  type: markdown
+                conditions:
+                  - entity: input_number.timer
+                    state_not: '0.0'
+                  - entity: input_number.keypad
+                    state: '0.0'
+                type: conditional
+            type: horizontal-stack
+          - cards:
+              - icon: 'mdi:numeric-1'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_one
+                type: button
+              - icon: 'mdi:numeric-2'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_two
+                type: button
+              - icon: 'mdi:numeric-3'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_three
+                type: button
+            type: horizontal-stack
+          - cards:
+              - icon: 'mdi:numeric-4'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_four
+                type: button
+              - icon: 'mdi:numeric-5'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_five
+                type: button
+              - icon: 'mdi:numeric-6'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_six
+                type: button
+            type: horizontal-stack
+          - cards:
+              - icon: 'mdi:numeric-7'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_seven
+                type: button
+              - icon: 'mdi:numeric-8'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_eight
+                type: button
+              - icon: 'mdi:numeric-9'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_nine
+                type: button
+            type: horizontal-stack
+          - cards:
+              - icon: 'mdi:close'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_clear
+                type: button
+              - icon: 'mdi:numeric-0'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_zero
+                type: button
+              - icon: 'mdi:check'
+                name: ' '
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: script.button_enter
+                type: button
+            type: horizontal-stack
+        title: Timer Control Panel
+        type: vertical-stack
     icon: 'mdi:camera'
     panel: false
     path: cameras

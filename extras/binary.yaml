@@ -7,6 +7,7 @@
     sensors:
       portao_aberto:
         friendly_name: "Portão Aberto"
+        device_class: garage_door
         delay_off:
           seconds: 15
         value_template: >-

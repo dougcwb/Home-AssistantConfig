@@ -16,10 +16,13 @@ homeassistant:
     - /share/
     - /tmp/
 http: !include extras/http.yaml
+input_boolean: !include extras/input_boolean.yaml
+input_number: !include extras/input_number.yaml
 input_select: !include extras/input_select.yaml
 life360: !include extras/life360.yaml
 light: !include extras/lights.yaml
-logger: !include extras/logger.yaml
+local_ip:
+#logger: !include extras/logger.yaml
 media_extractor: !include extras/extractor.yaml
 media_player: !include extras/media.yaml
 notify: !include extras/notify.yaml #notificações para celular
