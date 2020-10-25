@@ -44,6 +44,9 @@
     b:
       device_class: door
       timeout: 5
+    c:
+      device_class: door
+      timeout: 5
     presenca:
       device_class: motion
-      timeout: 60
+      timeout: 15
