@@ -447,7 +447,7 @@
   action:
   - data:
       language: pt
-      message: Juliana. A bateria do seu celular está em {{states("sensor.redmi_note_8t_battery_level")}}%
+      message: Juliana. A bateria do seu celular está em {{states("sensor.rn8t_battery_level")}}%
     entity_id: media_player.nest
     service: tts.google_translate_say
   mode: single

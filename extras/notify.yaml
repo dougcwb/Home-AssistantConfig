@@ -2,7 +2,7 @@
     platform: group
     services:
       - service: mobile_app_rn8p
-      - service: mobile_app_redmi_note_8t
+      - service: mobile_app_rn8t
       - service: mobile_app_sm_t113nu
 
   - name: doug
@@ -13,7 +13,7 @@
   - name: ju
     platform: group
     services:
-      - service: mobile_app_redmi_note_8t
+      - service: mobile_app_rn8t
       
   - name: icaro
     platform: group

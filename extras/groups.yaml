@@ -1,9 +1,3 @@
-  rastreadores:
-    name: Rastreadores
-    entities:
-      - device_tracker.life360_douglas_pereira
-      - device_tracker.life360_juliana_strapasson
-      
   copa:
     name: Copa
     icon: mdi:table-chair

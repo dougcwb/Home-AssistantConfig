@@ -11,8 +11,8 @@
       device_class: light
     1000aafa2f: #escada
       device_class: light
-    1000ab10a5: #garagem
-      device_class: light
+#    1000ab10a5: #garagemqueimado
+#      device_class: light
     1000ab4912: #banheiro
       device_class: light
     1000ab5f22: #quarto
@@ -25,18 +25,18 @@
       device_class: light
     1000c57c2c: #fundos
       device_class: light
-    1000c4f489: #lustrequeimado
-      device_class: light
+#    1000c4f489: #lustrequeimado
+#      device_class: light
     1000c50930: #corredor
       device_class: light
-    1000c4f19a: #lavabo
+    1000c4f19a: #lavabo > # lustre
       device_class: light
     1000c43714: #varanda
       device_class: light
     1000c3c515: #icaro
       device_class: light
-    1000b6e742: #lustre
-      device_class: light
+#    1000b6e742: #lustrequeimado2
+#      device_class: light
   rfbridge:
     a:
       device_class: door

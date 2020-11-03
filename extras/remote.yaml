@@ -3,3 +3,8 @@
     mac: !secret broadlink_mac
     type: rm4c_mini
     timeout: 15
+  - platform: broadlink
+    host: !secret broadlink_ip_sala
+    mac: !secret broadlink_mac_sala
+    type: rm4c_mini
+    timeout: 15

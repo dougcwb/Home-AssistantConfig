@@ -61,7 +61,7 @@
       - symbol: GOOGL
         name: Google
     foreign_exchange:
-      - name: Dólar
+      - name: Dolar
         from: USD
         to: BRL
 
@@ -99,46 +99,46 @@
 # | |_) / ___ \| | | |___|  _ < | | / ___ \
 # |____/_/   \_\_| |_____|_| \_\___/_/   \_\
 # 
-      bateria_doug_status:
-        value_template:  '{{ states.device_tracker.life360_douglas_pereira.attributes.battery_charging }}'
-        friendly_name: Carregando Bateria Doug
-        device_class: battery
-      bateria_doug_porcento:
-        friendly_name: Bateria Doug
-        unit_of_measurement: '%'
-        device_class: battery
-        value_template: >-
-            {%- if state_attr('device_tracker.life360_douglas_pereira', 'battery') %}
-                {{ state_attr('device_tracker.life360_douglas_pereira', 'battery')|round }}
-            {% else %}
-                {{ states('device_tracker.life360_douglas_pereira') }}
-            {%- endif %}
-        icon_template: >-
-          {% if is_state('sensor.bateria_doug_status', "False") %}
-            mdi:battery-50
-          {% else %}
-            mdi:battery-charging
-          {% endif %}
-      bateria_ju_status:
-        value_template:  '{{ states.device_tracker.life360_juliana_strapasson.attributes.battery_charging }}'
-        friendly_name: Carregando Bateria Ju
-        device_class: battery
-      bateria_ju_porcento:
-        friendly_name: Bateria Ju
-        unit_of_measurement: '%'
-        device_class: battery
-        value_template: >-
-            {%- if state_attr('device_tracker.life360_juliana_strapasson', 'battery') %}
-                {{ state_attr('device_tracker.life360_juliana_strapasson', 'battery')|round }}
-            {% else %}
-                {{ states('device_tracker.life360_juliana_strapasson') }}
-            {%- endif %}
-        icon_template: >-
-          {% if is_state('sensor.bateria_ju_status', "False") %}
-            mdi:battery-50
-          {% else %}
-            mdi:battery-charging
-          {% endif %}
+#      bateria_doug_status:
+#        value_template:  '{{ states.device_tracker.life360_douglas_pereira.attributes.battery_charging }}'
+#        friendly_name: Carregando Bateria Doug
+#        device_class: battery
+#      bateria_doug_porcento:
+#        friendly_name: Bateria Doug
+#        unit_of_measurement: '%'
+#        device_class: battery
+#        value_template: >-
+#            {%- if state_attr('device_tracker.life360_douglas_pereira', 'battery') %}
+#                {{ state_attr('device_tracker.life360_douglas_pereira', 'battery')|round }}
+#            {% else %}
+#                {{ states('device_tracker.life360_douglas_pereira') }}
+#            {%- endif %}
+#        icon_template: >-
+#          {% if is_state('sensor.bateria_doug_status', "False") %}
+#            mdi:battery-50
+#          {% else %}
+#            mdi:battery-charging
+#          {% endif %}
+#      bateria_ju_status:
+#        value_template:  '{{ states.device_tracker.life360_juliana_strapasson.attributes.battery_charging }}'
+#        friendly_name: Carregando Bateria Ju
+#        device_class: battery
+#      bateria_ju_porcento:
+#        friendly_name: Bateria Ju
+#        unit_of_measurement: '%'
+#        device_class: battery
+#        value_template: >-
+#            {%- if state_attr('device_tracker.life360_juliana_strapasson', 'battery') %}
+#                {{ state_attr('device_tracker.life360_juliana_strapasson', 'battery')|round }}
+#            {% else %}
+#                {{ states('device_tracker.life360_juliana_strapasson') }}
+#            {%- endif %}
+#        icon_template: >-
+#          {% if is_state('sensor.bateria_ju_status', "False") %}
+#            mdi:battery-50
+#          {% else %}
+#            mdi:battery-charging
+#          {% endif %}
 #  ____   _____        __  ____  ____
 # |  _ \ / _ \ \      / / |  _ \|___ \
 # | |_) | | | \ \ /\ / /  | |_) | __) |
@@ -155,6 +155,11 @@
         unit_of_measurement: kWh
         icon_template: mdi:fridge-off
         value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:10]|sum if p | round(2)}}"
+      trinta_days_consumption:
+        friendly_name: Consumo 30 dias
+        unit_of_measurement: kWh
+        icon_template: mdi:fridge-off
+        value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:30]|sum if p | round(2)}}"
 #  _     ___   ____    _    _     ___ _____   _    ____    _    ___
 # | |   / _ \ / ___|  / \  | |   |_ _|__  /  / \  / ___|  / \  / _ \
 # | |  | | | | |     / _ \ | |    | |  / /  / _ \| |     / _ \| | | |
@@ -179,52 +184,52 @@
             mdi:thumb-up-outline
           {% endif %}
         entity_id: group.all_devices
-      status_doug:
-        friendly_name: "Localização Doug"
-        value_template: >-
-          {% if is_state('device_tracker.life360_douglas_pereira', 'driving') %}
-            Dirigindo
-          {% elif is_state('device_tracker.life360_douglas_pereira', 'moving') %}
-            Caminhando
-          {% elif states.device_tracker.life360_douglas_pereira.attributes.place == none %}
-            Ausente
-          {% else %}
-            {{ state_attr('device_tracker.life360_douglas_pereira', 'address') }}
-          {% endif %}
-        icon_template: >-
-          {% if is_state('device_tracker.life360_douglas_pereira', 'driving') %}
-            mdi:car-hatchback
-          {% elif is_state('device_tracker.life360_douglas_pereira', 'moving') %}
-            mdi:run
-          {% elif states.device_tracker.life360_douglas_pereira.attributes.place == none %}
-            mdi:help-circle
-          {% else %}
-            mdi:map-marker
-          {% endif %}
-        entity_id: device_tracker.life360_douglas_pereira
-      status_ju:
-        friendly_name: "Localização Ju"
-        value_template: >-
-          {% if is_state('device_tracker.life360_juliana_strapasson', 'driving') %}
-            Dirigindo
-          {% elif is_state('device_tracker.life360_juliana_strapasson', 'moving') %}
-            Caminhando
-          {% elif states.device_tracker.life360_juliana_strapasson.attributes.place == none %}
-            Ausente
-          {% else %}
-            {{ state_attr('device_tracker.life360_juliana_strapasson', 'address') }}
-          {% endif %}
-        icon_template: >-
-          {% if is_state('device_tracker.life360_juliana_strapasson', 'driving') %}
-            mdi:car-hatchback
-          {% elif is_state('device_tracker.life360_juliana_strapasson', 'moving') %}
-            mdi:run
-          {% elif states.device_tracker.life360_juliana_strapasson.attributes.place == none %}
-            mdi:help-circle
-          {% else %}
-            mdi:map-marker
-          {% endif %}
-        entity_id: device_tracker.life360_juliana_strapasson
+#      status_doug:
+#        friendly_name: "Localização Doug"
+#        value_template: >-
+#          {% if is_state('device_tracker.life360_douglas_pereira', 'driving') %}
+#            Dirigindo
+#          {% elif is_state('device_tracker.life360_douglas_pereira', 'moving') %}
+#            Caminhando
+#          {% elif states.device_tracker.life360_douglas_pereira.attributes.place == none %}
+#            Ausente
+#          {% else %}
+#            {{ state_attr('device_tracker.life360_douglas_pereira', 'address') }}
+#          {% endif %}
+#        icon_template: >-
+#          {% if is_state('device_tracker.life360_douglas_pereira', 'driving') %}
+#            mdi:car-hatchback
+#          {% elif is_state('device_tracker.life360_douglas_pereira', 'moving') %}
+#            mdi:run
+#          {% elif states.device_tracker.life360_douglas_pereira.attributes.place == none %}
+#            mdi:help-circle
+#          {% else %}
+#            mdi:map-marker
+#          {% endif %}
+#        entity_id: device_tracker.life360_douglas_pereira
+#      status_ju:
+#        friendly_name: "Localização Ju"
+#        value_template: >-
+#          {% if is_state('device_tracker.life360_juliana_strapasson', 'driving') %}
+#            Dirigindo
+#          {% elif is_state('device_tracker.life360_juliana_strapasson', 'moving') %}
+#            Caminhando
+#          {% elif states.device_tracker.life360_juliana_strapasson.attributes.place == none %}
+#            Ausente
+#          {% else %}
+#            {{ state_attr('device_tracker.life360_juliana_strapasson', 'address') }}
+#          {% endif %}
+#        icon_template: >-
+#          {% if is_state('device_tracker.life360_juliana_strapasson', 'driving') %}
+#            mdi:car-hatchback
+#          {% elif is_state('device_tracker.life360_juliana_strapasson', 'moving') %}
+#            mdi:run
+#          {% elif states.device_tracker.life360_juliana_strapasson.attributes.place == none %}
+#            mdi:help-circle
+#          {% else %}
+#            mdi:map-marker
+#          {% endif %}
+#        entity_id: device_tracker.life360_juliana_strapasson
 #  ____    _  _____  _    ____    _    ____  _____
 # |  _ \  / \|_   _|/ \  | __ )  / \  / ___|| ____|
 # | | | |/ _ \ | | / _ \ |  _ \ / _ \ \___ \|  _|

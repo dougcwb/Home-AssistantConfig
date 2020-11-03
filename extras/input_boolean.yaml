@@ -2,6 +2,3 @@
   visitas:
     name: Visitas
     icon: mdi:tag-faces
-  timer_ativo:
-    name: Timer
-    icon: mdi:timer-outline

@@ -1,233 +1,53 @@
-Home Assistant notifications (Log started: 2020-06-19T13:17:27.299698+00:00)
+Home Assistant notifications (Log started: 2020-11-03T01:47:11.121071+00:00)
 --------------------------------------------------------------------------------
-  -automation.acende_postes
-  -automation.backup_semanal_3
-  -automation.cucko
-  -automation.definir_tema_claro_de_manha
-  -automation.definir_tema_claro_de_manha_2
-  -automation.definir_tema_escuro_de_noite
-  -automation.definir_tema_escuro_de_noite_2
-  -automation.desliga_umidificador
-  -automation.foto_por_hora_2
-  -automation.foto_por_minuto_2
-  -automation.geladeira_sempre_ligada
-  -automation.jornal
-  -automation.liga_umidificador
-  -automation.ligar_atico_2
-  -automation.luzes_desligadas_ao_sair_2
-  -automation.notifica_luzes
-  -automation.notifica_portao_aberto_2
-  -automation.pilse_de_15_min
-  -automation.roteador_desligado
-  -binary_sensor.portao_aberto
-  -binary_sensor.updater
-  -binary_sensor.workday_sensor
-  -camera.local_file
-  -camera.sala
-  -device_tracker.life360_douglas_pereira
-  -device_tracker.life360_juliana_strapasson
-  -device_tracker.redmi_note_8t
-  -device_tracker.rn8p
-  -device_tracker.sm_t113nu
-  -group.all_devices
-  -group.luzes_copa
-  -group.luzes_externas
-  -input_datetime.dt
-  -input_select.choose_music
-  -input_select.choose_player
-  -input_select.choose_radio
-  -light.atico
-  -light.banheiro
-  -light.cozinha
-  -light.escada
-  -light.estar
-  -light.frente
-  -light.jantar
-  -light.postes
-  -light.quarto
-  -media_player.nest
-  -media_player.samsung_un40f5500
-  -person.douglas
-  -person.juliana
-  -remote.broadlink
-  -script.banho
-  -script.campainha
-  -script.lava_mao
-  -script.mundolivre
-  -script.playmusic
-  -script.playradio
-  -script.print_entities_to_file
-  -script.rockradio
-  -script.superman
-  -sensor.bateria_doug_status
-  -sensor.bateria_ju_status
-  -sensor.clima_humidity
-  -sensor.clima_temperature
-  -sensor.connected_clients
-  -sensor.corrente
-  -sensor.cpu_temp
-  -sensor.db_size
-  -sensor.disk_free_home
-  -sensor.disk_use_home
-  -sensor.disk_use_percent_home
-  -sensor.dolar
-  -sensor.donos_em_casa
-  -sensor.doug_battery_phone
-  -sensor.google
-  -sensor.hacs
-  -sensor.ip
-  -sensor.ju_battery_phone
-  -sensor.last_boot
-  -sensor.memory_free
-  -sensor.memory_use_percent
-  -sensor.moon
-  -sensor.nova_b_received
-  -sensor.nova_b_sent
-  -sensor.nova_kib_s_received
-  -sensor.nova_kib_s_sent
-  -sensor.nova_packets_received
-  -sensor.nova_packets_s_received
-  -sensor.nova_packets_s_sent
-  -sensor.nova_packets_sent
-  -sensor.portao_hoje
-  -sensor.potencia
-  -sensor.processor_use
-  -sensor.redmi_note_8t_battery_level
-  -sensor.redmi_note_8t_battery_state
-  -sensor.redmi_note_8t_geocoded_location
-  -sensor.redmi_note_8t_wifi_connection
-  -sensor.rn8p_battery_level
-  -sensor.rn8p_battery_state
-  -sensor.rn8p_geocoded_location
-  -sensor.rn8p_wifi_connection
-  -sensor.sonoff_1000aede10_humidity
-  -sensor.sonoff_1000aede10_temperature
-  -sensor.status_doug
-  -sensor.status_ju
-  -sensor.swap_use_percent
-  -sensor.temperatura
-  -sensor.ten_days_consumption
-  -sensor.tensao
-  -sensor.today_consumption
-  -sensor.tv_hoje
-  -sensor.tv_ontem
-  -sensor.umidade
-  -sun.sun
-  -switch.modem
-  -switch.portao
-  -switch.pow_geladeira
-  -switch.sb_aux
-  -switch.sb_bt
-  -switch.sb_mute
-  -switch.sb_next
-  -switch.sb_on
-  -switch.sb_optico
-  -switch.sb_play_pause
-  -switch.sb_prev
-  -switch.sb_vol_down
-  -switch.sb_vol_up
-  -switch.tv_av
-  -switch.tv_blue
-  -switch.tv_channeldown
-  -switch.tv_channelup
-  -switch.tv_chlist
-  -switch.tv_closedcaption
-  -switch.tv_component
-  -switch.tv_dot
-  -switch.tv_down
-  -switch.tv_energysaving
-  -switch.tv_exit
-  -switch.tv_ff
-  -switch.tv_futebol
-  -switch.tv_green
-  -switch.tv_guide
-  -switch.tv_hdmi1
-  -switch.tv_hdmi2
-  -switch.tv_hdmi3
-  -switch.tv_info
-  -switch.tv_left
-  -switch.tv_menu
-  -switch.tv_mute
-  -switch.tv_num0
-  -switch.tv_num1
-  -switch.tv_num2
-  -switch.tv_num3
-  -switch.tv_num4
-  -switch.tv_num5
-  -switch.tv_num6
-  -switch.tv_num7
-  -switch.tv_num8
-  -switch.tv_num9
-  -switch.tv_ok
-  -switch.tv_pause
-  -switch.tv_pip
-  -switch.tv_play
-  -switch.tv_power
-  -switch.tv_previous
-  -switch.tv_psize
-  -switch.tv_red
-  -switch.tv_return
-  -switch.tv_right
-  -switch.tv_rw
-  -switch.tv_sleep
-  -switch.tv_smarthub
-  -switch.tv_source
-  -switch.tv_stop
-  -switch.tv_tools
-  -switch.tv_tv
-  -switch.tv_up
-  -switch.tv_voldown
-  -switch.tv_volup
-  -switch.tv_yellow
-  -switch.ventilador
-  -weather.casa
-  -weather.wipro
-  -zone.aldeia_betania
-  -zone.big
-  -zone.boni
-  -zone.condor
-  -zone.condor_bv
-  -zone.curso_ju
-  -zone.duleo_makiolka
-  -zone.home
-  -zone.hosp_santa_brigida
-  -zone.italo
-  -zone.juliano
-  -zone.pereiraspinhais
-  -zone.positivo
-  -zone.psico_ju
-  -zone.rosi
-  -zone.santo
-  -zone.shopping_mueller
-  -zone.studio
-  -zone.vo_cida
-  -zone.wipro
-  -zone.zorg
 -automation.acende_postes
+  -automation.alerta_alto_consumo_da_geladeira
   -automation.backup_semanal_3
+  -automation.bridge_botao_a
   -automation.consumo_pow
   -automation.cucko
   -automation.definir_tema_claro_de_manha
   -automation.definir_tema_claro_de_manha_2
   -automation.definir_tema_escuro_de_noite
   -automation.definir_tema_escuro_de_noite_2
+  -automation.desliga_abajur
   -automation.desliga_umidificador
+  -automation.desliga_ventilador
   -automation.foto_por_hora_2
   -automation.foto_por_minuto_2
   -automation.geladeira_sempre_ligada
   -automation.jornal
+  -automation.ju_chegou
   -automation.liga_a_tv_manha
   -automation.liga_umidificador
   -automation.ligar_atico_2
+  -automation.lustre_acende
+  -automation.lustre_apaga
   -automation.luzes_desligadas_ao_sair_2
+  -automation.notifica_bateria_rn8p_100
   -automation.notifica_luzes
-  -automation.notifica_portao_aberto_2
-  -automation.nova_automacao
-  -automation.pilse_de_15_min
+  -automation.notifica_portao_aberto
   -automation.roteador_desligado
+  -automation.timer_desligar_banheiro_de_dia
+  -automation.timer_despertar_em_x_minutos
   -automation.timer_frente_15min
+  -automation.timer_garagem_15min
   -automation.timer_postes_15min
+  -automation.timer_varanda_15min
+  -binary_sensor.a
+  -binary_sensor.b
+  -binary_sensor.c
   -binary_sensor.portao_aberto
+  -binary_sensor.presenca
+  -binary_sensor.redmi_note_8t_bluetooth_state
+  -binary_sensor.redmi_note_8t_is_charging
+  -binary_sensor.redmi_note_8t_power_save
+  -binary_sensor.redmi_note_8t_wifi_state
+  -binary_sensor.rn8p_bluetooth_state
+  -binary_sensor.rn8p_headphones
+  -binary_sensor.rn8p_is_charging
+  -binary_sensor.rn8p_music_active
+  -binary_sensor.rn8p_wifi_state
   -binary_sensor.updater
   -binary_sensor.workday_sensor
   -camera.local_file
@@ -237,61 +57,71 @@ Home Assistant notifications (Log started: 2020-06-19T13:17:27.299698+00:00)
   -device_tracker.redmi_note_8t
   -device_tracker.rn8p
   -device_tracker.sm_t113nu
-  -group.all_devices
-  -group.luzes_copa
-  -group.luzes_externas
-  -group.modo_visita
+  -group.atico
+  -group.copa
+  -group.quintal
+  -group.todas_luzes
+  -input_boolean.visitas
   -input_datetime.dt
-  -input_select.choose_canal
-  -input_select.choose_hora
-  -input_select.choose_minuto
   -input_select.choose_music
   -input_select.choose_player
   -input_select.choose_radio
   -light.atico
   -light.banheiro
+  -light.corredor
   -light.cozinha
   -light.escada
   -light.frente
-  -light.garagem
+  -light.fundos
+  -light.icaro
   -light.jantar
+  -light.led
+  -light.lustre
+  -light.luzes_atico
+  -light.luzes_atico_2
+  -light.luzes_copa
+  -light.luzes_quintal
   -light.postes
   -light.quarto
+  -light.todas_luzes
+  -light.varanda
   -media_player.nest
   -media_player.samsung_un40f5500
   -person.douglas
   -person.juliana
+  -remote.bridge
   -remote.broadlink
+  -remote.broadlink_quarto_remote
+  -script.badumtss
   -script.banho
   -script.campainha
   -script.lava_mao
+  -script.lineage2
   -script.mundolivre
+  -script.numetal
   -script.playmusic
   -script.playradio
   -script.print_entities_to_file
   -script.rockradio
   -script.superman
-  -sensor.bateria_doug_status
-  -sensor.bateria_ju_status
+  -sensor.cert_expiry_192_168_1_100
+  -sensor.cert_expiry_timestamp_192_168_1_100
   -sensor.clima_humidity
   -sensor.clima_temperature
   -sensor.connected_clients
   -sensor.corrente
   -sensor.cpu_temp
-  -sensor.db_size
   -sensor.disk_free_home
   -sensor.disk_use_home
   -sensor.disk_use_percent_home
   -sensor.dolar
   -sensor.donos_em_casa
-  -sensor.doug_battery_phone
   -sensor.google
   -sensor.ha_release
   -sensor.ha_start
   -sensor.hacs
   -sensor.ip
   -sensor.ipv4_address_eth0
-  -sensor.ju_battery_phone
   -sensor.last_boot
   -sensor.memory_free
   -sensor.memory_use_percent
@@ -301,40 +131,69 @@ Home Assistant notifications (Log started: 2020-06-19T13:17:27.299698+00:00)
   -sensor.network_out_eth0
   -sensor.network_throughput_in_eth0
   -sensor.network_throughput_out_eth0
-  -sensor.nova_b_received
-  -sensor.nova_b_sent
-  -sensor.nova_kib_s_received
-  -sensor.nova_kib_s_sent
-  -sensor.nova_packets_received
-  -sensor.nova_packets_s_received
-  -sensor.nova_packets_s_sent
-  -sensor.nova_packets_sent
   -sensor.packets_in_eth0
   -sensor.packets_out_eth0
-  -sensor.portao_hoje
   -sensor.potencia
   -sensor.processor_use
+  -sensor.redmi_note_8t_audio_mode
+  -sensor.redmi_note_8t_audio_sensor
+  -sensor.redmi_note_8t_battery_health
   -sensor.redmi_note_8t_battery_level
   -sensor.redmi_note_8t_battery_state
+  -sensor.redmi_note_8t_bluetooth_connection
+  -sensor.redmi_note_8t_charger_type
+  -sensor.redmi_note_8t_detected_activity
+  -sensor.redmi_note_8t_do_not_disturb_sensor
   -sensor.redmi_note_8t_geocoded_location
+  -sensor.redmi_note_8t_last_reboot
+  -sensor.redmi_note_8t_light_sensor
+  -sensor.redmi_note_8t_next_alarm
+  -sensor.redmi_note_8t_phone_state
+  -sensor.redmi_note_8t_proximity_sensor
+  -sensor.redmi_note_8t_public_ip_address
+  -sensor.redmi_note_8t_sim_1
+  -sensor.redmi_note_8t_sim_2
+  -sensor.redmi_note_8t_steps_sensor
+  -sensor.redmi_note_8t_storage_sensor
+  -sensor.redmi_note_8t_wifi_bssid
   -sensor.redmi_note_8t_wifi_connection
+  -sensor.redmi_note_8t_wifi_ip_address
+  -sensor.redmi_note_8t_wifi_link_speed
+  -sensor.redmi_note_8t_wifi_signal_strength
+  -sensor.rn8p_audio_mode
+  -sensor.rn8p_audio_sensor
+  -sensor.rn8p_battery_health
   -sensor.rn8p_battery_level
   -sensor.rn8p_battery_state
+  -sensor.rn8p_bluetooth_connection
+  -sensor.rn8p_charger_type
+  -sensor.rn8p_detected_activity
+  -sensor.rn8p_do_not_disturb_sensor
   -sensor.rn8p_geocoded_location
+  -sensor.rn8p_last_reboot
+  -sensor.rn8p_light_sensor
+  -sensor.rn8p_next_alarm
+  -sensor.rn8p_phone_state
+  -sensor.rn8p_proximity_sensor
+  -sensor.rn8p_public_ip_address
+  -sensor.rn8p_sim_1
+  -sensor.rn8p_sim_2
+  -sensor.rn8p_storage_sensor
+  -sensor.rn8p_wifi_bssid
   -sensor.rn8p_wifi_connection
-  -sensor.sonoff_1000aede10_humidity
-  -sensor.sonoff_1000aede10_temperature
-  -sensor.status_doug
-  -sensor.status_ju
+  -sensor.rn8p_wifi_frequency
+  -sensor.rn8p_wifi_ip_address
+  -sensor.rn8p_wifi_link_speed
+  -sensor.rn8p_wifi_signal_strength
   -sensor.swap_use_percent
   -sensor.temperatura
   -sensor.ten_days_consumption
   -sensor.tensao
   -sensor.today_consumption
-  -sensor.tv_hoje
-  -sensor.tv_ontem
+  -sensor.trinta_days_consumption
   -sensor.umidade
   -sun.sun
+  -switch.garagem
   -switch.luz_power
   -switch.modem
   -switch.portao
@@ -349,6 +208,11 @@ Home Assistant notifications (Log started: 2020-06-19T13:17:27.299698+00:00)
   -switch.sb_prev
   -switch.sb_vol_down
   -switch.sb_vol_up
+  -switch.sofa
+  -switch.sonoff_1000cb0208_1
+  -switch.sonoff_1000cb0208_2
+  -switch.sonoff_1000cb0208_3
+  -switch.sonoff_1000cb0208_4
   -switch.tv_av
   -switch.tv_blue
   -switch.tv_channeldown
@@ -403,11 +267,13 @@ Home Assistant notifications (Log started: 2020-06-19T13:17:27.299698+00:00)
   -switch.tv_volup
   -switch.tv_yellow
   -switch.umidificador
+  -switch.ventilador
   -weather.casa
   -weather.wipro
   -zone.aldeia_betania
   -zone.big
   -zone.boni
+  -zone.centro_politecnico_ufpr
   -zone.condor
   -zone.condor_bv
   -zone.curso_ju
