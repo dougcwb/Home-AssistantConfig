@@ -142,6 +142,9 @@
   - data: {}
     entity_id: light.varanda
     service: light.turn_on
+  - service: light.turn_on
+    data: {}
+    entity_id: light.garagem
   mode: single
 - id: '8'
   alias: Luzes desligadas ao sair
@@ -604,4 +607,58 @@
   - service: light.turn_off
     data: {}
     entity_id: light.lustre
+  mode: single
+- id: '1605487130792'
+  alias: Acende Lustre
+  description: Temporario
+  trigger:
+  - platform: state
+    entity_id: light.lustre
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    data: {}
+    entity_id: light.spots_sala
+  mode: single
+- id: '1605487278552'
+  alias: Apaga lustre
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: light.lustre
+    from: 'on'
+    to: 'off'
+  condition: []
+  action:
+  - service: light.turn_off
+    data: {}
+    entity_id: light.spots_sala
+  mode: single
+- id: '1605982719151'
+  alias: Liga Árvore de Natal
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.tomada
+  mode: single
+- id: '1605982803822'
+  alias: Desliga a Árvore de Natal
+  description: ''
+  trigger:
+  - platform: time_pattern
+    hours: '1'
+    minutes: '00'
+    seconds: '00'
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.tomada
   mode: single

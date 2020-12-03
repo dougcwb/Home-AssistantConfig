@@ -66,3 +66,121 @@ sensor.ha_release:
 sensor.connected_clients:
   friendly_name: Clientes conectados
   icon: mdi:access-point-network
+light.luzes_atico:
+  icon: mdi:home-roof
+light.luzes_quintal:
+  icon: mdi:coach-lamp
+light.luzes_cozinha:
+  icon: mdi:food
+light.luzes_jantar:
+  icon: mdi:silverware-variant
+light.luzes_sala:
+  icon: mdi:sofa
+switch.led_on:
+  friendly_name: Liga
+  icon: mdi:lightbulb
+switch.led_off:
+  friendly_name: Desliga
+  icon: mdi:lightbulb
+switch.led_up:
+  friendly_name: Led+
+  icon: mdi:arrow-up-bold-box
+switch.led_down:
+  friendly_name: Led-
+  icon: mdi:arrow-down-bold-box
+switch.led_white:
+  friendly_name: Branco
+  icon: mdi:lightbulb
+switch.led_red:
+  friendly_name: Vermelho
+  icon: mdi:lightbulb
+switch.led_green:
+  friendly_name: Verde
+  icon: mdi:lightbulb
+switch.led_blue:
+  friendly_name: Azul
+  icon: mdi:lightbulb
+switch.led_pink:
+  friendly_name: Rosa
+  icon: mdi:lightbulb
+switch.led_orange:
+  friendly_name: Laranja
+  icon: mdi:lightbulb
+switch.led_yellow:
+  friendly_name: Amarelo
+  icon: mdi:lightbulb
+switch.led_flash:
+  friendly_name: Flash
+  icon: mdi:numeric-1-circle-outline
+switch.led_strobe:
+  friendly_name: Strobe
+  icon: mdi:numeric-2-circle-outline
+switch.led_fade:
+  friendly_name: Fade
+  icon: mdi:numeric-3-circle-outline
+switch.led_smooth:
+  friendly_name: Smooth
+  icon: mdi:numeric-4-circle-outline
+switch.box_power:
+  friendly_name: TvBox
+  icon: mdi:power
+switch.box_menu:
+  friendly_name: Menu
+  icon: mdi:menu
+switch.box_home:
+  friendly_name: Home
+  icon: mdi:home
+switch.box_vol_up:
+  friendly_name: Vol+
+  icon: mdi:volume-plus
+switch.box_vol_down:
+  friendly_name: Vol-
+  icon: mdi:volume-minus
+switch.box_back:
+  friendly_name: Voltar
+  icon: mdi:keyboard-return
+switch.box_up:
+  friendly_name: Cima
+  icon: mdi:arrow-up-bold
+switch.box_down:
+  friendly_name: Baixo
+  icon: mdi:arrow-down-bold
+switch.box_left:
+  friendly_name: Esquerda
+  icon: mdi:arrow-left-bold
+switch.box_right:
+  friendly_name: Direita
+  icon: mdi:arrow-right-bold
+switch.box_ok:
+  friendly_name: OK
+  icon: mdi:checkbox-blank-circle-outline
+switch.sb_vol_down:
+  friendly_name: Vol-
+  icon: mdi:volume-minus
+switch.sb_mute:
+  friendly_name: Mute
+  icon: mdi:volume-mute
+switch.sb_vol_up:
+  friendly_name: Vol+
+  icon: mdi:volume-plus
+switch.sb_prev:
+  friendly_name: Retroceder
+  icon: mdi:rewind
+switch.sb_play_pause:
+  friendly_name: Pause
+  icon: mdi:play-pause
+switch.sb_next:
+  friendly_name: Avançar
+  icon: mdi:fast-forward
+switch.sb_on:
+  icon: mdi:speaker
+  friendly_name: Soundbar
+switch.sb_optico:
+  icon: mdi:television-play
+  friendly_name: Optico
+switch.sb_aux:
+  icon: mdi:raspberry-pi
+  friendly_name: Aux. P2
+switch.sb_bt:
+  friendly_name: USB/Bluetooth
+  icon: mdi:bluetooth

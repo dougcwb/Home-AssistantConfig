@@ -5,13 +5,15 @@
 # |_| \_\_|  |___| |_|  |_|\___/|_| \_|___| |_| \___/|_| \_\
 #
 # Temperatura do Raspberry Pi
-  - platform: moon
-  - platform: websocket_api
   - platform: command_line
     name: CPU Temp
     command: "cat /sys/class/thermal/thermal_zone0/temp"
     unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
+  - platform: command_line
+    name: HD Temperature
+    command: "sudo hddtemp -n /dev/sda"
+    unit_of_measurement: "°C"
 # Monitor de sistema
   - platform: systemmonitor
     resources:
@@ -49,6 +51,20 @@
   - platform: command_line
     command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
     name: HA release
+  - platform: command_line
+    name: badlogin
+    command: "grep -c 'Login attempt' /home/hass/.homeassistant/home-assistant.log"
+  - platform: uptime
+    name: Tempo Online
+    unit_of_measurement: hours
+  - platform: moon
+  - platform: websocket_api
+  - platform: derivative
+    source: sensor.potencia
+    name: Potencia por Hora
+    round: 1
+    unit_time: h # the resulting "unit_of_measurement" will be °C/h if the sensor.temperate has set °C as it's unit
+    time_window: "00:30:00"  # we look at the change over the last half hour
 # ____   ___  _        _    ____
 #|  _ \ / _ \| |      / \  |  _ \
 #| | | | | | | |     / _ \ | |_) |
@@ -84,6 +100,15 @@
       minutes: 5
       seconds: 0
       milliseconds: 0
+  - platform: mitemp_bt
+    mac: 'A4:C1:38:0F:0F:56'
+    name: Sensor Sala
+    force_update: true
+    median: 1
+    monitored_conditions:
+      - temperature
+      - humidity
+      - battery
 #  _____ _____ __  __ ____  _        _  _____ _____ ____
 # |_   _| ____|  \/  |  _ \| |      / \|_   _| ____/ ___|
 #   | | |  _| | |\/| | |_) | |     / _ \ | | |  _| \___ \
@@ -93,52 +118,6 @@
 
   - platform: template
     sensors:
-#  ____    _  _____ _____ ____  ___    _
-# | __ )  / \|_   _| ____|  _ \|_ _|  / \
-# |  _ \ / _ \ | | |  _| | |_) || |  / _ \
-# | |_) / ___ \| | | |___|  _ < | | / ___ \
-# |____/_/   \_\_| |_____|_| \_\___/_/   \_\
-# 
-#      bateria_doug_status:
-#        value_template:  '{{ states.device_tracker.life360_douglas_pereira.attributes.battery_charging }}'
-#        friendly_name: Carregando Bateria Doug
-#        device_class: battery
-#      bateria_doug_porcento:
-#        friendly_name: Bateria Doug
-#        unit_of_measurement: '%'
-#        device_class: battery
-#        value_template: >-
-#            {%- if state_attr('device_tracker.life360_douglas_pereira', 'battery') %}
-#                {{ state_attr('device_tracker.life360_douglas_pereira', 'battery')|round }}
-#            {% else %}
-#                {{ states('device_tracker.life360_douglas_pereira') }}
-#            {%- endif %}
-#        icon_template: >-
-#          {% if is_state('sensor.bateria_doug_status', "False") %}
-#            mdi:battery-50
-#          {% else %}
-#            mdi:battery-charging
-#          {% endif %}
-#      bateria_ju_status:
-#        value_template:  '{{ states.device_tracker.life360_juliana_strapasson.attributes.battery_charging }}'
-#        friendly_name: Carregando Bateria Ju
-#        device_class: battery
-#      bateria_ju_porcento:
-#        friendly_name: Bateria Ju
-#        unit_of_measurement: '%'
-#        device_class: battery
-#        value_template: >-
-#            {%- if state_attr('device_tracker.life360_juliana_strapasson', 'battery') %}
-#                {{ state_attr('device_tracker.life360_juliana_strapasson', 'battery')|round }}
-#            {% else %}
-#                {{ states('device_tracker.life360_juliana_strapasson') }}
-#            {%- endif %}
-#        icon_template: >-
-#          {% if is_state('sensor.bateria_ju_status', "False") %}
-#            mdi:battery-50
-#          {% else %}
-#            mdi:battery-charging
-#          {% endif %}
 #  ____   _____        __  ____  ____
 # |  _ \ / _ \ \      / / |  _ \|___ \
 # | |_) | | | \ \ /\ / /  | |_) | __) |
@@ -154,12 +133,12 @@
         friendly_name: Consumo 10 dias
         unit_of_measurement: kWh
         icon_template: mdi:fridge-off
-        value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:10]|sum if p | round(2)}}"
+        value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:10]|sum|round(2) if p}}"
       trinta_days_consumption:
         friendly_name: Consumo 30 dias
         unit_of_measurement: kWh
         icon_template: mdi:fridge-off
-        value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:30]|sum if p | round(2)}}"
+        value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:30]|sum|round(2) if p}}"
 #  _     ___   ____    _    _     ___ _____   _    ____    _    ___
 # | |   / _ \ / ___|  / \  | |   |_ _|__  /  / \  / ___|  / \  / _ \
 # | |  | | | | |     / _ \ | |    | |  / /  / _ \| |     / _ \| | | |
@@ -184,52 +163,6 @@
             mdi:thumb-up-outline
           {% endif %}
         entity_id: group.all_devices
-#      status_doug:
-#        friendly_name: "Localização Doug"
-#        value_template: >-
-#          {% if is_state('device_tracker.life360_douglas_pereira', 'driving') %}
-#            Dirigindo
-#          {% elif is_state('device_tracker.life360_douglas_pereira', 'moving') %}
-#            Caminhando
-#          {% elif states.device_tracker.life360_douglas_pereira.attributes.place == none %}
-#            Ausente
-#          {% else %}
-#            {{ state_attr('device_tracker.life360_douglas_pereira', 'address') }}
-#          {% endif %}
-#        icon_template: >-
-#          {% if is_state('device_tracker.life360_douglas_pereira', 'driving') %}
-#            mdi:car-hatchback
-#          {% elif is_state('device_tracker.life360_douglas_pereira', 'moving') %}
-#            mdi:run
-#          {% elif states.device_tracker.life360_douglas_pereira.attributes.place == none %}
-#            mdi:help-circle
-#          {% else %}
-#            mdi:map-marker
-#          {% endif %}
-#        entity_id: device_tracker.life360_douglas_pereira
-#      status_ju:
-#        friendly_name: "Localização Ju"
-#        value_template: >-
-#          {% if is_state('device_tracker.life360_juliana_strapasson', 'driving') %}
-#            Dirigindo
-#          {% elif is_state('device_tracker.life360_juliana_strapasson', 'moving') %}
-#            Caminhando
-#          {% elif states.device_tracker.life360_juliana_strapasson.attributes.place == none %}
-#            Ausente
-#          {% else %}
-#            {{ state_attr('device_tracker.life360_juliana_strapasson', 'address') }}
-#          {% endif %}
-#        icon_template: >-
-#          {% if is_state('device_tracker.life360_juliana_strapasson', 'driving') %}
-#            mdi:car-hatchback
-#          {% elif is_state('device_tracker.life360_juliana_strapasson', 'moving') %}
-#            mdi:run
-#          {% elif states.device_tracker.life360_juliana_strapasson.attributes.place == none %}
-#            mdi:help-circle
-#          {% else %}
-#            mdi:map-marker
-#          {% endif %}
-#        entity_id: device_tracker.life360_juliana_strapasson
 #  ____    _  _____  _    ____    _    ____  _____
 # |  _ \  / \|_   _|/ \  | __ )  / \  / ___|| ____|
 # | | | |/ _ \ | | / _ \ |  _ \ / _ \ \___ \|  _|
@@ -247,6 +180,8 @@
 # | |_| || |\___ \ | || | | | |_) || | |  | | | \___ \
 # |  _  || | ___) || || |_| |  _ < | | |__| |_| |___) |
 # |_| |_|___|____/ |_| \___/|_| \_\___\____\___/|____/
+
+# Históricos e estatísticas da TV
   - platform: history_stats
     name: TV Hoje
     entity_id: media_player.samsung_un40f5500
@@ -262,6 +197,7 @@
     end: '{{ now().replace(hour=0, minute=0, second=0) }}'
     duration:
       hours: 24
+# Históricos e estatísticas do Portão
   - platform: history_stats
     name: Portao Hoje
     entity_id: binary_sensor.portao_aberto
@@ -269,4 +205,90 @@
     type: count
     start: '{{ now().replace(hour=0, minute=0, second=0) }}'
     end: '{{ now() }}'
+  - platform: history_stats
+    name: Portao Ontem
+    entity_id: binary_sensor.portao_aberto
+    state: 'on'
+    type: count
+    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    duration:
+      hours: 24
+# Históricos e estatísticas da Porta da Geladeira
+  - platform: history_stats
+    name: Tempo Porta G Hoje
+    entity_id: binary_sensor.porta_geladeira
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Tempo Porta G Ontem
+    entity_id: binary_sensor.porta_geladeira
+    state: 'on'
+    type: time
+    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    duration:
+      hours: 24
+  - platform: history_stats
+    name: Num Porta G Hoje
+    entity_id: binary_sensor.porta_geladeira
+    state: 'on'
+    type: count
+    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Num Porta G Ontem
+    entity_id: binary_sensor.porta_geladeira
+    state: 'on'
+    type: count
+    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    duration:
+      hours: 24
+# Históricos e estatísticas da Porta de vidro
+  - platform: history_stats
+    name: Tempo Porta V Hoje
+    entity_id: binary_sensor.porta_vidro
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Tempo Porta V Ontem
+    entity_id: binary_sensor.porta_vidro
+    state: 'on'
+    type: time
+    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    duration:
+      hours: 24
+  - platform: history_stats
+    name: Num Porta V Hoje
+    entity_id: binary_sensor.porta_vidro
+    state: 'on'
+    type: count
+    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Num Porta V Ontem
+    entity_id: binary_sensor.porta_vidro
+    state: 'on'
+    type: count
+    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    duration:
+      hours: 24
+# Históricos e estatísticas do Sensor de presenca
+  - platform: history_stats
+    name: Presenca Hoje
+    entity_id: binary_sensor.presenca
+    state: 'on'
+    type: count
+    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: Presenca Ontem
+    entity_id: binary_sensor.presenca
+    state: 'on'
+    type: count
+    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    duration:
+      hours: 24
     

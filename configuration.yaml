@@ -2,6 +2,7 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 automation: !include automations.yaml
+ble_monitor: !include extras/ble_monitor.yaml
 binary_sensor: !include extras/binary.yaml
 camera: !include extras/camera.yaml
 conversation:
@@ -12,7 +13,7 @@ frontend:
 group: !include extras/groups.yaml
 homeassistant:
   customize: !include customize.yaml
-  whitelist_external_dirs:
+  allowlist_external_dirs:
     - /share/
     - /tmp/
 http: !include extras/http.yaml
@@ -34,7 +35,7 @@ script: !include extras/scripts.yaml
 sonoff: !include extras/sonoff.yaml
 switch: !include extras/switches.yaml
 stream: 
-telegram_bot: !include extras/telegram.yaml
+#telegram_bot: !include extras/telegram.yaml
 tts: !include extras/tts.yaml #text-to-speach
 #upnp:
 websocket_api:

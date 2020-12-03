@@ -37,17 +37,17 @@ lineage2:
   - data_template:
       entity_id: 'media_player.nest'
       media_content_id: 'https://www.youtube.com/watch?v=am36QHp-TgQ'
-      media_content_type: audio/mp4
+      media_content_type: video/mp4
     service: media_extractor.play_media
   alias: Lineage2
-numetal:
+fogo:
   sequence:
   - data_template:
       entity_id: 'media_player.nest'
-      media_content_id: 'https://music.youtube.com/playlist?list=RDCLAK5uy_ny2x6vS-xCs2WMyCAPabLbFYM81sJuk7c'
-      media_content_type: playlist
+      media_content_id: 'https://www.youtube.com/watch?v=TdeZu4N1FY0'
+      media_content_type: video/mp4
     service: media_extractor.play_media
-  alias: NuMetal
+  alias: Fogo
 # SONS
 campainha:
   sequence:
@@ -99,3 +99,9 @@ print_entities_to_file:
         {% for state in states %}
           - {{- state.entity_id -}}
         {% endfor %}
+gstreamer:
+  sequence:
+    - service: tts.google_say
+      data:
+        entity_id: media_player.gstreamer
+        message: "Deu certo"

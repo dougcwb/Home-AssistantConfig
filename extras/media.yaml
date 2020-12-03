@@ -1,3 +1,6 @@
   - platform: vlc
-    name: "RPI"
+    name: VLC
     arguments: "--alsa-audio-device=hw:0,0"
+    
+  - platform: mpd
+    host: 192.168.1.100

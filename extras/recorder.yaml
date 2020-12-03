@@ -1,5 +1,5 @@
   purge_keep_days: 3
-  #commit_interval: 3
+  commit_interval: 3
   db_url: !secret dburl
   exclude:
     domains:
@@ -9,9 +9,19 @@
 #      - sensor.last_boot # Comes from 'systemmonitor' sensor platform
       - sensor.date
       - camera.local_file
+      - sensor.time
+      - sensor.date_time_iso
+      - binary_sensor.workday_sensor
     entity_globs:
       - switch.tv_*
       - switch.sb_*
+      - switch.led_*
+      - sensor.weather_*
+      - weather.*
+#      - binary_sensor.rn8*
+#      - sensor.rn8*
+#      - sensor.redmi*
+#      - input_select.*
     event_types:
       - call_service # Don't record service calls
       - service_removed
@@ -22,4 +32,8 @@
       - feedreader
       - component_loaded
 #      - logbook_entry
-      - system_log_event
+#      - system_log_event
+#  include:
+#    entity_globs:
+#      - sensor.rn8p_battery_level
+#      - sensor.redmi_note_8t_battery_level

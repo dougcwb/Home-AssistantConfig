@@ -20,9 +20,9 @@
     services:
       - service: mobile_app_sm_t113nu
 
-  - name: telegram
-    platform: telegram
-    chat_id: !secret telegram_id
+#  - name: telegram
+#    platform: telegram
+#    chat_id: !secret telegram_id
     
   - name: entity_log
     platform: file

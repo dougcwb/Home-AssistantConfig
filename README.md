@@ -1,35 +1,49 @@
 # Assitentes
 - Google Home Nest Mini (2º geração)
 - Kit Rasberry Pi 4b + Case + SSD Kigston 120GB USB + Fonte 5V 3A
+
 # Interruptores
-- SONOFF® Mini DIY - Interruptores Treeway
-- SONOFF® RF R2 - Interruptor RF
-- SONOFF® RF R3 - Interruptor RF
-- SONOFF® TH16 - Interruptor com Sensor de temperatura e Umidade modelo Si7016
-- SONOFF® POW R2 AC90-250V 16A - Controlador com medição de consumo de energia (V/W/A) em tempo real
-- SONOFF® para portão de Garagem
-- SONOFF® 4CH R2
-- BlitzWolf® BW-SS5 2 Gang - Two Way 10A
-- Tuya Basic Wi-fi 10A
-- Tuya Mini Smatrul 10A
+- SONOFF® Mini DIY - Interruptores Treeway [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® RF R2 - Interruptor RF [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® RF R3 - Interruptor RF [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® TH16 - Interruptor com Sensor de temperatura e Umidade modelo Si7016 [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® POW R2 AC90-250V 16A - Controlador com medição de consumo de energia (V/W/A) em tempo real [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® para portão de Garagem [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® 4CH R2 [Integração](https://github.com/AlexxIT/SonoffLAN)
+- BlitzWolf® BW-SS5 2 Gang - Two Way 10A [Integração](https://www.home-assistant.io/integrations/tuya/)
+- Tuya Basic Wi-fi 10A [Integração](https://www.home-assistant.io/integrations/tuya/)
+- Tuya Mini Smatrul 10A [Integração](https://www.home-assistant.io/integrations/tuya/)
+
 # Hubs
-- SONOFF® RF Bridge 433Mhz
-- SONOFF® ZBBridge - Smart Zigbee Bridge
+- SONOFF® RF Bridge 433Mhz [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® ZBBridge - Smart Zigbee Bridge [Integração](https://github.com/AlexxIT/SonoffLAN)
+
 # Sensores
-- SONOFF® PIR2 Wireless Infrared Detector
-- SONOFF® SNZB-02 - ZigBee Temperature And Humidity Sensor
-- Xiaomi Mijia - Sensor Bluetooth de Temperatura e Umidade (quadrado)
+- SONOFF® PIR2 Wireless Infrared Detector [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® SNZB-02 - ZigBee Temperature And Humidity Sensor [Integração](https://github.com/AlexxIT/SonoffLAN)
+- SONOFF® SNZB-04 - ZigBee Wireless Door/Window Sensor [Integração](https://github.com/AlexxIT/SonoffLAN)
+- Xiaomi Mijia BLE MiBeacon Monitor LYWSD03MMC (quadrado) - Sensor Bluetooth de Temperatura e Umidade [Integração](https://github.com/custom-components/ble_monitor)
+
 # Controles IR
-- Broadlink IR RM4C BestCon EU - Controle Infra vermelho universal (2x)
-- Controle Universal Tuya Wifi-IR (2.4Ghz)
+- Broadlink IR RM4C BestCon EU - Controle Infra vermelho universal (2x) - [Integração](https://www.home-assistant.io/integrations/broadlink/)
+- Controle Universal Tuya Wifi-IR (2.4Ghz) 
+
 # Iluminação
-- Fita LED SMD 5050 5 metros DC 12V
-- Fita LED RGBWW 5050 15 metros HomeMagic
+- Fita LED SMD 5050 5 metros DC 12V (não integrado)
+- Fita LED RGBWW 5050 15 metros HomeMagic - [Integração](https://www.home-assistant.io/integrations/flux/) / [Fix](https://github.com/CorneliousJD/flux_led)
+
 # Aparelhos
 - iLife V7s Plus - Robô para limpeza doméstica
 - Router Xiomi Ax1800 Mesh Wifi6 5-Core (2x)
+
 # Outros
 - SONOFF® IP66 - Case protetor para chuva
+- Suporte de embutir no teto para Google Home Mini 2º Geração (não recomendo, perdeu 40% do volume, já que as laterias ficam no teto)
+
+# Integrações
+- [HACS](https://hacs.xyz/docs/installation/manual) : Addon Manager - permite adicionar mais ferramentas não oficiais ao Home Assistant, como novas integrações, temas e funcionalidades.
+- [Telegram] (https://www.home-assistant.io/integrations/telegram/) : Envia notificações para o Celular
+
 # Plataformas e Softwares
 - [Raspbian GNU/Linux 10 (buster)](https://www.raspberrypi.org/downloads/raspbian/) - Debian Based 
 - [Docker](https://www.docker.com/)

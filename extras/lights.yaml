@@ -1,3 +1,4 @@
+### GROUPS
   - platform: group
     name: Todas Luzes
     entities:
@@ -8,9 +9,15 @@
       - light.frente
       - light.garagem
       - light.jantar
+      - light.led
+      - light.lustre
+      - light.pendentes_cozinha
       - light.postes
       - light.quarto
-      - light.lustre
+      - light.spots_cozinha
+      - light.spots_jantar
+      - light.spots_sala
+      - light.varanda
       
   - platform: group
     name: Luzes Atico
@@ -27,18 +34,73 @@
       - light.varanda
       
   - platform: group
-    name: Luzes Copa
+    name: Luzes Cozinha
     entities:
       - light.cozinha
-      - light.jantar
+      - light.pendentes_cozinha
+      - light.spots_cozinha
       
   - platform: group
-    name: Luzes Atico
+    name: Luzes Jantar
     entities:
-      - light.atico
-      - light.escada
+      - light.jantar
+      - light.spots_jantar
       
+  - platform: group
+    name: Luzes Sala
+    entities:
+      - light.lustre
+      - light.spots_sala
+      - light.led
+      
+  - platform: group
+    name: Luzes Living
+    entities:
+      - light.lustre
+      - light.spots_sala
+      - light.led
+      - light.cozinha
+      - light.pendentes_cozinha
+      - light.spots_cozinha
+      - light.jantar
+      - light.spots_jantar
+
+### SWITCHES
+  - platform: switch
+    name: Spots Sala
+    entity_id: switch.spots_sala
+      
+  - platform: switch
+    name: Garagem
+    entity_id: switch.garagem
+      
+  - platform: switch
+    name: Pendentes Cozinha
+    entity_id: switch.pendentes_cozinha
+      
+  - platform: switch
+    name: Spots Cozinha
+    entity_id: switch.spots_cozinha
+      
+  - platform: switch
+    name: Spots Jantar
+    entity_id: switch.spots_jantar
+      
+  - platform: switch
+    name: Lavabo
+    entity_id: switch.lavabo
+      
+  - platform: switch
+    name: Lavanderia
+    entity_id: switch.lavanderia
+      
+  - platform: switch
+    name: Abajur
+    entity_id: switch.abajur_power
+
+### LED
   - platform: flux_led
+    scan_interval: 0.5
     automatic_add: true
     devices:
       192.168.1.77:
