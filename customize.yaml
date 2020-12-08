@@ -58,7 +58,7 @@ sensor.tv_hoje:
 sensor.tv_ontem:
   icon: mdi:television-classic-off
 sensor.portao_hoje:
-  icon: mdi:garage-alert
+  icon: mdi:gate
 sensor.ha_start:
   friendly_name: Inicialização HA
 sensor.ha_release:
@@ -184,3 +184,23 @@ switch.sb_aux:
 switch.sb_bt:
   friendly_name: USB/Bluetooth
   icon: mdi:bluetooth
+light.abajur:
+  icon: mdi:lamp
+sensor.portao_ontem:
+  icon: mdi:gate
+sensor.tempo_porta_g_hoje:
+  icon: mdi:fridge-bottom
+sensor.num_porta_g_hoje:
+  icon: mdi:fridge-bottom
+sensor.tempo_porta_g_ontem:
+  icon: mdi:fridge-bottom
+sensor.num_porta_g_ontem:
+  icon: mdi:fridge-bottom
+sensor.tempo_porta_v_hoje:
+  icon: mdi:door-open
+sensor.num_porta_v_hoje:
+  icon: mdi:door-open
+sensor.tempo_porta_v_ontem:
+  icon: mdi:door-open
+sensor.num_porta_v_ontem:
+  icon: mdi:door-open

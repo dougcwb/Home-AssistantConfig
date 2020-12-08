@@ -56,9 +56,10 @@
   - platform: group
     name: Luzes Living
     entities:
+      - light.corredor
       - light.lustre
       - light.spots_sala
-      - light.led
+     # - light.led
       - light.cozinha
       - light.pendentes_cozinha
       - light.spots_cozinha
