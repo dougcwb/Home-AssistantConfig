@@ -1,0 +1,34 @@
+blueprint:
+  name: Home Assistant Restart Notification
+  description: Notify a user that Home Assistant has successfully restarted
+  domain: automation
+  input:
+    notification_title:
+      name: Notification title (Optional)
+      description: 'Default: "Home Assistant"'
+      default: Home Assistant
+    notification_message:
+      name: Notification message (Optional)
+      description: 'Default: "Home Assistant has succesfully restarted!"'
+      default: Home Assistant has succesfully restarted!
+    notify_device:
+      name: Device to notify
+      description: Device needs to run the official Home Assistant app to receive
+        notifications
+      selector:
+        device:
+          integration: mobile_app
+  source_url: https://gist.github.com/gregoryduckworth/c41e0abced1a3001f0e038ac52890cab
+trigger:
+  platform: homeassistant
+  event: start
+variables:
+  notification_title: !input 'notification_title'
+  notification_message: !input 'notification_message'
+  notify_device: !input 'notify_device'
+action:
+- device_id: !input 'notify_device'
+  domain: mobile_app
+  type: notify
+  title: '{{ notification_title }}'
+  message: '{{ notification_message }}'

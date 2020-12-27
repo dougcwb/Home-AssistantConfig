@@ -1,5 +1,5 @@
 # Assitentes
-- Google Home Nest Mini (2º geração)
+- Google Home Nest Mini (2º geração) [Integração](https://www.home-assistant.io/integrations/google_assistant/)
 - Kit Rasberry Pi 4b + Case + SSD Kigston 120GB USB + Fonte 5V 3A
 
 # Interruptores

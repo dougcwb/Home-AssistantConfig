@@ -1,0 +1,13 @@
+    # Ventilador
+  - platform: generic_thermostat
+    name: Temperatura Quarto
+    target_sensor: sensor.temperatura
+    heater: switch.ventilador
+  - platform: generic_thermostat
+    name: Temperatura Sala
+    target_sensor: sensor.ble_temperature_sala
+    heater: switch.ventilador
+  - platform: generic_thermostat
+    name: Temperatura Cozinha
+    target_sensor: sensor.zig_temperatura_cozinha
+    heater: switch.ventilador

@@ -1,0 +1,39 @@
+
+  project_id: !secret ga_project_id
+  api_key: !secret ga_api_key
+  #report_state: true
+  exposed_domains: #Lista de domínios de entidades a serem expostos ao Google Assistant
+#    - switch
+    - light
+#    - sensor
+    - media_player
+    - climate
+#    - input_boolean
+  entity_config: #Configuração específica da entidade para o Google Assistant
+    switch.ventilador:
+      name: Ventilador do Quarto
+      room: Quarto
+    switch.pow_geladeira:
+      name: Geladeira
+    switch.umidificador:
+      name: Umidificador
+      room: Quarto
+    switch.modem:
+      name: Modem
+    switch.tomada:
+      name: Pinheirinho
+      room: Sala de Estar
+    switch.portao:
+      name: Portão
+    media_player.nest:
+      expose: false
+    media_player.mpd:
+      expose: false
+    switch.ht_mp3:
+      name: HT
+    switch.ht_vol_up:
+      name: HT Mais
+    switch.ht_vol_down:
+      name: HT Menos
+    input_boolean.visitas:
+      name: Visitas

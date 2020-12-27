@@ -2,3 +2,15 @@
   visitas:
     name: Visitas
     icon: mdi:tag-faces
+  ventilador:
+    name: ventilador
+    initial: off
+  ytube_music_player_playcontinuous:
+    initial: false
+    name: "Reprodução Contínua"
+  ytube_music_player_show_lyrics:
+    initial: false
+    name: "Letras"
+  ytube_music_player_show_tracks:
+    initial: false
+    name: "PlayList"

@@ -28,7 +28,7 @@
     entity_id: camera.sala
     service: camera.snapshot
 - id: '3'
-  alias: Backup Semanal
+  alias: 'App: Backup Semanal'
   description: Fazer um backup do HA toda semana
   trigger:
   - at: 04:00:00
@@ -47,17 +47,20 @@
   - data_template:
       name: weekly_backup_{{ now().strftime('%Y-%m-%d') }}
     service: hassio.snapshot_full
+  mode: single
 - id: '4'
   alias: 'Tema: claro de manhã'
   trigger:
-  - event: sunrise
-    platform: sun
+  - platform: state
+    entity_id: sun.sun
+    to: above_horizon
   condition: []
   action:
   - data:
       name: clear
     service: frontend.set_theme
   initial_state: 'true'
+  mode: single
 - id: '5'
   alias: 'Tema: escuro ao iniciar a noite'
   trigger:
@@ -72,6 +75,7 @@
       name: dark_teal
     service: frontend.set_theme
   initial_state: 'true'
+  mode: single
 - id: '10'
   alias: 'Tema: claro ao iniciar de manhã'
   description: Ao iniciar o HA pela manhã, define o tema claro
@@ -91,14 +95,16 @@
   alias: 'Tema: escuro de noite'
   description: Define tema escuro ao anoitecer
   trigger:
-  - event: sunset
-    platform: sun
+  - platform: state
+    entity_id: sun.sun
+    to: below_horizon
   condition: []
   action:
   - data:
       name: dark_teal
     service: frontend.set_theme
   initial_state: 'true'
+  mode: single
 - id: '6'
   alias: 'Notificar: portão aberto'
   description: Informa se o portão foi acionado
@@ -125,7 +131,7 @@
     service: notify.doug
   mode: single
 - id: '7'
-  alias: Acende Luzes ao abrir o portao a noite
+  alias: 'Luz: Acende Luzes ao abrir o portao a noite'
   description: Ao abrir o portão à noite, acender luzes
   trigger:
   - entity_id: switch.portao
@@ -167,21 +173,8 @@
           badge: 1
       message: Ninguém em casa. Luzes apagadas.
     service: notify.doug
-- id: '9'
-  alias: Testes
-  description: Só para testar ações
-  trigger:
-  - entity_id: input_boolean.timer_ativo
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition: []
-  action:
-  - timeout: 00:00:05
-    wait_template: '{{ is_state(''input_boolean.timer_ativo'', ''on'') }}'
-  mode: single
 - id: '1589366597710'
-  alias: Modem desligado
+  alias: 'App: Modem desligado'
   description: Avisa se o modem ficar desligado por mais de 1 minutos
   trigger:
   - entity_id: switch.modem
@@ -200,11 +193,12 @@
           badge: 1
       message: o modem estava desligado
     service: notify.doug
+  mode: single
 - id: '1589407320685'
-  alias: Jornal Nacional
+  alias: 'App: Jornal Nacional'
   description: Muda de canal na hora do jornal
   trigger:
-  - at: '20:30:00'
+  - at: '20:29:50'
     platform: time
   condition: []
   action:
@@ -213,6 +207,7 @@
       media_content_type: channel
     entity_id: media_player.samsung_un40f5500
     service: media_player.play_media
+  mode: single
 - id: '1589589848900'
   alias: 'Timer: Garagem 15 min'
   description: Apaga garagem em 15 minutos automaticamente
@@ -232,7 +227,7 @@
     service: light.turn_off
   mode: restart
 - id: '1589633706653'
-  alias: Liga umidificador
+  alias: 'App: Liga umidificador'
   description: ''
   trigger:
   - below: '65'
@@ -249,7 +244,7 @@
     service: switch.turn_on
   mode: single
 - id: '1589633864703'
-  alias: Desliga umidificador
+  alias: 'App: Desliga umidificador'
   description: ''
   trigger:
   - above: '72'
@@ -267,9 +262,9 @@
   - data: {}
     entity_id: switch.umidificador
     service: switch.turn_off
-  mode: single
+  mode: restart
 - id: '1589689241025'
-  alias: Cucko
+  alias: 'App: Cucko'
   description: Tocar o cucko durante o dia
   trigger:
   - minutes: '00'
@@ -302,13 +297,14 @@
     service: media_extractor.play_media
   mode: single
 - id: '1590409242457'
-  alias: Geladeira sempre ligada
+  alias: 'App: Geladeira sempre ligada'
   description: Mantem a geladeira ligada
   trigger:
   - entity_id: switch.pow_geladeira
     from: 'on'
     platform: state
     to: 'off'
+    for: 00:00:05
   condition: []
   action:
   - data: {}
@@ -320,11 +316,12 @@
           badge: 1
       message: A geladeira foi desligada
     service: notify.doug
+  mode: single
 - id: '1590633568136'
   alias: 'Notificar: Luzes'
   description: Notifica se luzes forem acesas quando ninguém estiver em casa
   trigger:
-  - entity_id: group.all_lights
+  - entity_id: light.todas_luzes
     from: 'off'
     platform: state
     to: 'on'
@@ -346,7 +343,7 @@
       data:
         push:
           badge: 1
-      message: 'Luz: {{ trigger.to_state.attributes.friendly_name }} {{trigger.to_state.state}}'
+      message: Uma luz foi acesa sem ninguém em casa
     service: notify.doug
   mode: single
 - id: '1592616553887'
@@ -368,10 +365,10 @@
     service: light.turn_off
   mode: restart
 - id: '1592616717390'
-  alias: 'Timer: Frente 15min'
-  description: Desliga luzes da frente em 15 minutos
+  alias: 'Timer: Quintal 15min'
+  description: Desliga luzes do quintal em 15 minutos
   trigger:
-  - entity_id: light.frente
+  - entity_id: light.luzes_do_quintal
     for: 00:15:00
     from: 'off'
     platform: state
@@ -382,21 +379,22 @@
     state: 'off'
   action:
   - data: {}
-    entity_id: light.frente
+    entity_id: light.luzes_do_quintal
     service: light.turn_off
   mode: restart
 - id: '1593104115555'
-  alias: Consumo POW
+  alias: 'App: Consumo POW'
   description: Atualiza o consumo do Sonoff Pow (Geladeira)
   trigger:
   - platform: time_pattern
-    seconds: '00'
+    seconds: '20'
   condition: []
   action:
   - data: {}
     service: sonoff.update_consumption
+  mode: single
 - id: '1597403502394'
-  alias: Liga a TV manhã
+  alias: 'App: Liga a TV manhã'
   description: Ligar a tv de manhã
   trigger:
   - at: 09:28
@@ -454,25 +452,6 @@
     entity_id: media_player.nest
     service: tts.google_translate_say
   mode: single
-- id: '1598381965645'
-  alias: 'Notificar: Ju Chegou'
-  description: ''
-  trigger:
-  - entity_id: device_tracker.redmi_note_8t
-    event: enter
-    platform: zone
-    zone: zone.home
-  condition:
-  - after: 08:00:00
-    before: '22:00:00'
-    condition: time
-  action:
-  - data_template:
-      media_content_id: http://192.168.1.100:8123/local/mp3/r2d2.mp3
-      media_content_type: audio
-    entity_id: media_player.nest
-    service: media_extractor.play_media
-  mode: single
 - id: '1598468444279'
   alias: 'Timer: Desligar Banheiro de dia'
   description: Desliga a luz do banheiro se ficar mais de 15 minutos ligada
@@ -525,11 +504,11 @@
     service: notify.doug
   mode: single
 - id: '1600816780345'
-  alias: 'Timer: Varanda 15min'
+  alias: 'Timer: Fundos 10min'
   description: ''
   trigger:
-  - entity_id: light.varanda
-    for: 00:15:00
+  - entity_id: light.fundos
+    for: 00:10:00
     from: 'off'
     platform: state
     to: 'on'
@@ -539,7 +518,7 @@
     state: 'off'
   action:
   - data: {}
-    entity_id: light.varanda
+    entity_id: light.fundos
     service: light.turn_off
   mode: restart
 - id: '1601412683546'
@@ -553,88 +532,32 @@
   condition: []
   action:
   - data: {}
-    entity_id: light.luzes_quintal
+    entity_id: light.luzes_do_quintal
     service: light.toggle
   mode: restart
 - id: '1602115463438'
-  alias: Desliga abajur
+  alias: 'Luz: Desliga abajur'
   description: ''
   trigger:
-  - platform: time
-    at: 00:30:00
+  - platform: time_pattern
+    hours: '00'
   condition: []
   action:
   - service: switch.turn_off
     data: {}
-    entity_id: switch.luz_power
+    entity_id: switch.abajur_power
   mode: single
 - id: '1602123913493'
-  alias: Desliga ventilador
+  alias: 'App: Desliga ventilador'
   description: ''
   trigger:
   - platform: time
-    at: 01:00:00
+    at: input_datetime.tempo
   condition: []
   action:
   - service: switch.turn_off
     data: {}
     entity_id: switch.ventilador
-  mode: single
-- id: '1602454421568'
-  alias: Lustre acende
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: light.jantar
-    from: 'off'
-    to: 'on'
-  condition: []
-  action:
-  - service: light.turn_on
-    data: {}
-    entity_id: light.lustre
-  mode: single
-- id: '1602454458057'
-  alias: Lustre apaga
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: light.jantar
-    from: 'on'
-    to: 'off'
-  condition: []
-  action:
-  - service: light.turn_off
-    data: {}
-    entity_id: light.lustre
-  mode: single
-- id: '1605487130792'
-  alias: Acende Lustre
-  description: Temporario
-  trigger:
-  - platform: state
-    entity_id: light.lustre
-    from: 'off'
-    to: 'on'
-  condition: []
-  action:
-  - service: light.turn_on
-    data: {}
-    entity_id: light.spots_sala
-  mode: single
-- id: '1605487278552'
-  alias: Apaga lustre
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: light.lustre
-    from: 'on'
-    to: 'off'
-  condition: []
-  action:
-  - service: light.turn_off
-    data: {}
-    entity_id: light.spots_sala
   mode: single
 - id: '1605982719151'
   alias: Liga Árvore de Natal
@@ -649,16 +572,140 @@
     entity_id: switch.tomada
   mode: single
 - id: '1605982803822'
-  alias: Desliga a Árvore de Natal
+  alias: 'Luz: Desliga a Árvore de Natal'
   description: ''
   trigger:
   - platform: time_pattern
-    hours: '1'
-    minutes: '00'
+    minutes: '01'
     seconds: '00'
+    hours: '00'
   condition: []
   action:
   - service: switch.turn_off
     data: {}
     entity_id: switch.tomada
   mode: single
+- id: '1607633082841'
+  alias: 'Luz: Apaga Quintal ao chegar em casa'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.porta_vidro
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  - condition: state
+    entity_id: light.luzes_do_quintal
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.visitas
+    state: 'off'
+  - condition: template
+    value_template: '{{ (as_timestamp(utcnow()) - as_timestamp(states.switch.portao.last_changed))
+      < 300 }}'
+  action:
+  - service: light.turn_off
+    data: {}
+    entity_id: light.luzes_do_quintal
+  - condition: state
+    entity_id: light.todas_luzes
+    state: 'off'
+  - service: light.turn_on
+    data: {}
+    entity_id: light.lustre
+  mode: restart
+- id: '1607898214736'
+  alias: 'App: Desliga HT'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.samsung_un40f5500
+    from: 'on'
+    to: 'off'
+    for: 00:00:30
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: media_player.nest
+      state: 'on'
+  action:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.ht_turn_off
+  mode: single
+- alias: Timer start
+  trigger:
+    platform: state
+    entity_id: input_boolean.ventilador
+    to: 'on'
+  action:
+    service: timer.start
+    entity_id: timer.ventilador
+    data_template:
+      duration: '{{ states(''input_number.ventilador'') | int * 60 }}'
+  id: ef5d72115f254230bd0e07f7263c3b1e
+- alias: Timer cancel
+  trigger:
+    platform: state
+    entity_id: input_boolean.ventilador
+    to: 'off'
+  action:
+    service: timer.cancel
+    entity_id: timer.ventilador
+  id: 14f10fa6f41243d9905b15a9bf6f8e97
+- alias: Timer stop
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.ventilador
+  action:
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.ventilador
+  - service: switch.turn_off
+    entity_id: switch.ventilador
+  id: 9260732160664083a61b3168fd1abe3c
+- id: '1608087493122'
+  alias: 'App: liga audio'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.samsung_un40f5500
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: switch.toggle
+    data: {}
+    entity_id: switch.ht_mp3
+  mode: single
+- id: '1608087765714'
+  alias: 'Notifica: Rasp temp'
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.cpu_temp
+    above: '50'
+    for: 00:01:00
+  condition: []
+  action:
+  - service: notify.doug
+    data:
+      data:
+        push:
+          badge: 1
+      message: Raspberry com temperatura alta
+  mode: single
+- id: '1608262442515'
+  alias: Home Assistant Restart Notification
+  description: ''
+  use_blueprint:
+    path: gregoryduckworth/restart_notification.yaml
+    input:
+      notification_message: Home Assistant Reiniciou!
+      notify_device: 2549b1202f7c47d3bb6eb14f60da8596

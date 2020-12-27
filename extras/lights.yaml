@@ -1,14 +1,18 @@
 ### GROUPS
   - platform: group
-    name: Todas Luzes
+    name: Todas as Luzes
     entities:
       - light.atico
       - light.banheiro
       - light.cozinha
+      - light.corredor
       - light.escada
       - light.frente
+      - light.fundos
       - light.garagem
+      - light.icaro
       - light.jantar
+      - light.lavanderia
       - light.led
       - light.lustre
       - light.pendentes_cozinha
@@ -20,41 +24,50 @@
       - light.varanda
       
   - platform: group
-    name: Luzes Atico
+    name: Luzes do Atico
     entities:
       - light.atico
       - light.escada
       
   - platform: group
-    name: Luzes Quintal
+    name: Luzes do Quintal
     entities:
-      - light.frente
+#      - light.frente
       - light.garagem
       - light.postes
       - light.varanda
       
   - platform: group
-    name: Luzes Cozinha
+    name: Luzes da Cozinha
     entities:
       - light.cozinha
       - light.pendentes_cozinha
       - light.spots_cozinha
       
   - platform: group
-    name: Luzes Jantar
+    name: Copa
+    entities:
+      - light.cozinha
+      - light.pendentes_cozinha
+      - light.spots_cozinha
+      - light.jantar
+      - light.spots_jantar
+      
+  - platform: group
+    name: Luzes de Jantar
     entities:
       - light.jantar
       - light.spots_jantar
       
   - platform: group
-    name: Luzes Sala
+    name: Luzes da Sala
     entities:
       - light.lustre
       - light.spots_sala
-      - light.led
+#      - light.led
       
   - platform: group
-    name: Luzes Living
+    name: Living
     entities:
       - light.corredor
       - light.lustre
@@ -87,9 +100,9 @@
     name: Spots Jantar
     entity_id: switch.spots_jantar
       
-  - platform: switch
-    name: Lavabo
-    entity_id: switch.lavabo
+#  - platform: switch
+ #   name: Lavabo
+#    entity_id: switch.lavabo
       
   - platform: switch
     name: Lavanderia
@@ -101,7 +114,7 @@
 
 ### LED
   - platform: flux_led
-    scan_interval: 0.5
+    scan_interval: 1
     automatic_add: true
     devices:
       192.168.1.77:

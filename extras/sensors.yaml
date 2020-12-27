@@ -8,12 +8,8 @@
   - platform: command_line
     name: CPU Temp
     command: "cat /sys/class/thermal/thermal_zone0/temp"
-    unit_of_measurement: "°C"
+    #unit_of_measurement: "°C"
     value_template: '{{ value | multiply(0.001) | round(1) }}'
-  - platform: command_line
-    name: HD Temperature
-    command: "sudo hddtemp -n /dev/sda"
-    unit_of_measurement: "°C"
 # Monitor de sistema
   - platform: systemmonitor
     resources:
@@ -53,10 +49,10 @@
     name: HA release
   - platform: command_line
     name: badlogin
-    command: "grep -c 'Login attempt' /home/hass/.homeassistant/home-assistant.log"
+    command: 'grep -c ''Login attempt'' home-assistant.log'
   - platform: uptime
     name: Tempo Online
-    unit_of_measurement: hours
+    #unit_of_measurement: hours
   - platform: moon
   - platform: websocket_api
   - platform: derivative
@@ -76,6 +72,7 @@
     symbols:
       - symbol: GOOGL
         name: Google
+        currency: BLR
     foreign_exchange:
       - name: Dolar
         from: USD
@@ -100,15 +97,6 @@
       minutes: 5
       seconds: 0
       milliseconds: 0
-  - platform: mitemp_bt
-    mac: 'A4:C1:38:0F:0F:56'
-    name: Sensor Sala
-    force_update: true
-    median: 1
-    monitored_conditions:
-      - temperature
-      - humidity
-      - battery
 #  _____ _____ __  __ ____  _        _  _____ _____ ____
 # |_   _| ____|  \/  |  _ \| |      / \|_   _| ____/ ___|
 #   | | |  _| | |\/| | |_) | |     / _ \ | | |  _| \___ \
@@ -126,43 +114,19 @@
       
       today_consumption:
         friendly_name: Consumo Hj
-        unit_of_measurement: kWh
+        #unit_of_measurement: kWh
         value_template: "{{ state_attr('switch.pow_geladeira', 'consumption').0 }}"
         icon_template: mdi:fridge-alert
       ten_days_consumption:
         friendly_name: Consumo 10 dias
-        unit_of_measurement: kWh
+        #unit_of_measurement: kWh
         icon_template: mdi:fridge-off
         value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:10]|sum|round(2) if p}}"
       trinta_days_consumption:
         friendly_name: Consumo 30 dias
-        unit_of_measurement: kWh
+        #unit_of_measurement: kWh
         icon_template: mdi:fridge-off
         value_template: "{% set p=state_attr('switch.pow_geladeira', 'consumption') %}{{ p[:30]|sum|round(2) if p}}"
-#  _     ___   ____    _    _     ___ _____   _    ____    _    ___
-# | |   / _ \ / ___|  / \  | |   |_ _|__  /  / \  / ___|  / \  / _ \
-# | |  | | | | |     / _ \ | |    | |  / /  / _ \| |     / _ \| | | |
-# | |__| |_| | |___ / ___ \| |___ | | / /_ / ___ \ |___ / ___ \ |_| |
-# |_____\___/ \____/_/   \_\_____|___/____/_/   \_\____/_/   \_\___/
-      donos_em_casa:
-        friendly_name: "Donos em casa"
-        value_template: >-
-           {% if is_state('group.all_devices', 'not_home') %}
-             off
-           {% elif is_state('group.all_devices', 'unknown') %}
-             off
-           {% else %}
-             on
-           {% endif %}
-        icon_template: >-
-          {% if is_state('group.all_devices', 'not_home') %}
-            mdi:thumb-down-outline
-          {% elif is_state('group.all_devices', 'unknown') %}
-            mdi:thumb-down-outline
-          {% else %}
-            mdi:thumb-up-outline
-          {% endif %}
-        entity_id: group.all_devices
 #  ____    _  _____  _    ____    _    ____  _____
 # |  _ \  / \|_   _|/ \  | __ )  / \  / ___|| ____|
 # | | | |/ _ \ | | / _ \ |  _ \ / _ \ \___ \|  _|

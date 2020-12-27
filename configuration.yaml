@@ -4,12 +4,14 @@ default_config:
 automation: !include automations.yaml
 ble_monitor: !include extras/ble_monitor.yaml
 binary_sensor: !include extras/binary.yaml
-camera: !include extras/camera.yaml
+#camera: !include extras/camera.yaml
+climate: !include extras/climate.yaml
 conversation:
 ffmpeg:
 frontend:
   themes: !include_dir_merge_named themes/
   javascript_version: latest
+google_assistant: !include extras/google_assistant.yaml
 group: !include extras/groups.yaml
 homeassistant:
   customize: !include customize.yaml
@@ -35,7 +37,10 @@ script: !include extras/scripts.yaml
 sonoff: !include extras/sonoff.yaml
 switch: !include extras/switches.yaml
 stream: 
+timer: !include extras/timer.yaml
 #telegram_bot: !include extras/telegram.yaml
 tts: !include extras/tts.yaml #text-to-speach
+#localtuya: !include extras/tuya.yaml
 #upnp:
 websocket_api:
+#

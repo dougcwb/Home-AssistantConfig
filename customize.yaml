@@ -1,9 +1,3 @@
-person.douglas:
-  friendly_name: Doug
-  entity_picture: https://www.life360.com/img/user_images/0447b920-4466-424e-97d7-b598063ccde1/e186b217-e041-49dd-8333-b954911cb443.png?fd=2
-person.juliana:
-  friendly_name: Ju
-  entity_picture: https://www.life360.com/img/user_images/436347ca-18fe-49ce-9572-54d898a86855/f3ba395c-c883-4d88-8ae0-6bc282b83438.png?fd=2
 sensor.processor_use:
   friendly_name: Uso Processador
   icon: mdi:cpu-32-bit
@@ -66,15 +60,15 @@ sensor.ha_release:
 sensor.connected_clients:
   friendly_name: Clientes conectados
   icon: mdi:access-point-network
-light.luzes_atico:
+light.luzes_do_atico:
   icon: mdi:home-roof
-light.luzes_quintal:
+light.luzes_do_quintal:
   icon: mdi:coach-lamp
-light.luzes_cozinha:
+light.luzes_da_cozinha:
   icon: mdi:food
-light.luzes_jantar:
+light.luzes_de_jantar:
   icon: mdi:silverware-variant
-light.luzes_sala:
+light.luzes_da_sala:
   icon: mdi:sofa
 switch.led_on:
   friendly_name: Liga
@@ -184,6 +178,33 @@ switch.sb_aux:
 switch.sb_bt:
   friendly_name: USB/Bluetooth
   icon: mdi:bluetooth
+switch.ht_turn_off:
+  icon: mdi:audio-video-off
+  friendly_name: HT Off
+switch.ht_vol_down:
+  friendly_name: Vol-
+  icon: mdi:volume-minus
+switch.ht_vol_mute:
+  friendly_name: Mute
+  icon: mdi:volume-mute
+switch.ht_vol_up:
+  friendly_name: Vol+
+  icon: mdi:volume-plus
+switch.ht_tv:
+  icon: mdi:television-play
+  friendly_name: TV
+switch.ht_surround:
+  icon: mdi:surround-sound
+  friendly_name: Surround
+switch.ht_sound:
+  icon: mdi:speaker-multiple
+  friendly_name: Som
+switch.ht_aux:
+  icon: mdi:raspberry-pi
+  friendly_name: Aux. P2
+switch.ht_mp3:
+  friendly_name: USB/Bluetooth
+  icon: mdi:bluetooth-audio
 light.abajur:
   icon: mdi:lamp
 sensor.portao_ontem:
@@ -204,3 +225,90 @@ sensor.tempo_porta_v_ontem:
   icon: mdi:door-open
 sensor.num_porta_v_ontem:
   icon: mdi:door-open
+switch.tv_power:
+  icon: mdi:television
+  friendly_name: TV
+switch.tv_source:
+  icon: mdi:exit-to-app
+  friendly_name: Source
+switch.tv_tv:
+  icon: mdi:television-box
+  friendly_name: TV
+switch.tv_smarthub:
+  icon: mdi:longitude
+  friendly_name: Smarthub
+switch.tv_volup:
+  icon: mdi:volume-plus
+  friendly_name: Vol+
+switch.tv_channelup:
+  icon: mdi:arrow-up-bold-circle
+  friendly_name: Canal+
+switch.tv_voldown:
+  icon: mdi:volume-minus
+  friendly_name: Vol-
+switch.tv_channeldown:
+  icon: mdi:arrow-down-bold-circle
+  friendly_name: Canal-
+switch.tv_tools:
+  icon: mdi:tools
+  friendly_name: Tools
+switch.tv_up:
+  icon: mdi:arrow-up-bold
+  friendly_name: Cima
+switch.tv_info:
+  icon: mdi:information
+  friendly_name: Info
+switch.tv_left:
+  icon: mdi:arrow-left-bold
+  friendly_name: Esquerda
+switch.tv_ok:
+  icon: mdi:smoke-detector
+  friendly_name: OK
+switch.tv_right:
+  icon: mdi:arrow-right-bold
+  friendly_name: Direita
+switch.tv_return:
+  icon: mdi:reply
+  friendly_name: Voltar
+switch.tv_down:
+  icon: mdi:arrow-down-bold
+  friendly_name: Baixo
+switch.tv_exit:
+  icon: mdi:alpha-e-box
+  friendly_name: Sair
+switch.tv_rw:
+  icon: mdi:rewind
+  friendly_name: Retroceder
+switch.tv_stop:
+  icon: mdi:stop
+  friendly_name: Parar
+switch.tv_play:
+  icon: mdi:play
+  friendly_name: Reproduzir
+switch.tv_pause:
+  icon: mdi:pause
+  friendly_name: Pausar
+switch.tv_ff:
+  icon: mdi:fast-forward
+  friendly_name: Avançar
+light.led:
+  icon: mdi:led-strip
+  friendly_name: Led
+sensor.zig_temperatura_cozinha:
+  device_class: temperature
+  name: Temperatura Cozinha
+sensor.temperatura:
+  device_class: temperature
+  name: Temperatura Quarto
+sensor.ble_temperature_sala:
+  device_class: temperature
+  name: Temperatura Sala
+sensor.zig_umidade_cozinha:
+  device_class: humidity
+  name: Umidade Cozinha
+sensor.umidade:
+  device_class: humidity
+  name: Umidade Quarto
+sensor.ble_humidity_sala:
+  device_class: humidity
+  name: Umidade Sala
