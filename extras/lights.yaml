@@ -79,11 +79,7 @@
       - light.jantar
       - light.spots_jantar
 
-### SWITCHES
-  - platform: switch
-    name: Spots Sala
-    entity_id: switch.spots_sala
-      
+### LOCAL TUYA
   - platform: switch
     name: Garagem
     entity_id: switch.garagem
@@ -99,15 +95,28 @@
   - platform: switch
     name: Spots Jantar
     entity_id: switch.spots_jantar
+    
+  - platform: switch
+    name: Spots Sala
+    entity_id: switch.spots_sala
       
-#  - platform: switch
- #   name: Lavabo
-#    entity_id: switch.lavabo
+  - platform: switch
+    name: Pinheirinho
+    entity_id: switch.pinheirinho
+      
+  - platform: switch
+    name: Fundos
+    entity_id: switch.fundos
       
   - platform: switch
     name: Lavanderia
     entity_id: switch.lavanderia
       
+  - platform: switch
+    name: Lustre
+    entity_id: switch.lustre
+      
+# OUTROS SWITCHES
   - platform: switch
     name: Abajur
     entity_id: switch.abajur_power

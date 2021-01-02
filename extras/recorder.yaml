@@ -1,5 +1,5 @@
-  purge_keep_days: 3
-  commit_interval: 3
+  purge_keep_days: 7
+  commit_interval: 2
   db_url: !secret dburl
   exclude:
     domains:

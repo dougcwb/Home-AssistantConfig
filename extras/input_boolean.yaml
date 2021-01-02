@@ -5,12 +5,16 @@
   ventilador:
     name: ventilador
     initial: off
+    icon: mdi:fan
   ytube_music_player_playcontinuous:
     initial: false
     name: "Reprodução Contínua"
+    icon: mdi:animation-play
   ytube_music_player_show_lyrics:
     initial: false
     name: "Letras"
+    icon: mdi:script-text
   ytube_music_player_show_tracks:
     initial: false
     name: "PlayList"
+    icon: mdi:playlist-music

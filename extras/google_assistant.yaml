@@ -7,6 +7,7 @@
     - light
 #    - sensor
     - media_player
+    - scripts
     - climate
 #    - input_boolean
   entity_config: #Configuração específica da entidade para o Google Assistant
@@ -37,3 +38,9 @@
       name: HT Menos
     input_boolean.visitas:
       name: Visitas
+    scripts.globo:
+      name: Canal Globo
+    scripts.band:
+      name: Canal Band
+    scripts.cultura:
+      name: Canal Cultura

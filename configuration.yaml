@@ -25,12 +25,13 @@ input_select: !include extras/input_select.yaml
 #life360: !include extras/life360.yaml
 light: !include extras/lights.yaml
 local_ip:
+#localtuya: !include extras/tuya.yaml
 #logger: !include extras/logger.yaml
 media_extractor: !include extras/extractor.yaml
 media_player: !include extras/media.yaml
 notify: !include extras/notify.yaml #notificações para celular
 recorder: !include extras/recorder.yaml #maria_db
-remote: !include extras/remote.yaml #broadlink
+#remote: !include extras/remote.yaml #broadlink
 scene: !include extras/scenes.yaml
 sensor: !include extras/sensors.yaml #bateria, temperatura, umidade, localização, etc
 script: !include extras/scripts.yaml

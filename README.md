@@ -41,8 +41,11 @@
 - Suporte de embutir no teto para Google Home Mini 2º Geração (não recomendo, perdeu 40% do volume, já que as laterias ficam no teto)
 
 # Integrações
-- [HACS](https://hacs.xyz/docs/installation/manual) : Addon Manager - permite adicionar mais ferramentas não oficiais ao Home Assistant, como novas integrações, temas e funcionalidades.
-- [Telegram] (https://www.home-assistant.io/integrations/telegram/) : Envia notificações para o Celular
+- [HACS](https://hacs.xyz/docs/installation/manual): Addon Manager - permite adicionar mais ferramentas não oficiais ao Home Assistant, como novas integrações, temas e funcionalidades.
+- [Telegram](https://www.home-assistant.io/integrations/telegram/): Envia notificações para o Celular
+- [Youtube Music](https://github.com/KoljaWindeler/ytube_music_player): Permite tocar as playlists em qualquer media player.
+- [SonoffLAN](https://github.com/AlexxIT/SonoffLAN): Permite usar os dispositivos Sonoff na rede local (no app eWelink continua funcionando o cloud).
+- [LocalTuya](https://github.com/rospogrigio/localtuya): Permite acionar dispositivos na rede local (no app Tuya continua funcionando o cloud)
 
 # Plataformas e Softwares
 - [Raspbian GNU/Linux 10 (buster)](https://www.raspberrypi.org/downloads/raspbian/) - Debian Based 

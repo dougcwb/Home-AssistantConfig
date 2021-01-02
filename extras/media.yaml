@@ -1,6 +1,10 @@
-  - platform: vlc
-    name: VLC
-    arguments: "--alsa-audio-device=hw:0,0"
 
   - platform: ytube_music_player
     name: Youtube Music
+    speakers:
+      - nest
+      
+  - platform: mpd
+    host: 192.168.1.100
+    name: Mopidy
+    port: 6605

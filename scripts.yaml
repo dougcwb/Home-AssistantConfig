@@ -1,0 +1,10 @@
+globo:
+  alias: Globo
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_id: 12
+      media_content_type: channel
+    entity_id: media_player.samsung_un40f5500
+  mode: single
+  icon: mdi:earth

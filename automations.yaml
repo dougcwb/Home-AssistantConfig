@@ -139,9 +139,9 @@
     platform: state
     to: 'on'
   condition:
-  - after: '18:10:00'
-    before: 06:30:00
-    condition: time
+  - condition: state
+    entity_id: sun.sun
+    state: below_horizon
   action:
   - entity_id: light.postes
     service: light.turn_on
@@ -560,7 +560,7 @@
     entity_id: switch.ventilador
   mode: single
 - id: '1605982719151'
-  alias: Liga Árvore de Natal
+  alias: 'Luz: Liga Árvore de Natal'
   description: ''
   trigger:
   - platform: sun
@@ -569,7 +569,7 @@
   action:
   - service: switch.turn_on
     data: {}
-    entity_id: switch.tomada
+    entity_id: switch.pinheirinho
   mode: single
 - id: '1605982803822'
   alias: 'Luz: Desliga a Árvore de Natal'
@@ -583,7 +583,7 @@
   action:
   - service: switch.turn_off
     data: {}
-    entity_id: switch.tomada
+    entity_id: switch.pinheirinho
   mode: single
 - id: '1607633082841'
   alias: 'Luz: Apaga Quintal ao chegar em casa'
@@ -623,53 +623,54 @@
   trigger:
   - platform: state
     entity_id: media_player.samsung_un40f5500
-    from: 'on'
     to: 'off'
     for: 00:00:30
   condition:
   - condition: not
     conditions:
     - condition: state
-      entity_id: media_player.nest
-      state: 'on'
+      entity_id: media_player.mopidy
+      state: playing
   action:
   - service: switch.turn_off
     data: {}
     entity_id: switch.ht_turn_off
   mode: single
-- alias: Timer start
+- id: ef5d72115f254230bd0e07f7263c3b1e
+  alias: Timer start
   trigger:
-    platform: state
-    entity_id: input_boolean.ventilador
+  - platform: state
+    entity_id: input_boolean.ventilador_quarto
     to: 'on'
   action:
-    service: timer.start
-    entity_id: timer.ventilador
+  - service: timer.start
+    entity_id: timer.ventilador_quarto
     data_template:
-      duration: '{{ states(''input_number.ventilador'') | int * 60 }}'
-  id: ef5d72115f254230bd0e07f7263c3b1e
-- alias: Timer cancel
+      duration: '{{ states(''input_number.ventilador_quarto'') | int * 60 }}'
+  mode: single
+- id: 14f10fa6f41243d9905b15a9bf6f8e97
+  alias: Timer cancel
   trigger:
-    platform: state
-    entity_id: input_boolean.ventilador
+  - platform: state
+    entity_id: input_boolean.ventilador_quarto
     to: 'off'
   action:
-    service: timer.cancel
-    entity_id: timer.ventilador
-  id: 14f10fa6f41243d9905b15a9bf6f8e97
-- alias: Timer stop
+  - service: timer.cancel
+    entity_id: timer.ventilador_quarto
+  mode: single
+- id: 9260732160664083a61b3168fd1abe3c
+  alias: Timer stop
   trigger:
-    platform: event
+  - platform: event
     event_type: timer.finished
     event_data:
-      entity_id: timer.ventilador
+      entity_id: timer.ventilador_quarto
   action:
   - service: input_boolean.turn_off
-    data:
-      entity_id: input_boolean.ventilador
+    entity_id: input_boolean.ventilador_quarto
   - service: switch.turn_off
     entity_id: switch.ventilador
-  id: 9260732160664083a61b3168fd1abe3c
+  mode: single
 - id: '1608087493122'
   alias: 'App: liga audio'
   description: ''
@@ -709,3 +710,33 @@
     input:
       notification_message: Home Assistant Reiniciou!
       notify_device: 2549b1202f7c47d3bb6eb14f60da8596
+- id: '1609393232632'
+  alias: Volume Nest
+  description: ''
+  trigger:
+  - platform: time_pattern
+    hours: '21'
+    seconds: '50'
+  condition:
+  - condition: state
+    entity_id: input_boolean.visitas
+    state: 'off'
+  action:
+  - data:
+      volume_level: 0.3
+    entity_id: media_player.nest
+    service: media_player.volume_set
+  mode: single
+- id: '1609420195705'
+  alias: 'App: Liga audio mopidy'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.mopidy
+    to: playing
+  condition: []
+  action:
+  - service: switch.toggle
+    data: {}
+    entity_id: switch.ht_tv
+  mode: single

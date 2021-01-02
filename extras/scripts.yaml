@@ -2,14 +2,14 @@ playmusic:
   sequence:
   - service: media_player.play_media
     data_template:
-      entity_id: '{{ "media_player." + states("input_select.choose_player") }}'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: '{{ states("input_select.choose_music") }}'
       media_content_type: music
   alias: Toca Musica
 playradio:
   sequence:
   - data_template:
-      entity_id: '{{ "media_player." + states("input_select.choose_player") }}'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: '{{ states("input_select.choose_radio") }}'
       media_content_type: audio/mp4
     service: media_player.play_media
@@ -18,7 +18,7 @@ playradio:
 mundolivre:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'http://64-237-45-183.webnow.com.br/mundolivre.aac'
       media_content_type: audio/mp4
     service: media_player.play_media
@@ -26,7 +26,7 @@ mundolivre:
 rockradio:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'https://streaming.radiostreamlive.com/radiorockon_devices'
       media_content_type: audio/mp4
     service: media_player.play_media
@@ -35,7 +35,7 @@ rockradio:
 lineage2:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'https://www.youtube.com/watch?v=am36QHp-TgQ'
       media_content_type: video/mp4
     service: media_extractor.play_media
@@ -43,7 +43,7 @@ lineage2:
 fogo:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'https://www.youtube.com/watch?v=TdeZu4N1FY0'
       media_content_type: video/mp4
     service: media_extractor.play_media
@@ -52,7 +52,7 @@ fogo:
 campainha:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'http://192.168.1.100:8123/local/mp3/1.mp3'
       media_content_type: audio
     service: media_player.play_media
@@ -60,7 +60,7 @@ campainha:
 superman:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'http://192.168.1.100:8123/local/mp3/superman.mp3'
       media_content_type: audio
     service: media_player.play_media
@@ -68,7 +68,7 @@ superman:
 lava_mao:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'http://192.168.1.100:8123/local/mp3/lava_uma_mao.mp3'
       media_content_type: audio
     service: media_player.play_media
@@ -76,7 +76,7 @@ lava_mao:
 banho:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'http://192.168.1.100:8123/local/mp3/banho.mp3'
       media_content_type: audio
     service: media_player.play_media
@@ -84,7 +84,7 @@ banho:
 badumtss:
   sequence:
   - data_template:
-      entity_id: 'media_player.nest'
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
       media_content_id: 'http://192.168.1.100:8123/local/mp3/joke_drum_effect.mp3'
       media_content_type: audio
     service: media_player.play_media
@@ -99,9 +99,27 @@ print_entities_to_file:
         {% for state in states %}
           - {{- state.entity_id -}}
         {% endfor %}
-gstreamer:
+globo:
   sequence:
-    - service: tts.google_say
-      data:
-        entity_id: media_player.gstreamer
-        message: "Deu certo"
+  - data_template:
+      entity_id: media_player.samsung_un40f5500
+      media_content_id: 12
+      media_content_type: channel
+    service: media_player.play_media
+  alias: Globo
+band:
+  sequence:
+  - data_template:
+      entity_id: media_player.samsung_un40f5500
+      media_content_id: 2
+      media_content_type: channel
+    service: media_player.play_media
+  alias: Band
+cultura:
+  sequence:
+  - data_template:
+      entity_id: media_player.samsung_un40f5500
+      media_content_id: 9
+      media_content_type: channel
+    service: media_player.play_media
+  alias: Cultura

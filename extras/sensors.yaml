@@ -47,9 +47,9 @@
   - platform: command_line
     command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
     name: HA release
-  - platform: command_line
-    name: badlogin
-    command: 'grep -c ''Login attempt'' home-assistant.log'
+#  - platform: command_line
+#    name: badlogin
+#    command: 'grep -c ''Login attempt'' home-assistant.log'
   - platform: uptime
     name: Tempo Online
     #unit_of_measurement: hours
