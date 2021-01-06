@@ -128,7 +128,7 @@
         push:
           badge: 1
       message: O portão foi aberto
-    service: notify.doug
+    service: notify.all_devices
   mode: single
 - id: '7'
   alias: 'Luz: Acende Luzes ao abrir o portao a noite'
@@ -740,3 +740,138 @@
     data: {}
     entity_id: switch.ht_tv
   mode: single
+- id: '16094203455705'
+  alias: 'Alarme: Dispara quando ausente'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.presenca
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.porta_vidro
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.alarme
+    state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.alarme
+- id: '160942034557078'
+  alias: 'Alarme: Dispara quando em casa'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.presenca
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.porta_vidro
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: alarm_control_panel.alarme
+    state: armed_home
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.alarme
+- id: '1609412395705'
+  alias: 'Alarme: Notifica Alarme disparado'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarme
+    to: triggered
+  action:
+  - service: media_player.volume_set
+    entity_id: media_player.nest
+    data:
+      volume_level: 1
+  - delay: '2'
+  - service: notify.doug
+    data:
+      message: ALARME! Código não inserido. Disparado às {{ states('sensor.time')}}
+  - delay: '2'
+  - service: tts.google_translate_say
+    entity_id: media_player.nest
+    data:
+      language: pt
+      message: Código não inserido. Chamando a polícia em 30 segundos.
+  - repeat:
+      until:
+      - condition: state
+        entity_id: alarm_control_panel.alarme
+        state: disarmed
+      sequence:
+      - service: media_extractor.play_media
+        entity_id: media_player.nest
+        data_template:
+          media_content_id: http://192.168.1.100:8123/local/mp3/sirene.mp3
+          media_content_type: audio
+      - delay: '11'
+  mode: single
+- id: '160222320195705'
+  alias: 'Alarme: Desarmar pelo controle'
+  description: Desarma alarme no controle
+  trigger:
+  - platform: event
+    event_type: sonoff.remote
+    event_data:
+      name: b
+  action:
+  - service: alarm_control_panel.alarm_disarm
+    data:
+      entity_id: alarm_control_panel.alarme
+      code: !secret alarme
+  mode: restart
+- id: '16022580195705'
+  alias: 'Alarme: Notifica alarme desativado'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarme
+    to: disarmed
+  action:
+  - service: notify.doug
+    data:
+      message: ALARME! Desativado às {{ states('sensor.time') }}
+  - service: tts.google_translate_say
+    entity_id: media_player.nest
+    data:
+      language: pt
+      message: Alarme desativado. Seja Bem Vindo!
+- id: '164234580195705'
+  alias: 'Alarme: Notifica alarme pendente'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarme
+    to: pending
+  action:
+  - service: notify.doug
+    data:
+      message: ALARME! Alarme pendente desde {{ states('sensor.time') }}
+- id: '16423458019505'
+  alias: 'Alarme: Notifica quando em modo Casa'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarme
+    to: armed_home
+  action:
+  - service: notify.doug
+    data:
+      message: ALARME! Ativado no modo Casa às {{ states('sensor.time') }}
+  - service: tts.google_translate_say
+    entity_id: media_player.nest
+    data:
+      language: pt
+      message: Alarme ativado no modo Casa!
+- id: '16423458019506'
+  alias: 'Alarme: Notifica alarme ativo quando ausente'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.alarme
+    to: armed_away
+  action:
+  - service: notify.doug
+    data:
+      message: ALARME! Ativado às {{ states('sensor.time') }}
+  - service: tts.google_translate_say
+    entity_id: media_player.nest
+    data:
+      language: pt
+      message: Alarme ativado!

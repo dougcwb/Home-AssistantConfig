@@ -61,6 +61,17 @@
     round: 1
     unit_time: h # the resulting "unit_of_measurement" will be °C/h if the sensor.temperate has set °C as it's unit
     time_window: "00:30:00"  # we look at the change over the last half hour
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'
 # ____   ___  _        _    ____
 #|  _ \ / _ \| |      / \  |  _ \
 #| | | | | | | |     / _ \ | |_) |

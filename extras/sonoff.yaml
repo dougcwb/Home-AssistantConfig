@@ -39,13 +39,13 @@
 #      device_class: light
   rfbridge:
     a:
-      device_class: door
+      device_class: lock
       timeout: 5
     b:
-      device_class: door
+      device_class: lock
       timeout: 5
     c:
-      device_class: door
+      device_class: lock
       timeout: 5
     presenca:
       device_class: motion

@@ -1,0 +1,71 @@
+- id: '1609784498922'
+  name: Acender Quintal
+  entities:
+    light.varanda:
+      manufacturer: SONOFF
+      model: MINI
+      sw_version: PSF-BD1-GL v3.6.0
+      local: timeout
+      cloud: online
+      rssi: -43
+      friendly_name: Varanda
+      icon: mdi:tree-outline
+      supported_features: 0
+      state: 'off'
+    light.garagem:
+      friendly_name: Garagem
+      supported_features: 0
+      state: 'off'
+    light.postes:
+      manufacturer: SONOFF
+      model: RF
+      sw_version: PSF-BD1-GL v3.6.0
+      local: online
+      cloud: online
+      rssi: -57
+      friendly_name: Postes
+      icon: mdi:coach-lamp
+      supported_features: 0
+      state: 'off'
+    light.frente:
+      manufacturer: SONOFF
+      model: MINI
+      sw_version: PSF-BD1-GL v3.6.0
+      cloud: online
+      rssi: -73
+      local: online
+      friendly_name: Frente
+      icon: mdi:flower
+      supported_features: 0
+      state: 'off'
+  icon: mdi:flower-tulip
+- id: '1609784569298'
+  name: Acende Quintal
+  entities:
+    light.postes:
+      manufacturer: SONOFF
+      model: RF
+      sw_version: PSF-BD1-GL v3.6.0
+      local: online
+      cloud: online
+      rssi: -57
+      friendly_name: Postes
+      icon: mdi:coach-lamp
+      supported_features: 0
+      state: 'off'
+    light.garagem:
+      friendly_name: Garagem
+      supported_features: 0
+      state: 'off'
+    light.varanda:
+      manufacturer: SONOFF
+      model: MINI
+      sw_version: PSF-BD1-GL v3.6.0
+      local: timeout
+      cloud: online
+      rssi: -43
+      friendly_name: Varanda
+      icon: mdi:tree-outline
+      supported_features: 0
+      state: 'off'
+  icon: mdi:flower-tulip

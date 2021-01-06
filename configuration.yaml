@@ -1,6 +1,7 @@
 
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
+alarm_control_panel: !include extras/alarm.yaml
 automation: !include automations.yaml
 ble_monitor: !include extras/ble_monitor.yaml
 binary_sensor: !include extras/binary.yaml
@@ -15,6 +16,7 @@ google_assistant: !include extras/google_assistant.yaml
 group: !include extras/groups.yaml
 homeassistant:
   customize: !include customize.yaml
+  time_zone: America/Sao_Paulo
   allowlist_external_dirs:
     - /share/
     - /tmp/
