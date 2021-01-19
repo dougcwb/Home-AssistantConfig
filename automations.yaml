@@ -42,7 +42,7 @@
       data:
         push:
           badge: 1
-      message: Criando Snapshot
+      message: Criando Snapshot às {{ states('sensor.time')}}
     service: notify.doug
   - data_template:
       name: weekly_backup_{{ now().strftime('%Y-%m-%d') }}
@@ -127,7 +127,7 @@
       data:
         push:
           badge: 1
-      message: O portão foi aberto
+      message: O portão foi aberto às {{ states('sensor.time')}}
     service: notify.all_devices
   mode: single
 - id: '7'
@@ -171,7 +171,7 @@
       data:
         push:
           badge: 1
-      message: Ninguém em casa. Luzes apagadas.
+      message: Ninguém em casa. Luzes apagadas às {{ states('sensor.time')}}
     service: notify.doug
 - id: '1589366597710'
   alias: 'App: Modem desligado'
@@ -191,7 +191,7 @@
       data:
         push:
           badge: 1
-      message: o modem estava desligado
+      message: O modem estava desligado ({{ states('sensor.time')}})
     service: notify.doug
   mode: single
 - id: '1589407320685'
@@ -208,24 +208,6 @@
     entity_id: media_player.samsung_un40f5500
     service: media_player.play_media
   mode: single
-- id: '1589589848900'
-  alias: 'Timer: Garagem 15 min'
-  description: Apaga garagem em 15 minutos automaticamente
-  trigger:
-  - entity_id: light.garagem
-    for: 00:15:00
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: input_boolean.visitas
-    state: 'off'
-  action:
-  - data: {}
-    entity_id: light.garagem
-    service: light.turn_off
-  mode: restart
 - id: '1589633706653'
   alias: 'App: Liga umidificador'
   description: ''
@@ -314,7 +296,7 @@
       data:
         push:
           badge: 1
-      message: A geladeira foi desligada
+      message: A geladeira foi desligada às {{ states('sensor.time')}}
     service: notify.doug
   mode: single
 - id: '1590633568136'
@@ -343,27 +325,9 @@
       data:
         push:
           badge: 1
-      message: Uma luz foi acesa sem ninguém em casa
+      message: Uma luz foi acesa sem ninguém em casa às {{ states('sensor.time')}}
     service: notify.doug
   mode: single
-- id: '1592616553887'
-  alias: 'Timer: Postes 15min'
-  description: Desliga os postes depois de 15 minutos
-  trigger:
-  - entity_id: light.postes
-    for: 00:15:00
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: input_boolean.visitas
-    state: 'off'
-  action:
-  - data: {}
-    entity_id: light.postes
-    service: light.turn_off
-  mode: restart
 - id: '1592616717390'
   alias: 'Timer: Quintal 15min'
   description: Desliga luzes do quintal em 15 minutos
@@ -500,7 +464,7 @@
       data:
         push:
           badge: 1
-      message: Geladeira com alto
+      message: Geladeira com alto consumo ({{ states('sensor.time')}})
     service: notify.doug
   mode: single
 - id: '1600816780345'
@@ -546,18 +510,6 @@
   - service: switch.turn_off
     data: {}
     entity_id: switch.abajur_power
-  mode: single
-- id: '1602123913493'
-  alias: 'App: Desliga ventilador'
-  description: ''
-  trigger:
-  - platform: time
-    at: input_datetime.tempo
-  condition: []
-  action:
-  - service: switch.turn_off
-    data: {}
-    entity_id: switch.ventilador
   mode: single
 - id: '1605982719151'
   alias: 'Luz: Liga Árvore de Natal'
@@ -637,37 +589,36 @@
     entity_id: switch.ht_turn_off
   mode: single
 - id: ef5d72115f254230bd0e07f7263c3b1e
-  alias: Timer start
+  alias: 'Timer: Ventilador start'
   trigger:
   - platform: state
-    entity_id: input_boolean.ventilador_quarto
+    entity_id: switch.ventilador
     to: 'on'
   action:
   - service: timer.start
-    entity_id: timer.ventilador_quarto
+    entity_id: timer.ventilador
     data_template:
-      duration: '{{ states(''input_number.ventilador_quarto'') | int * 60 }}'
+      duration: '{{ states(''input_number.horas'') | int }}:{{ states(''input_number.minutos'')
+        | int }}:00'
   mode: single
 - id: 14f10fa6f41243d9905b15a9bf6f8e97
-  alias: Timer cancel
+  alias: 'Timer: Ventilador cancel'
   trigger:
   - platform: state
-    entity_id: input_boolean.ventilador_quarto
+    entity_id: switch.ventilador
     to: 'off'
   action:
   - service: timer.cancel
-    entity_id: timer.ventilador_quarto
+    entity_id: timer.ventilador
   mode: single
 - id: 9260732160664083a61b3168fd1abe3c
-  alias: Timer stop
+  alias: 'Timer: Ventilador stop'
   trigger:
   - platform: event
     event_type: timer.finished
     event_data:
-      entity_id: timer.ventilador_quarto
+      entity_id: timer.ventilador
   action:
-  - service: input_boolean.turn_off
-    entity_id: input_boolean.ventilador_quarto
   - service: switch.turn_off
     entity_id: switch.ventilador
   mode: single
@@ -700,7 +651,7 @@
       data:
         push:
           badge: 1
-      message: Raspberry com temperatura alta
+      message: Raspberry com temperatura alta ({{ states('sensor.time')}})
   mode: single
 - id: '1608262442515'
   alias: Home Assistant Restart Notification
@@ -753,9 +704,15 @@
   - condition: state
     entity_id: alarm_control_panel.alarme
     state: armed_away
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: alarm_control_panel.alarme
+      state: triggered
   action:
-    service: alarm_control_panel.alarm_trigger
+  - service: alarm_control_panel.alarm_trigger
     entity_id: alarm_control_panel.alarme
+  mode: single
 - id: '160942034557078'
   alias: 'Alarme: Dispara quando em casa'
   trigger:
@@ -773,7 +730,7 @@
     service: alarm_control_panel.alarm_trigger
     entity_id: alarm_control_panel.alarme
 - id: '1609412395705'
-  alias: 'Alarme: Notifica Alarme disparado'
+  alias: 'Alarme: Disparado'
   trigger:
   - platform: state
     entity_id: alarm_control_panel.alarme
@@ -818,7 +775,7 @@
   - service: alarm_control_panel.alarm_disarm
     data:
       entity_id: alarm_control_panel.alarme
-      code: !secret alarme
+      code: 3694
   mode: restart
 - id: '16022580195705'
   alias: 'Alarme: Notifica alarme desativado'
@@ -826,6 +783,7 @@
   - platform: state
     entity_id: alarm_control_panel.alarme
     to: disarmed
+    from: triggered
   action:
   - service: notify.doug
     data:
@@ -834,19 +792,26 @@
     entity_id: media_player.nest
     data:
       language: pt
-      message: Alarme desativado. Seja Bem Vindo!
+      message: Alarme desativado!
+  mode: single
 - id: '164234580195705'
   alias: 'Alarme: Notifica alarme pendente'
   trigger:
   - platform: state
     entity_id: alarm_control_panel.alarme
     to: pending
+    from: armed_home
+  - platform: state
+    entity_id: alarm_control_panel.alarme
+    to: pending
+    from: armed_away
   action:
   - service: notify.doug
     data:
       message: ALARME! Alarme pendente desde {{ states('sensor.time') }}
+  mode: single
 - id: '16423458019505'
-  alias: 'Alarme: Notifica quando em modo Casa'
+  alias: 'Alarme: Notifica modo Casa'
   trigger:
   - platform: state
     entity_id: alarm_control_panel.alarme
@@ -860,8 +825,9 @@
     data:
       language: pt
       message: Alarme ativado no modo Casa!
+  mode: single
 - id: '16423458019506'
-  alias: 'Alarme: Notifica alarme ativo quando ausente'
+  alias: 'Alarme: Notifica modo ausente'
   trigger:
   - platform: state
     entity_id: alarm_control_panel.alarme
@@ -875,3 +841,101 @@
     data:
       language: pt
       message: Alarme ativado!
+  mode: single
+- id: '1610043949519'
+  alias: 'App: Desliga repelente'
+  description: Desliga o repelente
+  trigger:
+  - platform: time
+    at: input_datetime.tempo_repelente
+  condition:
+  - condition: state
+    entity_id: switch.repelente
+    state: 'on'
+  action:
+  - service: switch.turn_off
+    data: {}
+    entity_id: switch.repelente
+  mode: single
+- id: '1610044757469'
+  alias: 'Timer: Desliga LED a noite'
+  description: ''
+  trigger:
+  - platform: time
+    at: 01:00:00
+  condition:
+  - condition: state
+    entity_id: input_boolean.visitas
+    state: 'false'
+  action:
+  - service: light.turn_off
+    data: {}
+    entity_id: light.led
+  mode: single
+- id: '1610314120162'
+  alias: 'Timer: Piscina cancel'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: switch.piscina
+    to: 'off'
+  condition: []
+  action:
+  - service: timer.cancel
+    entity_id: timer.piscina
+  mode: single
+- id: '1610314175904'
+  alias: 'Timer: Piscina start'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: switch.piscina
+    to: 'on'
+  condition: []
+  action:
+  - service: timer.start
+    entity_id: timer.piscina
+    data_template:
+      duration: '{{ states(''input_number.horas'') | int }}:{{ states(''input_number.minutos'')
+        | int }}:00'
+  mode: single
+- id: '1610314258900'
+  alias: 'Timer: Piscina stop'
+  description: ''
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.piscina
+  condition: []
+  action:
+  - service: switch.turn_off
+    entity_id: switch.piscina
+  mode: single
+- id: '1610408668791'
+  alias: 'App: Liga repelente'
+  description: ''
+  trigger:
+  - platform: time
+    at: '23:00:05'
+  condition: []
+  action:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.repelente
+  - service: notify.doug
+    data:
+      message: Repelente
+  mode: single
+- id: '16104086687914432'
+  alias: mpd_fix
+  initial_state: true
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - delay: 00:00:12
+    - service: ytube_music_player.call_method
+      entity_id: media_player.ytube_music_player
+      data:
+        command: off_is_idle

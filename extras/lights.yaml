@@ -32,7 +32,7 @@
   - platform: group
     name: Luzes do Quintal
     entities:
-#      - light.frente
+      - light.frente
       - light.garagem
       - light.postes
       - light.varanda
@@ -58,6 +58,7 @@
     entities:
       - light.jantar
       - light.spots_jantar
+      - light.corredor
       
   - platform: group
     name: Luzes da Sala
@@ -99,10 +100,6 @@
   - platform: switch
     name: Spots Sala
     entity_id: switch.spots_sala
-      
-  - platform: switch
-    name: Pinheirinho
-    entity_id: switch.pinheirinho
       
   - platform: switch
     name: Fundos

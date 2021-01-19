@@ -1,6 +1,0 @@
-  
-  driving_speed: 29
-  interval_seconds: 10
-  show_as_state:
-    - driving
-    - moving

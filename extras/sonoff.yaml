@@ -24,7 +24,7 @@
     1000aba901: #frente
       device_class: light
     1000c57c2c: #fundos
-      device_class: light
+      name: Repelente
 #    1000c4f489: #lustrequeimado
 #      device_class: light
     1000c50930: #corredor

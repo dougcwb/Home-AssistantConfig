@@ -46,7 +46,12 @@
     command: grep -m1 'Home Assistant initialized' home-assistant.log | awk '{ print $6, $7, $8, $9, $10 }'
   - platform: command_line
     command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
-    name: HA release
+    name: Ultima Versao HA
+  - platform: command_line
+    name: Versao HA Instalad
+    command: "cat /config/.HA_VERSION"
+  - platform: version
+    name: Versao HA Instalada
 #  - platform: command_line
 #    name: badlogin
 #    command: 'grep -c ''Login attempt'' home-assistant.log'

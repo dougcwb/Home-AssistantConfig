@@ -1,3 +1,8 @@
+  - platform: wake_on_lan
+    mac: !secret pc_mac
+    name: PC
+    #host: 192.168.1.166
+
   - platform: broadlink
     mac: !secret broadlink_mac_sala
     switches:
@@ -449,3 +454,4 @@
       - name: abajur_yellow
         command_on: 'JgBYAAABLZUSFBITEhQSFBIUEhQRFREVETkRORM4EjkRORI4EzgSOBI5EhQSFBEUEjkRFREVERUSExM4ETkSORIUETkSOBI5EgAFMAABLkoSAAx5AAEuSxIADQUAAAAAAAAAAAAAAAAAAA=='
         command_off: 'JgBYAAABLZUSFBITEhQSFBIUEhQRFREVETkRORM4EjkRORI4EzgSOBI5EhQSFBEUEjkRFREVERUSExM4ETkSORIUETkSOBI5EgAFMAABLkoSAAx5AAEuSxIADQUAAAAAAAAAAAAAAAAAAA=='
+        

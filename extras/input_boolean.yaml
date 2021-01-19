@@ -2,10 +2,7 @@
   visitas:
     name: Visitas
     icon: mdi:tag-faces
-  ventilador:
-    name: ventilador
-    initial: off
-    icon: mdi:fan
+    initial: false
   ytube_music_player_playcontinuous:
     initial: false
     name: "Reprodução Contínua"

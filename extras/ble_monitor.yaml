@@ -1,6 +1,0 @@
-  batt_entities: True
-  devices:
-    - mac: 'A4:C1:38:0F:0F:56'
-      name: 'Sala'
-      encryption_key: !secret sensor_sala
-      temperature_unit: C

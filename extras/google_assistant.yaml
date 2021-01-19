@@ -5,6 +5,7 @@
   exposed_domains: #Lista de domínios de entidades a serem expostos ao Google Assistant
 #    - switch
     - light
+    - scenes
 #    - sensor
     - media_player
     - scripts
@@ -36,11 +37,7 @@
       name: HT Mais
     switch.ht_vol_down:
       name: HT Menos
+    switch.repelente:
+      name: Repelente
     input_boolean.visitas:
       name: Visitas
-    scripts.globo:
-      name: Canal Globo
-    scripts.band:
-      name: Canal Band
-    scripts.cultura:
-      name: Canal Cultura

@@ -1,71 +1,307 @@
-- id: '1609784498922'
-  name: Acender Quintal
+- id: '1610827749600'
+  name: Festa
   entities:
-    light.varanda:
+    light.pendentes_cozinha:
+      friendly_name: Pendentes Cozinha
+      icon: mdi:triangle-outline
+      supported_features: 0
+      state: 'on'
+    light.spots_sala:
+      friendly_name: Spots Sala
+      icon: mdi:square-medium-outline
+      supported_features: 0
+      state: 'on'
+    light.spots_jantar:
+      friendly_name: Spots Jantar
+      icon: mdi:square-medium-outline
+      supported_features: 0
+      state: 'on'
+    light.spots_cozinha:
+      friendly_name: Spots Cozinha
+      icon: mdi:square-medium-outline
+      supported_features: 0
+      state: 'on'
+    light.corredor:
       manufacturer: SONOFF
       model: MINI
       sw_version: PSF-BD1-GL v3.6.0
-      local: timeout
       cloud: online
       rssi: -43
-      friendly_name: Varanda
-      icon: mdi:tree-outline
-      supported_features: 0
-      state: 'off'
-    light.garagem:
-      friendly_name: Garagem
-      supported_features: 0
-      state: 'off'
-    light.postes:
-      manufacturer: SONOFF
-      model: RF
-      sw_version: PSF-BD1-GL v3.6.0
       local: online
-      cloud: online
-      rssi: -57
-      friendly_name: Postes
-      icon: mdi:coach-lamp
+      friendly_name: Corredor
+      icon: mdi:road-variant
       supported_features: 0
       state: 'off'
-    light.frente:
+    light.lustre:
+      friendly_name: Lustre
+      icon: mdi:vanity-light
+      supported_features: 0
+      state: 'off'
+    light.jantar:
       manufacturer: SONOFF
       model: MINI
       sw_version: PSF-BD1-GL v3.6.0
       cloud: online
-      rssi: -73
+      rssi: -57
       local: online
-      friendly_name: Frente
-      icon: mdi:flower
+      friendly_name: Jantar
+      icon: mdi:silverware-variant
       supported_features: 0
       state: 'off'
-  icon: mdi:flower-tulip
-- id: '1609784569298'
-  name: Acende Quintal
+    light.cozinha:
+      manufacturer: SONOFF
+      model: MINI
+      sw_version: PSF-BD1-GL v3.6.0
+      cloud: online
+      rssi: -51
+      local: online
+      friendly_name: Cozinha
+      icon: mdi:food
+      supported_features: 0
+      state: 'off'
+    light.escada:
+      manufacturer: SONOFF
+      model: MINI
+      sw_version: PSF-BD1-GL v3.6.0
+      local: online
+      cloud: online
+      rssi: -31
+      friendly_name: Escada
+      icon: mdi:stairs
+      supported_features: 0
+      state: 'off'
+    switch.ht_tv:
+      friendly_name: TV
+      assumed_state: true
+      icon: mdi:television-play
+      state: 'on'
+    media_player.youtube_music:
+      _media_type:
+      _media_id:
+      _player_state: 'off'
+      friendly_name: Youtube Music
+      icon: mdi:music-circle
+      supported_features: 450493
+      state: 'off'
+    input_select.ytube_music_player_playlist:
+      options:
+      - Your Likes
+      - Disco
+      - Extromodos
+      - Feel-Good Indie Folk
+      - Heavy Industry
+      - LowMetal
+      - MAX BASS TESTS?!
+      - Melodic Metalcore
+      - Metal Hotlist
+      - New Rock 2020
+      - NU Metal
+      - Nu Metal Revolution
+      - Nu-Metal Classics
+      - Pop, Rock, Relax
+      - Rock de Estrada
+      - Slow Metal
+      - Thrash Metal Shred
+      - TOP NUMETAL
+      - 'Y2K Rock! '
+      editable: false
+      friendly_name: Playlist
+      icon: mdi:playlist-music
+      state: Your Likes
+    media_player.ytube_music_player:
+      volume_level: 0.5
+      is_volume_muted: false
+      media_content_type: music
+      media_duration: 231.595828
+      media_position: 1.131435
+      media_position_updated_at: '2021-01-16T20:07:10.427408+00:00'
+      media_title: Everybody Wants To Rule The World
+      media_artist: Andy McKee
+      media_album_name: ''
+      shuffle: false
+      repeat: all
+      entity_picture_local: /api/media_player_proxy/media_player.ytube_music_player?token=9e8b4e15edab77aacbd2791254bf96b98e023decd0969dd9d27fb6a62749c902&cache=ceebb6c4b730f803
+      _media_type: channel
+      _media_id: LM
+      _player_state: 'off'
+      playlists:
+      - Your Likes
+      - Disco
+      - Extromodos
+      - Feel-Good Indie Folk
+      - Heavy Industry
+      - LowMetal
+      - MAX BASS TESTS?!
+      - Melodic Metalcore
+      - Metal Hotlist
+      - New Rock 2020
+      - NU Metal
+      - Nu Metal Revolution
+      - Nu-Metal Classics
+      - Pop, Rock, Relax
+      - Rock de Estrada
+      - Slow Metal
+      - Thrash Metal Shred
+      - TOP NUMETAL
+      - 'Y2K Rock! '
+      total_tracks: 25
+      tracks:
+      - Andy McKee - Everybody Wants To Rule The World
+      - Jon Gomm - Passionflower
+      - Andy McKee - Art Of Motion
+      - Don Ross - Waiting
+      - Erik Mongrain - Erik Mongrain - AirTap!
+      - Jon Gomm - Everything
+      - Andy McKee - Drifting
+      - Antoine Dufour - These Moments
+      - Andy McKee - Rylynn
+      - Stephen Wake - Celtic Guitar - Return to Kintail/Calliope House - Stephen
+        Wake
+      - Andy McKee - Africa
+      - Don Ross - CATHERINE
+      - Andy McKee - Heather's Song
+      - Andy McKee - Hunter's Moon
+      - Calum Graham - The Nomad
+      - Obadiah Parker - Obadiah Parker - Hey Ya Cover
+      - Andy McKee - Ebon Coast
+      - Antoine Dufour - Antoine Dufour - Reality - www.candyrat.com
+      - Andy McKee - Keys to the Hovercar
+      - Jon Gomm - High and Dry
+      - Tommy Emmanuel - Angelina
+      - Kent Nishimura - Isn’t She Lovely - Stevie Wonder - Solo Acoustic Guitar -
+        Arranged By Kent Nishimura
+      - Tommy Emmanuel - Classical Gas
+      - Calum Graham - Grace
+      - Calum Graham - Tabula Rasa
+      current_track: 0
+      videoId: foJ-Fs6DWZM
+      likeStatus: INDIFFERENT
+      lyrics: No lyrics available
+      _player_id: media_player.mopidy
+      shuffle_mode: Shuffle
+      friendly_name: ytube_music_player
+      icon: mdi:music-circle
+      entity_picture: https://i.ytimg.com/vi/foJ-Fs6DWZM/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3l2ohPH_12XjSYQTmLE4BFEkBSITQ
+      supported_features: 450493
+      state: playing
+    input_select.ytube_music_player_speakers:
+      options:
+      - ''
+      - youtube_music
+      - samsung_un40f5500
+      - mopidy
+      - nest
+      editable: false
+      friendly_name: Auto Falantes
+      icon: mdi:speaker
+      state: mopidy
+    input_boolean.ytube_music_player_playcontinuous:
+      editable: false
+      friendly_name: Reprodução Contínua
+      icon: mdi:animation-play
+      state: 'on'
+    input_select.ytube_music_player_source:
+      options:
+      - Playlist Radio
+      - Playlist
+      editable: false
+      friendly_name: Fonte
+      icon: mdi:music-box-multiple
+      state: Playlist Radio
+  icon: mdi:party-popper
+- id: '1610828101784'
+  name: Dormir
   entities:
-    light.postes:
-      manufacturer: SONOFF
-      model: RF
-      sw_version: PSF-BD1-GL v3.6.0
-      local: online
-      cloud: online
-      rssi: -57
-      friendly_name: Postes
-      icon: mdi:coach-lamp
-      supported_features: 0
+    light.todas_as_luzes:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - red_fade
+      - blue_strobe
+      - random
+      - purple_fade
+      - cyan_fade
+      - cyan_strobe
+      - blue_fade
+      - rg_cross_fade
+      - colorjump
+      - yellow_strobe
+      - purple_strobe
+      - colorstrobe
+      - green_strobe
+      - white_fade
+      - rb_cross_fade
+      - white_strobe
+      - green_fade
+      - red_strobe
+      - colorloop
+      - gb_cross_fade
+      - yellow_fade
+      entity_id:
+      - light.atico
+      - light.banheiro
+      - light.cozinha
+      - light.corredor
+      - light.escada
+      - light.frente
+      - light.fundos
+      - light.garagem
+      - light.icaro
+      - light.jantar
+      - light.lavanderia
+      - light.led
+      - light.lustre
+      - light.pendentes_cozinha
+      - light.postes
+      - light.quarto
+      - light.spots_cozinha
+      - light.spots_jantar
+      - light.spots_sala
+      - light.varanda
+      friendly_name: Todas as Luzes
+      icon: mdi:lightbulb-group
+      supported_features: 151
       state: 'off'
-    light.garagem:
-      friendly_name: Garagem
-      supported_features: 0
+    light.led:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - blue_fade
+      - blue_strobe
+      - colorjump
+      - colorloop
+      - colorstrobe
+      - cyan_fade
+      - cyan_strobe
+      - gb_cross_fade
+      - green_fade
+      - green_strobe
+      - purple_fade
+      - purple_strobe
+      - rb_cross_fade
+      - red_fade
+      - red_strobe
+      - rg_cross_fade
+      - white_fade
+      - white_strobe
+      - yellow_fade
+      - yellow_strobe
+      - random
+      friendly_name: Led
+      supported_features: 151
+      icon: mdi:led-strip
       state: 'off'
-    light.varanda:
-      manufacturer: SONOFF
-      model: MINI
-      sw_version: PSF-BD1-GL v3.6.0
-      local: timeout
-      cloud: online
-      rssi: -43
-      friendly_name: Varanda
-      icon: mdi:tree-outline
+    light.abajur:
+      friendly_name: Abajur
       supported_features: 0
+      icon: mdi:lamp
       state: 'off'
-  icon: mdi:flower-tulip
+    media_player.samsung_un40f5500:
+      source_list:
+      - TV
+      - HDMI
+      friendly_name: Samsung UN40F5500
+      supported_features: 20281
+      device_class: tv
+      state: 'off'
+  icon: mdi:sleep

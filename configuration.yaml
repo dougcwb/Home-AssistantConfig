@@ -3,9 +3,7 @@
 default_config:
 alarm_control_panel: !include extras/alarm.yaml
 automation: !include automations.yaml
-ble_monitor: !include extras/ble_monitor.yaml
 binary_sensor: !include extras/binary.yaml
-#camera: !include extras/camera.yaml
 climate: !include extras/climate.yaml
 conversation:
 ffmpeg:
@@ -13,28 +11,24 @@ frontend:
   themes: !include_dir_merge_named themes/
   javascript_version: latest
 google_assistant: !include extras/google_assistant.yaml
-group: !include extras/groups.yaml
 homeassistant:
   customize: !include customize.yaml
   time_zone: America/Sao_Paulo
   allowlist_external_dirs:
     - /share/
     - /tmp/
-http: !include extras/http.yaml
+#http: !include extras/http.yaml
 input_boolean: !include extras/input_boolean.yaml
 input_number: !include extras/input_number.yaml
 input_select: !include extras/input_select.yaml
-#life360: !include extras/life360.yaml
 light: !include extras/lights.yaml
 local_ip:
-#localtuya: !include extras/tuya.yaml
 #logger: !include extras/logger.yaml
 media_extractor: !include extras/extractor.yaml
 media_player: !include extras/media.yaml
 notify: !include extras/notify.yaml #notificações para celular
 recorder: !include extras/recorder.yaml #maria_db
-#remote: !include extras/remote.yaml #broadlink
-scene: !include extras/scenes.yaml
+scene: !include scenes.yaml
 sensor: !include extras/sensors.yaml #bateria, temperatura, umidade, localização, etc
 script: !include extras/scripts.yaml
 sonoff: !include extras/sonoff.yaml
@@ -43,7 +37,6 @@ stream:
 timer: !include extras/timer.yaml
 #telegram_bot: !include extras/telegram.yaml
 tts: !include extras/tts.yaml #text-to-speach
-#localtuya: !include extras/tuya.yaml
 #upnp:
 websocket_api:
 #
