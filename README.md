@@ -70,3 +70,14 @@ Nem toda integração está disponível nos arquivos, muitas delas estão config
 <img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/07.jpg" height="500px">
 <img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/08.jpg" height="500px">
 <img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/09.jpg" height="500px">
+
+# Screenshots (Tablet) Samsung Yab 3 SMT113NU
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/01.png" height="500px">
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/02.png" height="500px">
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/03.png" height="500px">
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/04.png" height="500px">
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/05.png" height="500px">
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/06.png" height="500px">
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/07.png" height="500px">
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/08.png" height="500px">
+<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/09.png" height="500px">
