@@ -1,19 +1,3 @@
-playmusic:
-  sequence:
-  - service: media_player.play_media
-    data_template:
-      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
-      media_content_id: '{{ states("input_select.choose_music") }}'
-      media_content_type: music
-  alias: Toca Musica
-playradio:
-  sequence:
-  - data_template:
-      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
-      media_content_id: '{{ states("input_select.choose_radio") }}'
-      media_content_type: audio/mp4
-    service: media_player.play_media
-  alias: Toca Radio
 # RADIOS
 mundolivre:
   sequence:
@@ -48,6 +32,22 @@ fogo:
       media_content_type: video/mp4
     service: media_extractor.play_media
   alias: Fogo
+ghostbusters:
+  sequence:
+  - data_template:
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
+      media_content_id: 'https://www.youtube.com/watch?v=m9We2XsVZfc'
+      media_content_type: video/mp4
+    service: media_extractor.play_media
+  alias: GhostBusters
+coxa:
+  sequence:
+  - data_template:
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
+      media_content_id: 'https://www.youtube.com/watch?v=37f6M1nd0u4'
+      media_content_type: audio
+    service: media_extractor.play_media
+  alias: Coxa
 # SONS
 campainha:
   sequence:

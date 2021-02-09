@@ -4,40 +4,48 @@
   #report_state: true
   exposed_domains: #Lista de domínios de entidades a serem expostos ao Google Assistant
 #    - switch
-    - light
-    - scenes
+#    - light
 #    - sensor
-    - media_player
-    - scripts
+#    - media_player
+#    - scripts
     - climate
+    - script
+    - scene
 #    - input_boolean
   entity_config: #Configuração específica da entidade para o Google Assistant
-    switch.ventilador:
-      name: Ventilador do Quarto
+#    switch.ventilador:
+#      name: Ventilador do Quarto
+#      room: Quarto
+#    switch.pow_geladeira:
+#      name: Geladeira
+#    switch.umidificador:
+#      name: Umidificador
+#      room: Quarto
+#    switch.modem:
+#      name: Modem
+#    switch.tomada:
+#      name: Pinheirinho
+#      room: Sala de Estar
+#    switch.portao:
+#      name: Portão
+#    media_player.nest:
+#      expose: false
+#    media_player.mpd:
+#      expose: false
+#    switch.repelente:
+#      name: Repelente
+#    input_boolean.visitas:
+#      name: Visitas
+    light.todas_as_luzes:
+      name: Todas as Luzes
+    sensor.temperatura:
+      name: Temp Quarto
+    sensor.moon:
+      name: Lua
+    sensor.dolar:
+      name: Dolar
+    light.copa:
+      name: Copa
+    light.abajur:
+      name: Abajur
       room: Quarto
-    switch.pow_geladeira:
-      name: Geladeira
-    switch.umidificador:
-      name: Umidificador
-      room: Quarto
-    switch.modem:
-      name: Modem
-    switch.tomada:
-      name: Pinheirinho
-      room: Sala de Estar
-    switch.portao:
-      name: Portão
-    media_player.nest:
-      expose: false
-    media_player.mpd:
-      expose: false
-    switch.ht_mp3:
-      name: HT
-    switch.ht_vol_up:
-      name: HT Mais
-    switch.ht_vol_down:
-      name: HT Menos
-    switch.repelente:
-      name: Repelente
-    input_boolean.visitas:
-      name: Visitas

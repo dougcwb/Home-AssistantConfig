@@ -55,29 +55,9 @@
 - [Home Assistant](https://www.home-assistant.io/hassio/) - Sistema de automação Open Source
 - [DuckDns](https://www.duckdns.org/) - Gerenciador de nomes de domínio  (hassio addon)
 - [MariaDB](https://mariadb.org/) - Banco de dados (hassio addon)
+- Mopidy - Permite reproduzir músicas diretamente na saída de áudio do Raspberry como um midia player (usando com o Ytube Music Player)
 
 # Estrutura de pastas
 Quase todos os arquivos YAML com as configurações das integrações estão disponíveis na pasta EXTRAS.
-Nem toda integração está disponível nos arquivos, muitas delas estão configuradas direto pela interface do Home Assistant.
 
-# Screenshots (Mobile)
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/01.jpg" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/02.jpg" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/03.jpg" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/04.jpg" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/05.jpg" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/06.jpg" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/07.jpg" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/08.jpg" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/09.jpg" height="500px">
-
-# Screenshots (Tablet) Samsung Yab 3 SMT113NU
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/01.png" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/02.png" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/03.png" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/04.png" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/05.png" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/06.png" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/07.png" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/08.png" height="500px">
-<img src="https://raw.githubusercontent.com/dougcwb/Home-AssistantConfig/master/www/screenshots/09.png" height="500px">
+[Screenshots](https://github.com/dougcwb/Home-AssistantConfig/tree/master/www/screenshots) - (Pode não estar atualizado).

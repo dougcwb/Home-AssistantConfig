@@ -49,4 +49,4 @@
       timeout: 5
     presenca:
       device_class: motion
-      timeout: 15
+    #  timeout: 15

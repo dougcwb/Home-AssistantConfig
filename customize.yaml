@@ -191,8 +191,8 @@ switch.ht_vol_up:
   friendly_name: Vol+
   icon: mdi:volume-plus
 switch.ht_tv:
-  icon: mdi:television-play
-  friendly_name: TV
+  icon: mdi:raspberry-pi
+  friendly_name: Raspberry
 switch.ht_surround:
   icon: mdi:surround-sound
   friendly_name: Surround
@@ -203,8 +203,8 @@ switch.ht_aux:
   icon: mdi:raspberry-pi
   friendly_name: Aux. P2
 switch.ht_mp3:
-  friendly_name: MP3
-  icon: mdi:record-circle-outline
+  friendly_name: TV
+  icon: mdi:television-play
 light.abajur:
   icon: mdi:lamp
 sensor.portao_ontem:
@@ -312,3 +312,7 @@ sensor.umidade:
 sensor.ble_humidity_sala:
   device_class: humidity
   name: Umidade Sala
+binary_sensor.janela_atico_fundos:
+  device_class: window
+binary_sensor.janela_atico_frente:
+  device_class: window

@@ -1,32 +1,3 @@
-- id: '1'
-  alias: Foto por minuto
-  description: Tira foto a cada minuto
-  trigger:
-  - minutes: /1
-    platform: time_pattern
-  condition: []
-  action:
-  - data:
-      filename: /share/snap.jpg
-    entity_id: camera.sala
-    service: camera.snapshot
-  - data:
-      file_path: /share/snap.jpg
-    entity_id: camera.local_file
-    service: local_file.update_file_path
-- id: '2'
-  alias: Foto por hora
-  description: Tira foto a cada hora
-  trigger:
-  - hours: /1
-    platform: time_pattern
-  condition: []
-  action:
-  - data:
-      filename: /share/hourly/snapshot_{{ now ().year }}_{{ now ().month }}_{{ now
-        ().day }}_{{ now ().hour }}_{{ now ().minute }}.jpg
-    entity_id: camera.sala
-    service: camera.snapshot
 - id: '3'
   alias: 'App: Backup Semanal'
   description: Fazer um backup do HA toda semana
@@ -381,38 +352,28 @@
     entity_id: switch.tv_num9
     service: switch.turn_on
   mode: single
-- id: '1597590127017'
-  alias: 'Notificar: Bateria rn8p 100%'
-  description: Avisa quando a bateria do celular está carregada
-  trigger:
-  - entity_id: sensor.rn8p_battery_level
-    from: '99'
-    platform: state
-    to: '100'
-  condition: []
-  action:
-  - data:
-      language: pt
-      message: Douglas. A bateria do seu celular está em 100%
-    entity_id: media_player.nest
-    service: tts.google_translate_say
-  mode: single
 - id: '1597950348495'
   alias: 'Notificar: Bateria rn8t 100%'
   description: Avisa quando a bateria do celular da Ju está carregada
   trigger:
-  - above: 99
-    below: 5
-    device_id: 28051c7eff554b55b2d1fc18458db1cc
-    domain: sensor
-    entity_id: sensor.redmi_note_8t_battery_level
+  - type: battery_level
     platform: device
-    type: battery_level
-  condition: []
+    device_id: ef606d2c48f92bb16d1e472a0137c14c
+    entity_id: sensor.rn8t_nivel_da_bateria
+    domain: sensor
+    above: 99
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+  condition:
+  - condition: time
+    after: 08:00:00
+    before: '22:00:00'
   action:
   - data:
       language: pt
-      message: Juliana. A bateria do seu celular está em {{states("sensor.rn8t_battery_level")}}%
+      message: Juliana. A bateria do seu celular está em {{states("sensor.rn8t_nivel_da_bateria")}}%
     entity_id: media_player.nest
     service: tts.google_translate_say
   mode: single
@@ -666,8 +627,9 @@
   description: ''
   trigger:
   - platform: time_pattern
-    hours: '21'
+    hours: '22'
     seconds: '50'
+    minutes: '30'
   condition:
   - condition: state
     entity_id: input_boolean.visitas
@@ -864,9 +826,11 @@
   - platform: time
     at: 01:00:00
   condition:
-  - condition: state
-    entity_id: input_boolean.visitas
-    state: 'false'
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: input_boolean.visitas
+      state: 'on'
   action:
   - service: light.turn_off
     data: {}
@@ -917,7 +881,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '23:00:05'
+    at: '22:30:05'
   condition: []
   action:
   - service: switch.turn_on
@@ -931,11 +895,58 @@
   alias: mpd_fix
   initial_state: true
   trigger:
-    - platform: homeassistant
-      event: start
+  - platform: homeassistant
+    event: start
   action:
-    - delay: 00:00:12
-    - service: ytube_music_player.call_method
-      entity_id: media_player.ytube_music_player
-      data:
-        command: off_is_idle
+  - delay: 00:00:12
+  - service: ytube_music_player.call_method
+    entity_id: media_player.ytube_music_player
+    data:
+      command: off_is_idle
+- id: '1612794463648'
+  alias: 'Notificar: Bateria RN8P 100%'
+  description: ''
+  trigger:
+  - type: battery_level
+    platform: device
+    device_id: ea53152eff35901bfc4e28fc15bbdef7
+    entity_id: sensor.rn8p_nivel_da_bateria
+    domain: sensor
+    above: 99
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 1
+  condition:
+  - condition: time
+    after: 08:00:00
+    before: '22:00:00'
+  action:
+  - data:
+      language: pt
+      message: Douglas. A bateria do celular está em {{states("sensor.rn8p_nivel_da_bateria")}}%
+    entity_id: media_player.nest
+    service: tts.google_translate_say
+  mode: single
+- id: '1612835876460'
+  alias: Leds on por presença
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.presenca
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: '23:00:01'
+    before: 06:00:00
+  action:
+  - service: switch.turn_on
+    data: {}
+    entity_id: switch.led_on
+  - delay: 00:05:00
+  - service: light.turn_off
+    data: {}
+    entity_id: light.led
+  mode: parallel
+  max: 10

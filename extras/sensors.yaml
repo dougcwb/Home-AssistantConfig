@@ -24,22 +24,22 @@
       - type: processor_use
       - type: swap_use_percent
       - type: last_boot
-      - type: throughput_network_in
-        arg: eth0
-      - type: throughput_network_out
-        arg: eth0
-      - type: network_in
-        arg: 'Local Area Connection'
-      - type: network_in
-        arg: eth0
-      - type: network_out
-        arg: eth0
+      #- type: throughput_network_in
+        #arg: eth0
+      #- type: throughput_network_out
+        #arg: eth0
+      #- type: network_in
+        #arg: 'Local Area Connection'
+      #- type: network_in
+        #arg: eth0
+      #- type: network_out
+        #arg: eth0
       - type: ipv4_address
         arg: eth0
-      - type: packets_in
-        arg: eth0
-      - type: packets_out
-        arg: eth0
+      #- type: packets_in
+        #arg: eth0
+      #- type: packets_out
+        #arg: eth0
   - platform: command_line
     name: HA Start
     #icon: mdi:lastpass
@@ -47,9 +47,9 @@
   - platform: command_line
     command: python3 -c "import requests; print(requests.get('https://pypi.python.org/pypi/homeassistant/json').json()['info']['version'])"
     name: Ultima Versao HA
-  - platform: command_line
-    name: Versao HA Instalad
-    command: "cat /config/.HA_VERSION"
+#  - platform: command_line
+    #name: Versao HA Instalad
+    #command: "cat /config/.HA_VERSION"
   - platform: version
     name: Versao HA Instalada
 #  - platform: command_line
@@ -72,11 +72,6 @@
       - 'time'
       - 'date'
       - 'date_time'
-      - 'date_time_utc'
-      - 'date_time_iso'
-      - 'time_date'
-      - 'time_utc'
-      - 'beat'
 # ____   ___  _        _    ____
 #|  _ \ / _ \| |      / \  |  _ \
 #| | | | | | | |     / _ \ | |_) |
@@ -185,76 +180,22 @@
     type: count
     start: '{{ now().replace(hour=0, minute=0, second=0) }}'
     end: '{{ now() }}'
+# Históricos e estatísticas da Porta Jantar
   - platform: history_stats
-    name: Portao Ontem
-    entity_id: binary_sensor.portao_aberto
-    state: 'on'
-    type: count
-    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
-    duration:
-      hours: 24
-# Históricos e estatísticas da Porta da Geladeira
-  - platform: history_stats
-    name: Tempo Porta G Hoje
-    entity_id: binary_sensor.porta_geladeira
-    state: 'on'
-    type: time
-    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
-    end: '{{ now() }}'
-  - platform: history_stats
-    name: Tempo Porta G Ontem
-    entity_id: binary_sensor.porta_geladeira
-    state: 'on'
-    type: time
-    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
-    duration:
-      hours: 24
-  - platform: history_stats
-    name: Num Porta G Hoje
-    entity_id: binary_sensor.porta_geladeira
+    name: Num Porta Jantar Hoje
+    entity_id: binary_sensor.porta_jantar
     state: 'on'
     type: count
     start: '{{ now().replace(hour=0, minute=0, second=0) }}'
     end: '{{ now() }}'
-  - platform: history_stats
-    name: Num Porta G Ontem
-    entity_id: binary_sensor.porta_geladeira
-    state: 'on'
-    type: count
-    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
-    duration:
-      hours: 24
 # Históricos e estatísticas da Porta de vidro
   - platform: history_stats
-    name: Tempo Porta V Hoje
-    entity_id: binary_sensor.porta_vidro
-    state: 'on'
-    type: time
-    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
-    end: '{{ now() }}'
-  - platform: history_stats
-    name: Tempo Porta V Ontem
-    entity_id: binary_sensor.porta_vidro
-    state: 'on'
-    type: time
-    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
-    duration:
-      hours: 24
-  - platform: history_stats
-    name: Num Porta V Hoje
+    name: Num Porta Vidro Hoje
     entity_id: binary_sensor.porta_vidro
     state: 'on'
     type: count
     start: '{{ now().replace(hour=0, minute=0, second=0) }}'
     end: '{{ now() }}'
-  - platform: history_stats
-    name: Num Porta V Ontem
-    entity_id: binary_sensor.porta_vidro
-    state: 'on'
-    type: count
-    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
-    duration:
-      hours: 24
 # Históricos e estatísticas do Sensor de presenca
   - platform: history_stats
     name: Presenca Hoje
@@ -263,12 +204,3 @@
     type: count
     start: '{{ now().replace(hour=0, minute=0, second=0) }}'
     end: '{{ now() }}'
-  - platform: history_stats
-    name: Presenca Ontem
-    entity_id: binary_sensor.presenca
-    state: 'on'
-    type: count
-    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
-    duration:
-      hours: 24
-    
