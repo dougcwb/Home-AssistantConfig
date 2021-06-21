@@ -70,6 +70,8 @@ light.luzes_de_jantar:
   icon: mdi:silverware-variant
 light.luzes_da_sala:
   icon: mdi:sofa
+light.banheiro:
+  icon: mdi:shower-head
 switch.led_on:
   friendly_name: Liga
   icon: mdi:lightbulb

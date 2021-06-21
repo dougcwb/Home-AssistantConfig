@@ -4,6 +4,31 @@
 # |  _ <|  __/| |  | |  | | |_| | |\  || |  | || |_| |  _ <
 # |_| \_\_|  |___| |_|  |_|\___/|_| \_|___| |_| \___/|_| \_\
 #
+# Scrape: https://www.home-assistant.io/integrations/scrape/
+# Endereço publico IPv4
+  - platform: scrape
+    resource: https://www.meuip.com.br/
+    select: ".card-body h3"
+    index: 0
+    name: IP Externo
+    value_template: '{{ value.split("é")[1] }}'
+    
+  - platform: scrape
+    resource: https://alternative.me/crypto/fear-and-greed-index/
+    select: ".status"
+    index: 0
+    name: Scrape Sentimento
+    
+  - platform: scrape
+    resource: https://alternative.me/crypto/fear-and-greed-index/
+    select: ".fng-circle"
+    index: 0
+    name: Scrape Sentimento Numero
+    
+  - platform: rest
+    resource: http://api.ipify.org?format=json
+    name: External IP
+    value_template: '{{ value_json.ip}}'
 # Temperatura do Raspberry Pi
   - platform: command_line
     name: CPU Temp
@@ -89,6 +114,10 @@
         from: USD
         to: BRL
 
+  - platform: openexchangerates
+    api_key: !secret openexchangerates
+    name: usd
+    quote: BRL
 # _____ _____ __  __ ____  _____ ____      _  _____ _   _ ____      _
 #|_   _| ____|  \/  |  _ \| ____|  _ \    / \|_   _| | | |  _ \    / \
 #  | | |  _| | |\/| | |_) |  _| | |_) |  / _ \ | | | | | | |_) |  / _ \
@@ -159,14 +188,14 @@
 # Históricos e estatísticas da TV
   - platform: history_stats
     name: TV Hoje
-    entity_id: media_player.samsung_un40f5500
+    entity_id: media_player.lgtv
     state: 'on'
     type: time
     start: '{{ now().replace(hour=0, minute=0, second=0) }}'
     end: '{{ now() }}'
   - platform: history_stats
     name: TV Ontem
-    entity_id: media_player.samsung_un40f5500
+    entity_id: media_player.lgtv
     state: 'on'
     type: time
     end: '{{ now().replace(hour=0, minute=0, second=0) }}'

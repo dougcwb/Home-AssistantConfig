@@ -9,8 +9,8 @@ conversation:
 ffmpeg:
 frontend:
   themes: !include_dir_merge_named themes/
-  javascript_version: latest
 google_assistant: !include extras/google_assistant.yaml
+group: !include extras/grupos.yaml
 homeassistant:
   customize: !include customize.yaml
   time_zone: America/Sao_Paulo
@@ -38,5 +38,6 @@ stream:
 #telegram_bot: !include extras/telegram.yaml
 tts: !include extras/tts.yaml #text-to-speach
 #upnp:
+webostv: !include extras/webostv.yaml
 websocket_api:
 #

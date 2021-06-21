@@ -40,6 +40,14 @@ ghostbusters:
       media_content_type: video/mp4
     service: media_extractor.play_media
   alias: GhostBusters
+never:
+  sequence:
+  - data_template:
+      entity_id: '{{ "media_player." + states("input_select.ytube_music_player_speakers") }}'
+      media_content_id: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      media_content_type: video/mp4
+    service: media_extractor.play_media
+  alias: Never
 coxa:
   sequence:
   - data_template:
@@ -102,7 +110,7 @@ print_entities_to_file:
 globo:
   sequence:
   - data_template:
-      entity_id: media_player.samsung_un40f5500
+      entity_id: media_player.lgtv
       media_content_id: 12
       media_content_type: channel
     service: media_player.play_media
@@ -110,7 +118,7 @@ globo:
 band:
   sequence:
   - data_template:
-      entity_id: media_player.samsung_un40f5500
+      entity_id: media_player.lgtv
       media_content_id: 2
       media_content_type: channel
     service: media_player.play_media
@@ -118,8 +126,211 @@ band:
 cultura:
   sequence:
   - data_template:
-      entity_id: media_player.samsung_un40f5500
+      entity_id: media_player.lgtv
       media_content_id: 9
       media_content_type: channel
     service: media_player.play_media
   alias: Cultura
+tv_lg_volup:
+  alias: 'Vol+'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "VOLUMEUP"
+tv_lg_voldown:
+  alias: 'Vol-'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "VOLUMEDOWN"
+tv_lg_left:
+  alias: 'LEFT'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "LEFT"
+tv_lg_right:
+  alias: 'RIGHT'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "RIGHT"
+tv_lg_down:
+  alias: 'DOWN'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "DOWN"
+tv_lg_up:
+  alias: 'UP'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "UP"
+tv_lg_menu:
+  alias: 'MENU'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "MENU"
+tv_lg_back:
+  alias: 'BACK'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "BACK"
+tv_lg_enter:
+  alias: 'ENTER'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "ENTER"
+tv_lg_dash:
+  alias: 'DASH'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "DASH"
+tv_lg_info:
+  alias: 'INFO'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "INFO"
+tv_lg_exit:
+  alias: 'EXIT'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "EXIT"
+tv_lg_mute:
+  alias: 'MUTE'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "MUTE"
+tv_lg_channelup:
+  alias: 'CHANNELUP'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "CHANNELUP"
+tv_lg_channeldown:
+  alias: 'CHANNELDOWN'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "CHANNELDOWN"
+tv_lg_play:
+  alias: 'PLAY'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "PLAY"
+tv_lg_pause:
+  alias: 'PAUSE'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "PAUSE"
+tv_lg_0:
+  alias: '0'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "0"
+tv_lg_1:
+  alias: '1'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "1"
+tv_lg_2:
+  alias: '2'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "2"
+tv_lg_3:
+  alias: '3'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "3"
+tv_lg_4:
+  alias: '4'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "4"
+tv_lg_5:
+  alias: '5'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "5"
+tv_lg_6:
+  alias: '6'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "6"
+tv_lg_7:
+  alias: '7'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "7"
+tv_lg_8:
+  alias: '8'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "8"
+tv_lg_9:
+  alias: '9'
+  sequence:
+    - service: webostv.button
+      data:
+        entity_id: media_player.lgtv
+        button: "9"
+tv_lg_home:
+  alias: 'HOME'
+  sequence:
+    - service: webostv.button
+      data:
+        button: "HOME"
+      target:
+        entity_id:  media_player.lgtv
+tv_lg_notify:
+  alias: 'TV Notification'
+  sequence:
+    - service: notify.lgtv
+      data:
+        message: 'HELLO WORLD!'

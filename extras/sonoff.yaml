@@ -50,3 +50,5 @@
     presenca:
       device_class: motion
     #  timeout: 15
+    #1001098eb2: #porta dos fundos
+     # device_class: lock

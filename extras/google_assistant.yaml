@@ -9,8 +9,8 @@
 #    - media_player
 #    - scripts
     - climate
-    - script
-    - scene
+ #   - script
+ #   - scene
 #    - input_boolean
   entity_config: #Configuração específica da entidade para o Google Assistant
 #    switch.ventilador:
@@ -40,10 +40,10 @@
       name: Todas as Luzes
     sensor.temperatura:
       name: Temp Quarto
-    sensor.moon:
-      name: Lua
-    sensor.dolar:
-      name: Dolar
+ #   sensor.moon:
+ #     name: Lua
+#    sensor.dolar:
+ #     name: Dolar
     light.copa:
       name: Copa
     light.abajur:

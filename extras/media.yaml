@@ -8,3 +8,10 @@
     host: 192.168.1.100
     name: Raspberry
     port: 6605
+    
+#  - platform: smartir
+#    name: LGWebOS
+#    unique_id: 1
+#    device_code: 1042
+#    controller_data: remote.lgwebos
+#    power_sensor: binary_sensor.tv_lg_power

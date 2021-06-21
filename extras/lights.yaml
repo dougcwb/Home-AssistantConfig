@@ -3,6 +3,7 @@
     name: Todas as Luzes
     entities:
       - light.atico
+      - light.arandela
       - light.banheiro
       - light.cozinha
       - light.corredor
@@ -28,6 +29,7 @@
     entities:
       - light.atico
       - light.escada
+      - light.arandela
       
   - platform: group
     name: Luzes do Quintal
@@ -112,6 +114,10 @@
   - platform: switch
     name: Lustre
     entity_id: switch.lustre
+      
+  - platform: switch
+    name: Banheiro
+    entity_id: switch.banheiro
       
 # OUTROS SWITCHES
   - platform: switch

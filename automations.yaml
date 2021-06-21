@@ -146,7 +146,7 @@
     service: notify.doug
 - id: '1589366597710'
   alias: 'App: Modem desligado'
-  description: Avisa se o modem ficar desligado por mais de 1 minutos
+  description: Avisa se o modem ficar desligado por mais de 30 segundos e religa
   trigger:
   - entity_id: switch.modem
     for: 00:00:30
@@ -158,12 +158,10 @@
   - data: {}
     entity_id: switch.modem
     service: switch.turn_on
-  - data:
-      data:
-        push:
-          badge: 1
-      message: O modem estava desligado ({{ states('sensor.time')}})
-    service: notify.doug
+  - service: notify.doug
+    data:
+      message: O modem estava desligado
+      title: Caiu a internet!
   mode: single
 - id: '1589407320685'
   alias: 'App: Jornal Nacional'
@@ -305,7 +303,6 @@
   trigger:
   - entity_id: light.luzes_do_quintal
     for: 00:15:00
-    from: 'off'
     platform: state
     to: 'on'
   condition:
@@ -313,6 +310,16 @@
     entity_id: input_boolean.visitas
     state: 'off'
   action:
+  - service: tts.google_translate_say
+    data:
+      entity_id: media_player.nest
+      message: O quintal será desligado em 30 segundos
+      language: pt-br
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
   - data: {}
     entity_id: light.luzes_do_quintal
     service: light.turn_off
@@ -336,7 +343,7 @@
     platform: time
   condition:
   - condition: state
-    entity_id: media_player.samsung_un40f5500
+    entity_id: media_player.lgtv
     state: 'off'
   - condition: and
     conditions:
@@ -445,6 +452,9 @@
   - data: {}
     entity_id: light.fundos
     service: light.turn_off
+  - service: notify.all_devices
+    data:
+      message: Luz dos fundos apagada após 10 minutos acesa
   mode: restart
 - id: '1601412683546'
   alias: 'Bridge: Botão A'
@@ -542,7 +552,7 @@
   - condition: not
     conditions:
     - condition: state
-      entity_id: media_player.mopidy
+      entity_id: media_player.raspberry
       state: playing
   action:
   - service: switch.turn_off
@@ -621,7 +631,8 @@
     path: gregoryduckworth/restart_notification.yaml
     input:
       notification_message: Home Assistant Reiniciou!
-      notify_device: 2549b1202f7c47d3bb6eb14f60da8596
+      notify_device: ea53152eff35901bfc4e28fc15bbdef7
+      notification_title: Home Assistant
 - id: '1609393232632'
   alias: Volume Nest
   description: ''
@@ -912,7 +923,7 @@
     device_id: ea53152eff35901bfc4e28fc15bbdef7
     entity_id: sensor.rn8p_nivel_da_bateria
     domain: sensor
-    above: 99
+    above: 98
     for:
       hours: 0
       minutes: 0
@@ -950,3 +961,65 @@
     entity_id: light.led
   mode: parallel
   max: 10
+- id: '1614013291333'
+  alias: Motion-activated Light
+  description: ''
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      no_motion_wait: '120'
+      motion_entity: binary_sensor.presenca
+      light_target:
+        entity_id: light.spots_sala
+- id: '1614013359917'
+  alias: Zone Notification
+  description: ''
+  use_blueprint:
+    path: homeassistant/notify_leaving_zone.yaml
+    input:
+      person_entity: person.douglas
+      zone_entity: zone.home
+      notify_device: ea53152eff35901bfc4e28fc15bbdef7
+- id: '1614013395010'
+  alias: Zone Notification
+  description: ''
+  use_blueprint:
+    path: homeassistant/notify_leaving_zone.yaml
+    input:
+      person_entity: person.juliana
+      zone_entity: zone.home
+      notify_device: ea53152eff35901bfc4e28fc15bbdef7
+- id: '1618485727369'
+  alias: 'Notificar: IP externo'
+  description: Notifica quando o IP externo muda
+  trigger:
+  - platform: state
+    entity_id: sensor.ip_externo
+  condition: []
+  action:
+  - service: notify.doug
+    data:
+      message: New external IP address is {{ states('sensor.ip_externo') }}
+      title: IP Externo de casa
+  mode: parallel
+  max: 10
+- id: '1618487188265'
+  alias: 'App: Reiniciar modem'
+  description: Reinicia modem todo dia de madrugada
+  trigger:
+  - platform: time
+    at: 02:00:00
+  condition: []
+  action:
+  - service: notify.doug
+    data:
+      title: Modem reiniciando
+      message: Internet indisponível temporariamente
+  - service: switch.turn_off
+    target:
+      entity_id: switch.modem
+  - wait_template: 00:00:15
+  - service: switch.turn_on
+    target:
+      entity_id: switch.modem
+  mode: single

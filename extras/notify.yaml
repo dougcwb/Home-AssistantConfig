@@ -4,11 +4,13 @@
       - service: mobile_app_rn8p
       - service: mobile_app_rn8t
       - service: mobile_app_sm_t113nu
+      - service: lgtv
 
   - name: doug
     platform: group
     services:
       - service: mobile_app_rn8p
+      - service: lgtv
       
   - name: ju
     platform: group
