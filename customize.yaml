@@ -293,6 +293,72 @@ switch.tv_pause:
 switch.tv_ff:
   icon: mdi:fast-forward
   friendly_name: Avançar
+switch.tv_q_power:
+  icon: mdi:television
+  friendly_name: TV
+switch.tv_q_source:
+  icon: mdi:exit-to-app
+  friendly_name: Source
+switch.tv_q_tv:
+  icon: mdi:television-box
+  friendly_name: TV
+switch.tv_q_smarthub:
+  icon: mdi:longitude
+  friendly_name: Smarthub
+switch.tv_q_volup:
+  icon: mdi:volume-plus
+  friendly_name: Vol+
+switch.tv_q_channelup:
+  icon: mdi:arrow-up-bold-circle
+  friendly_name: Canal+
+switch.tv_q_voldown:
+  icon: mdi:volume-minus
+  friendly_name: Vol-
+switch.tv_q_channeldown:
+  icon: mdi:arrow-down-bold-circle
+  friendly_name: Canal-
+switch.tv_q_tools:
+  icon: mdi:tools
+  friendly_name: Tools
+switch.tv_q_up:
+  icon: mdi:arrow-up-bold
+  friendly_name: Cima
+switch.tv_q_info:
+  icon: mdi:information
+  friendly_name: Info
+switch.tv_q_left:
+  icon: mdi:arrow-left-bold
+  friendly_name: Esquerda
+switch.tv_q_ok:
+  icon: mdi:smoke-detector
+  friendly_name: OK
+switch.tv_q_right:
+  icon: mdi:arrow-right-bold
+  friendly_name: Direita
+switch.tv_q_return:
+  icon: mdi:reply
+  friendly_name: Voltar
+switch.tv_q_down:
+  icon: mdi:arrow-down-bold
+  friendly_name: Baixo
+switch.tv_q_exit:
+  icon: mdi:alpha-e-box
+  friendly_name: Sair
+switch.tv_q_rw:
+  icon: mdi:rewind
+  friendly_name: Retroceder
+switch.tv_q_stop:
+  icon: mdi:stop
+  friendly_name: Parar
+switch.tv_q_play:
+  icon: mdi:play
+  friendly_name: Reproduzir
+switch.tv_q_pause:
+  icon: mdi:pause
+  friendly_name: Pausar
+switch.tv_q_ff:
+  icon: mdi:fast-forward
+  friendly_name: Avançar
 light.led:
   icon: mdi:led-strip
   friendly_name: Led

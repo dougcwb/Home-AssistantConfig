@@ -1,5 +1,8 @@
   - platform: google_translate
     base_url: !secret internal_url
     cache: true
+    language: "pt-br"
     cache_dir: /tmp/tts
     time_memory: 300
+    #service_name: google_say
+  

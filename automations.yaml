@@ -96,10 +96,17 @@
     service: tts.google_translate_say
   - data:
       data:
+        image: http://192.168.1.148/webcapture.jpg?user=admin&password=M4tr0shka&command=snap&channel=1
+        clickAction: https://dowg.duckdns.org/lovelace/quintal
         push:
           badge: 1
       message: O portão foi aberto às {{ states('sensor.time')}}
     service: notify.all_devices
+  - service: camera.snapshot
+    target:
+      device_id: e26df4e13ee1cce55d6eb964d0a6196e
+    data:
+      filename: /config/www/images/cameras/camera_poste_{{now().strftime("%Y%m%d_%H%M%S")}}.jpg
   mode: single
 - id: '7'
   alias: 'Luz: Acende Luzes ao abrir o portao a noite'
@@ -167,15 +174,17 @@
   alias: 'App: Jornal Nacional'
   description: Muda de canal na hora do jornal
   trigger:
-  - at: '20:29:50'
+  - at: '20:29:10'
     platform: time
   condition: []
   action:
   - data:
-      media_content_id: 12
+      media_content_id: '12'
       media_content_type: channel
-    entity_id: media_player.samsung_un40f5500
     service: media_player.play_media
+    target:
+      entity_id:
+      - media_player.un40f5500
   mode: single
 - id: '1589633706653'
   alias: 'App: Liga umidificador'
@@ -221,31 +230,35 @@
   - minutes: '00'
     platform: time_pattern
   condition:
-  - after: 08:00:00
-    before: '21:01:00'
-    condition: time
-  - condition: or
+  - condition: and
     conditions:
-    - condition: device
-      device_id: 3638a8dea2294ac7a8dcd7ccf579a85f
-      domain: media_player
-      entity_id: media_player.nest
-      type: is_off
-    - condition: device
-      device_id: 3638a8dea2294ac7a8dcd7ccf579a85f
-      domain: media_player
-      entity_id: media_player.nest
-      type: is_idle
+    - condition: state
+      entity_id: input_boolean.visitas
+      state: 'off'
+    - condition: time
+      after: 08:00
+      before: '21:01'
   action:
   - data:
       volume_level: 0.5
-    entity_id: media_player.nest
     service: media_player.volume_set
+    target:
+      entity_id: media_player.nest
   - data_template:
       media_content_id: http://192.168.1.100:8123/local/plugins/cucko/{{now().strftime('%I')}}.wav
       media_content_type: audio
     entity_id: media_player.nest
     service: media_extractor.play_media
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: tts.google_translate_say
+    data:
+      message: São {{now().strftime('%-H')}} horas
+      language: pt
+      entity_id: media_player.nest
   mode: single
 - id: '1590409242457'
   alias: 'App: Geladeira sempre ligada'
@@ -339,25 +352,28 @@
   alias: 'App: Liga a TV manhã'
   description: Ligar a tv de manhã
   trigger:
-  - at: 09:28
+  - at: 07:45
     platform: time
+  - platform: time
+    at: '12:00'
   condition:
-  - condition: state
-    entity_id: media_player.lgtv
-    state: 'off'
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: media_player.un40f5500
+      state: unavailable
+    - condition: state
+      entity_id: media_player.un40f5500
+      state: 'off'
   - condition: and
     conditions:
     - condition: state
       entity_id: binary_sensor.workday_sensor
       state: 'on'
   action:
-  - data: {}
-    entity_id: switch.tv_power
-    service: switch.turn_on
-  - delay: '8'
-  - data: {}
-    entity_id: switch.tv_num9
-    service: switch.turn_on
+  - service: switch.toggle
+    target:
+      entity_id: switch.tv_q_power
   mode: single
 - id: '1597950348495'
   alias: 'Notificar: Bateria rn8t 100%'
@@ -423,7 +439,7 @@
   alias: 'Alerta: Alto consumo da geladeira'
   description: ''
   trigger:
-  - above: '1.8'
+  - above: '2'
     entity_id: sensor.today_consumption
     platform: numeric_state
   condition: []
@@ -432,7 +448,7 @@
       data:
         push:
           badge: 1
-      message: Geladeira com alto consumo ({{ states('sensor.time')}})
+      message: Geladeira com alto consumo
     service: notify.doug
   mode: single
 - id: '1600816780345'
@@ -516,6 +532,12 @@
     entity_id: binary_sensor.porta_vidro
     from: 'on'
     to: 'off'
+    for: 00:00:10
+  - platform: state
+    entity_id: binary_sensor.porta_jantar
+    from: 'on'
+    to: 'off'
+    for: 00:00:10
   condition:
   - condition: state
     entity_id: sun.sun
@@ -835,7 +857,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 01:00:00
+    at: 00:00
   condition:
   - condition: not
     conditions:
@@ -1022,4 +1044,70 @@
   - service: switch.turn_on
     target:
       entity_id: switch.modem
+  mode: single
+- id: '1627660660001'
+  alias: Aviso desenho
+  description: ''
+  trigger:
+  - platform: time
+    at: '13:15'
+  condition: []
+  action:
+  - service: tts.google_translate_say
+    data:
+      entity_id: media_player.nest
+      message: Ícaro, agora você pode assistir desenhos
+      language: pt
+  mode: single
+- id: '1631795010128'
+  alias: 'Timer: Desliga Aquecedor'
+  description: ''
+  trigger:
+  - platform: time
+    at: 00:00
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: light.banheiro
+      state: 'on'
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.aquecedor
+  mode: single
+- id: '1633435055126'
+  alias: Teto(LED) on
+  description: Acende o teto quando o sol se põe
+  trigger:
+  - platform: sun
+    event: sunset
+  condition:
+  - condition: state
+    entity_id: media_player.lgtv
+    state: 'on'
+  action:
+  - service: switch.toggle
+    target:
+      entity_id: switch.led_on
+  - service: switch.toggle
+    target:
+      entity_id: switch.led_on
+  - service: switch.toggle
+    target:
+      entity_id: switch.led_on
+  mode: single
+- id: '1634514757016'
+  alias: 'Cam: Ultima'
+  description: Tira uma print a cada 5 min
+  trigger:
+  - platform: time_pattern
+    minutes: '5'
+  condition: []
+  action:
+  - service: camera.snapshot
+    target:
+      device_id: e26df4e13ee1cce55d6eb964d0a6196e
+    data:
+      filename: /config/www/images/ultima.jpg
   mode: single

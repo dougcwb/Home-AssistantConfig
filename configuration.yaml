@@ -6,6 +6,7 @@ automation: !include automations.yaml
 binary_sensor: !include extras/binary.yaml
 climate: !include extras/climate.yaml
 conversation:
+device_tracker: !include extras/device_tracker.yaml
 ffmpeg:
 frontend:
   themes: !include_dir_merge_named themes/
@@ -17,12 +18,16 @@ homeassistant:
   allowlist_external_dirs:
     - /share/
     - /tmp/
-#http: !include extras/http.yaml
+  whitelist_external_dirs:
+    - /tmp
+    - /config/www
+    - /config/www/images
+    - /config/www/images/cameras
+http: !include extras/http.yaml
 input_boolean: !include extras/input_boolean.yaml
 input_number: !include extras/input_number.yaml
 input_select: !include extras/input_select.yaml
 light: !include extras/lights.yaml
-local_ip:
 #logger: !include extras/logger.yaml
 media_extractor: !include extras/extractor.yaml
 media_player: !include extras/media.yaml

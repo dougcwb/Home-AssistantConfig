@@ -24,7 +24,7 @@
     1000aba901: #frente
       device_class: light
     1000c57c2c: #fundos
-      name: Repelente
+      name: Repelentee
 #    1000c4f489: #lustrequeimado
 #      device_class: light
     1000c50930: #corredor
@@ -35,6 +35,12 @@
       device_class: light
     1000c3c515: #icaro
       device_class: light
+    1001098eb2: #porta vidro
+      device_class: door
+    A4400090fa: #porta vidro atual
+      device_class: door
+    A4400090f9: #porta jantar atual
+      device_class: door
 #    1000b6e742: #lustrequeimado2
 #      device_class: light
   rfbridge:
@@ -50,5 +56,3 @@
     presenca:
       device_class: motion
     #  timeout: 15
-    #1001098eb2: #porta dos fundos
-     # device_class: lock

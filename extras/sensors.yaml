@@ -12,19 +12,7 @@
     index: 0
     name: IP Externo
     value_template: '{{ value.split("é")[1] }}'
-    
-  - platform: scrape
-    resource: https://alternative.me/crypto/fear-and-greed-index/
-    select: ".status"
-    index: 0
-    name: Scrape Sentimento
-    
-  - platform: scrape
-    resource: https://alternative.me/crypto/fear-and-greed-index/
-    select: ".fng-circle"
-    index: 0
-    name: Scrape Sentimento Numero
-    
+
   - platform: rest
     resource: http://api.ipify.org?format=json
     name: External IP
@@ -196,6 +184,22 @@
   - platform: history_stats
     name: TV Ontem
     entity_id: media_player.lgtv
+    state: 'on'
+    type: time
+    end: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    duration:
+      hours: 24
+# Históricos e estatísticas da TV
+  - platform: history_stats
+    name: TV Hoje
+    entity_id: media_player.un40f5500
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    end: '{{ now() }}'
+  - platform: history_stats
+    name: TV Ontem
+    entity_id: media_player.un40f5500
     state: 'on'
     type: time
     end: '{{ now().replace(hour=0, minute=0, second=0) }}'

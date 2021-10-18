@@ -126,9 +126,8 @@
 
 ### LED
   - platform: flux_led
-    scan_interval: 1
-    automatic_add: true
+    scan_interval: 0.5
     devices:
       192.168.1.77:
-        name: LED
+        name: 'LED'
         mode: "rgbw"
